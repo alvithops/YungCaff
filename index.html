@@ -1,11 +1,768 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Élite Lounge &amp; Specialty Brew — Dark Luxury Experience</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#353436",
+            "on-error": "#690005",
+            "text-tertiary": "#6B7280",
+            "tertiary-fixed-dim": "#fabc4d",
+            "primary-container": "#d4af37",
+            "on-primary": "#3c2f00",
+            "on-secondary-container": "#ceb188",
+            "on-tertiary-fixed-variant": "#604100",
+            "secondary": "#e0c298",
+            "outline-variant": "#4d4635",
+            "status-danger": "#F87171",
+            "surface-bright": "#3a393a",
+            "on-background": "#e5e2e3",
+            "on-secondary": "#402d0f",
+            "surface-container": "#201f20",
+            "secondary-container": "#584323",
+            "surface-container-low": "#1c1b1c",
+            "text-primary": "#F9FAFB",
+            "surface-container-lowest": "#0e0e0f",
+            "primary-fixed": "#ffe088",
+            "surface": "#131314",
+            "on-tertiary-container": "#5d3f00",
+            "tertiary-container": "#e4a83b",
+            "surface-glass-raised": "rgba(255, 255, 255, 0.08)",
+            "on-tertiary": "#432c00",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+            "surface-glass-card": "rgba(255, 255, 255, 0.05)",
+            "on-surface-variant": "#d0c5af",
+            "surface-variant": "#353436",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#e5e2e3",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "accent-amber-glow": "rgba(212, 175, 55, 0.18)",
+            "background": "#131314",
+            "primary": "#f2ca50",
+            "secondary-fixed": "#fedeb2",
+            "on-secondary-fixed": "#281800",
+            "on-secondary-fixed-variant": "#584323",
+            "surface-dim": "#131314",
+            "status-warning": "#FBBF24",
+            "status-success": "#34D399",
+            "secondary-fixed-dim": "#e0c298",
+            "on-primary-container": "#554300",
+            "surface-container-high": "#2a2a2b",
+            "error-container": "#93000a",
+            "tertiary-fixed": "#ffdead",
+            "inverse-on-surface": "#313031",
+            "on-tertiary-fixed": "#281900",
+            "inverse-surface": "#e5e2e3",
+            "primary-fixed-dim": "#e9c349",
+            "surface-tint": "#e9c349",
+            "outline": "#99907c",
+            "on-primary-fixed": "#241a00",
+            "surface-glass-subtle": "rgba(255, 255, 255, 0.03)",
+            "tertiary": "#ffc461",
+            "text-secondary": "#9CA3AF",
+            "inverse-primary": "#735c00",
+            "error": "#ffb4ab",
+            "on-primary-fixed-variant": "#574500"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "margin-desktop": "3rem",
+            "gutter-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "margin": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Playfair Display"],
+            "headline-xl-mobile": ["Playfair Display"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Playfair Display"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.015em", "fontWeight": "400" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-xl-mobile": ["2.25rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-xl": ["3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg": ["2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "700" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.55", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["0.75rem", { "lineHeight": "1.25", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .gold-gradient-btn {
+      background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+    }
+    .gold-gradient-btn:hover {
+      box-shadow: 0 0 28px rgba(212, 175, 55, 0.55);
+    }
+  </style>
 </head>
-<body>
-    
-</body>
-</html>
+<body class="bg-surface-container-lowest text-text-primary antialiased selection:bg-primary selection:text-surface-container-lowest overflow-x-hidden min-h-screen relative font-body-md">
+<!-- Ambient Obsidian Background Glows -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[65rem] h-[35rem] rounded-full bg-primary/5 blur-[140px]"></div>
+<div class="absolute top-[40%] -right-40 w-[45rem] h-[45rem] rounded-full bg-secondary-container/10 blur-[160px]"></div>
+<div class="absolute bottom-10 -left-40 w-[50rem] h-[50rem] rounded-full bg-primary/5 blur-[180px]"></div>
+</div>
+<!-- 1. STICKY HEADER / GLASS NAVBAR (From Shared Components JSON) -->
+<header class="docked full-width top sticky z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-glass-border-subtle shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all">
+<div class="flex justify-between items-center w-full px-6 lg:px-12 py-4 max-w-7xl mx-auto">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-2 group" href="#">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-wide transition-transform group-hover:scale-[1.02]">
+          Élite Lounge
+        </span>
+<span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+</a>
+<!-- Desktop Navigation Links (Context: Landing Page) -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#menu">Menu</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#story">Our Story</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#promos">Promo &amp; Event</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#vip">VIP Lounge</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#contact">Kontak</a>
+</nav>
+<!-- Trailing Action Buttons -->
+<div class="flex items-center gap-3">
+<!-- Admin / Kasir Glass Outline Button -->
+<a class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-glass-subtle border border-white/15 text-text-primary text-label-md font-label-md hover:border-primary hover:bg-primary/10 transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-sm text-secondary">admin_panel_settings</span>
+<span>Akses Kasir / Admin</span>
+</a>
+<!-- Scan Meja & Pesan (Primary Gold Glow Button) -->
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold tracking-wide transition-all active:scale-[0.98]" href="#qr-section">
+<span class="material-symbols-outlined text-base">qr_code_scanner</span>
+<span>Scan Meja &amp; Pesan</span>
+</a>
+</div>
+</div>
+</header>
+<main class="relative z-10 flex flex-col gap-24 lg:gap-36">
+<!-- 2. HERO SECTION (Split 12-Column Editorial Grid) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 lg:pt-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Content (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-6">
+<!-- Curated Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-glass-card border border-glass-border-highlight backdrop-blur-md">
+<span class="material-symbols-outlined text-primary text-sm">stars</span>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest">The Sanctuary of Haute Gastronomy</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-text-primary leading-[1.12]">
+            Where Artisanal Brew Meets <span class="italic text-primary font-normal">Dark Opulence</span>
+</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-xl">
+            Kafe &amp; lounge eksklusif dengan presisi seduh berstandar kompetisi dunia. Nikmati kemudahan memesan mahakarya kuliner langsung dari kenyamanan sofa meja Anda.
+          </p>
+<!-- Stat Chips / Badges Row -->
+<div class="flex flex-wrap gap-3 pt-2">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle backdrop-blur-sm">
+<span class="material-symbols-outlined text-secondary text-sm">coffee</span>
+<span class="text-text-primary text-label-md font-label-md">Single Origin Specialty</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle backdrop-blur-sm">
+<span class="material-symbols-outlined text-secondary text-sm">restaurant</span>
+<span class="text-text-primary text-label-md font-label-md">Curated Dining</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle backdrop-blur-sm">
+<span class="material-symbols-outlined text-secondary text-sm">chair</span>
+<span class="text-text-primary text-label-md font-label-md">Private VIP Suites</span>
+</div>
+</div>
+<!-- Micro CTA Button Group -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 w-full sm:w-auto">
+<a class="px-7 py-3.5 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold text-center tracking-wide shadow-lg active:scale-[0.98] transition-all" href="#menu">
+              Jelajahi Menu Eksklusif
+            </a>
+<a class="px-6 py-3.5 rounded-xl bg-surface-glass-card border border-white/10 hover:border-primary/50 text-text-primary font-label-lg text-label-lg text-center backdrop-blur-md transition-all active:scale-[0.98]" href="#story">
+              Filosofi &amp; Kisah Kami
+            </a>
+</div>
+</div>
+<!-- Right Quick Action Widget (5 Cols) -->
+<div class="lg:col-span-5 relative">
+<!-- Background Glow Backdrop for Card -->
+<div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-primary/30 to-transparent blur-xl opacity-60"></div>
+<!-- Floating Glass Order Widget -->
+<div class="relative rounded-2xl p-6 lg:p-8 bg-surface-container-lowest/80 border border-glass-border-highlight backdrop-blur-xl shadow-[0_16px_48px_-8px_rgba(0,0,0,0.8)]">
+<div class="flex items-center justify-between border-b border-glass-border-subtle pb-4 mb-6">
+<div class="flex items-center gap-2.5">
+<span class="p-2 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-xl">sensors</span>
+</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Mulai Pemesanan di Meja</h3>
+<p class="font-body-sm text-body-sm text-text-tertiary">Tanpa antrean, real-time tracking</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded bg-status-success/15 border border-status-success/30 text-status-success text-label-sm font-label-sm uppercase tracking-wider">Online</span>
+</div>
+<!-- Table Input / Selection Simulator -->
+<form class="space-y-4" id="tableForm" onsubmit="event.preventDefault(); alert('Mengarahkan ke Menu untuk Meja ' + document.getElementById('tableSelect').value);">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="tableSelect">Pilih Posisi Duduk / Nomor Meja Anda</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-lg">table_restaurant</span>
+</span>
+<select class="w-full pl-10 pr-4 py-3 rounded-xl bg-surface-container-lowest border border-white/10 text-text-primary font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="tableSelect">
+<option selected="" value="Meja 05">Meja 05 — Velvet Lounge Garden</option>
+<option value="Meja 02">Meja 02 — Bar Counter Espresso</option>
+<option value="Meja 08">Meja 08 — Central Chandelier</option>
+<option value="VIP Suite 1">VIP Suite 1 — Private Cellar Room</option>
+</select>
+</div>
+</div>
+<!-- Quick Perks list inside widget -->
+<div class="p-3.5 rounded-xl bg-surface-glass-subtle border border-glass-border-subtle flex items-center justify-between text-body-sm font-body-sm text-text-secondary">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                  Bebas instalasi aplikasi
+                </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+                  Verifikasi otomatis
+                </span>
+</div>
+<button class="w-full py-3.5 px-4 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]" type="submit">
+<span>Buka Menu Meja Ini</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</form>
+<div class="mt-4 text-center">
+<span class="font-body-sm text-body-sm text-text-tertiary">Atau arahkan kamera ponsel ke QR stiker pada meja Anda</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. BANNER & PETUNJUK SCAN QR MEJA (3 Langkah Interaktif) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="qr-section">
+<div class="rounded-3xl p-8 lg:p-14 bg-surface-glass-card border border-glass-border-highlight backdrop-blur-2xl relative overflow-hidden">
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary/10 blur-[100px] pointer-events-none"></div>
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest block mb-2">Simpel &amp; Seamless</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Kemewahan Tanpa Menunggu Antre</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-3">
+            Inovasi hospitality digital Élite Lounge dirancang untuk menjaga privasi dan ketenangan momen santap Anda.
+          </p>
+</div>
+<!-- 3 Step Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+<!-- Step 1 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest/60 border border-glass-border-subtle backdrop-blur-md relative group hover:border-primary/40 transition-all">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl">qr_code_scanner</span>
+</div>
+<div class="text-primary font-label-sm text-label-sm mb-1 uppercase tracking-wider">Langkah 01</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Scan QR di Meja Anda</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Gunakan kamera ponsel pintar Anda untuk memindai kode QR akrilik emas yang tertanam di sudut meja.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest/60 border border-glass-border-subtle backdrop-blur-md relative group hover:border-primary/40 transition-all">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl">tune</span>
+</div>
+<div class="text-primary font-label-sm text-label-sm mb-1 uppercase tracking-wider">Langkah 02</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Kustomisasi Menu</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Tentukan profiling seduh, rasio susu oat/almond, tingkat kematangan steak, hingga preferensi tanpa gula.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest/60 border border-glass-border-subtle backdrop-blur-md relative group hover:border-primary/40 transition-all">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl">receipt_long</span>
+</div>
+<div class="text-primary font-label-sm text-label-sm mb-1 uppercase tracking-wider">Langkah 03</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">QRIS &amp; Pelacakan Live</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Selesaikan transaksi instan melalui QRIS atau kartu, dan pantau status barista yang menyiapkan pesanan Anda.
+            </p>
+</div>
+</div>
+<!-- Interactive Quick Trigger Banner Bottom -->
+<div class="mt-10 pt-8 border-t border-glass-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-2xl">shield</span>
+<span class="font-body-sm text-body-sm text-text-secondary">
+              Sistem terenkripsi aman, langsung terhubung ke display kitchen tanpa perantara.
+            </span>
+</div>
+<button class="text-primary hover:text-white font-label-lg text-label-lg flex items-center gap-1.5 transition-colors" onclick="document.getElementById('tableSelect').focus();">
+<span>Panduan Meja VIP</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. SEJARAH SINGKAT KAFE (The Heritage of Élite) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="story">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Visual Column (5 Cols) -->
+<div class="lg:col-span-5 relative">
+<div class="rounded-3xl overflow-hidden border border-glass-border-subtle aspect-[4/5] relative shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A dark luxury aesthetic interior of an exclusive coffee lounge with polished dark obsidian stone surfaces, soft amber halo lighting, and an artisan barista pouring a precise pour-over coffee through a bespoke copper dripper. In the background, sophisticated patrons sit in plush velvet chairs with understated champagne gold accents under high moody ceilings." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGzbkUm-VesVbM-bXr4hf-5_pDyDPCxUIjKwcKwaP1bNCviywSmPtyI8di4imL5EtWS5ogG7gb3MfDLDkc2Ygvj_bMgx-0mSaTG5n3ieZzwCgGUaDTXRMP2Y36CN9l8TCNc6J4XW9yF83zjxUnx6cc9O5ShtQweWK8GkUsJov3WWjR97QOBGsYlEJww-8o233m4x7LstciaeKKpo8M9bOVtbweD8QuntA3vVRg3kfvPMlVPcvKc3ub"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-surface-container-lowest/80 backdrop-blur-md border border-white/10">
+<p class="font-headline-sm text-headline-sm text-primary">"Kopi bukan sekadar komoditas; ia adalah dialog rasa dan presisi."</p>
+<span class="block mt-1 font-label-md text-label-md text-text-tertiary">— Master Roaster Élite</span>
+</div>
+</div>
+</div>
+<!-- Narrative & Accomplishments (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest">Heritage &amp; Philosophy</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">
+            The Heritage of <span class="italic text-primary font-normal">Élite</span>
+</h2>
+<p class="font-body-lg text-body-lg text-text-secondary leading-relaxed">
+            Berawal pada musim gugur 2018 di jantung distrik metropolitan, Élite Lounge lahir dari satu obsesi: mendekonstruksi pengalaman minum kopi kasual menjadi sebuah simfoni kemewahan tak terdistraksi.
+          </p>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+            Kami mengkurasi langsung biji mikrolot langka dari perkebunan dataran tinggi di Panama, Ethiopia, hingga Aceh Gayo. Tiap profil sangrai disempurnakan secara presisi menggunakan mesin roasting berstandar kompetisi dunia, menghadirkan aroma bunga melati, sentuhan madu hutan, dan keasaman sitrus yang berkelas.
+          </p>
+<!-- Achievement Counters Bento -->
+<div class="grid grid-cols-3 gap-4 pt-4">
+<div class="p-4 rounded-xl bg-surface-glass-card border border-glass-border-subtle text-center">
+<div class="font-headline-md text-headline-md text-primary font-bold">12+</div>
+<div class="font-label-sm text-label-sm text-text-secondary uppercase mt-1">Barista Berprestasi</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-glass-card border border-glass-border-subtle text-center">
+<div class="font-headline-md text-headline-md text-primary font-bold">100%</div>
+<div class="font-label-sm text-label-sm text-text-secondary uppercase mt-1">Single Origin Arabica</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-glass-card border border-glass-border-subtle text-center">
+<div class="font-headline-md text-headline-md text-primary font-bold">2018</div>
+<div class="font-label-sm text-label-sm text-text-secondary uppercase mt-1">Tahun Pendirian</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. INFO PROMO AKTIF & EVENT EKSKLUSIF (With Interactive JS Filter Tabs) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="promos">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+<div>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest block mb-1">Exclusive Privileges</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Promo &amp; Agenda Spesial</h2>
+</div>
+<!-- Filter Tab Buttons -->
+<div class="inline-flex p-1.5 rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md">
+<button class="px-5 py-2 rounded-lg text-label-md font-label-md transition-all bg-primary-container text-surface-container-lowest font-bold" id="btnTabOngoing" onclick="switchPromoTab('ongoing')">
+            Sedang Berlangsung
+          </button>
+<button class="px-5 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-text-primary transition-all" id="btnTabUpcoming" onclick="switchPromoTab('upcoming')">
+            Event Mendatang
+          </button>
+</div>
+</div>
+<!-- Promo Items Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="promoGrid">
+<!-- Promo Card 1 -->
+<div class="promo-card ongoing rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col justify-between hover:border-primary/40 transition-all duration-300">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-status-warning/15 border border-status-warning/30 text-status-warning text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-warning animate-ping"></span>
+                Daily 17:00 - 20:00
+              </span>
+<span class="material-symbols-outlined text-primary text-xl">redeem</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Golden Hour Tasting Flight</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Diskon istimewa 20% untuk paket 3 Varian Single Origin Flight pilihan brewmaster kami menjelang senja.
+            </p>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest/40 border-t border-glass-border-subtle flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Tersedia di Meja</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#qr-section">Klaim Promo <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+</div>
+<!-- Promo Card 2 -->
+<div class="promo-card ongoing rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col justify-between hover:border-primary/40 transition-all duration-300">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-primary text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs">music_note</span>
+                Jumat Malam (20:30)
+              </span>
+<span class="material-symbols-outlined text-primary text-xl">nightlife</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Midnight Jazz &amp; Espresso Martini</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Harmonisasi saxophone live akustik dipadukan dengan racikan koktail Espresso Martini berbahan beans Geisha.
+            </p>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest/40 border-t border-glass-border-subtle flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Reservasi Meja Lounge</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#contact">Pesan Kursi <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+</div>
+<!-- Promo Card 3 -->
+<div class="promo-card ongoing rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col justify-between hover:border-primary/40 transition-all duration-300">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-status-success/15 border border-status-success/30 text-status-success text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                Complimentary
+              </span>
+<span class="material-symbols-outlined text-primary text-xl">bakery_dining</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Artisan Pastry Complimentary</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Dapatkan 1 French Truffle Croissant gratis untuk setiap pemesanan manual brew V60 Geisha Reserve.
+            </p>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest/40 border-t border-glass-border-subtle flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Berlaku Meja &amp; Bar</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#qr-section">Order Sekarang <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+</div>
+<!-- Promo Card 4 (Upcoming - initially hidden or filterable) -->
+<div class="promo-card upcoming hidden rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col justify-between hover:border-primary/40 transition-all duration-300">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                15 November 2025
+              </span>
+<span class="material-symbols-outlined text-secondary text-xl">event</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Private Cupping Masterclass</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Eksklusif 10 kursi bersama Q-Grader internasional menelusuri 8 varietas kopi mikro-lot langka.
+            </p>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest/40 border-t border-glass-border-subtle flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Eksklusif VIP Member</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#contact">Join Waitlist <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+</div>
+<!-- Promo Card 5 (Upcoming) -->
+<div class="promo-card upcoming hidden rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col justify-between hover:border-primary/40 transition-all duration-300">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-secondary text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                28 November 2025
+              </span>
+<span class="material-symbols-outlined text-secondary text-xl">liquor</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Winter Botanical Mixology Night</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Peluncuran 6 mocktail dan cocktail botani baru yang diinfusi buah lokal tropis dan cold brew 24 jam.
+            </p>
+</div>
+<div class="px-6 py-4 bg-surface-container-lowest/40 border-t border-glass-border-subtle flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Early Bird Pass</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#contact">Info Tiket <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. CUPLIKAN MENU UNGGULAN (Signature Highlights) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="menu">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest block mb-2">The Gastronomic Curation</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Koleksi Menu Unggulan</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-2">
+          Perpaduan cita rasa dunia dengan sentuhan artistik para koki dan peracik kopi terbaik kami.
+        </p>
+</div>
+<!-- Bento Cards Grid (4 Highlight Items) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Menu 1 -->
+<div class="group rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col hover:border-primary/40 transition-all duration-300">
+<div class="h-56 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxury specialty pour-over coffee cup served in a fine ceramic tumbler sitting upon a dark obsidian slate coaster. Droplets of golden ambient lounge lighting reflect off the deep amber coffee liquid. Beside the tumbler lies a glass tasting vial with aromatic smoke subtly rising in a moody luxury atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJByguqma8kkKV6sZrlbeZLC19MYd36pfEm146rPwYCyttAcwR9M01XDGIi9yK7t_GjI3dHMW7KAOHxjlzh_KSr4UHc0NRfkw4Don3DwAWGUcOC_ZviwtSoEH8M9Z6VzZWHj92RIJzIeS3KNFNrvAUKz7bvXB4aPkQ0KxdRoFxqwZ9ut0ySJcCJGTX8BXeoC1heD26LBCYs-vHX4jH7l0yS5c78VaONSUOCol7Yn4HzX6k8nrAdVzR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-primary text-surface-container-lowest font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              Signature
+            </span>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Panama Geisha V60</h3>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">125K</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+                Catatan melati liar, peach putih, dan aroma madu bunga bergamot dengan keasaman elegan.
+              </p>
+</div>
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Pesan di Meja</span>
+</button>
+</div>
+</div>
+<!-- Menu 2 -->
+<div class="group rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col hover:border-primary/40 transition-all duration-300">
+<div class="h-56 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An exquisite layered mocktail presented in a crystal coupe glass filled with a hand-carved ice sphere. The drink shows rich gradient hues of deep crimson pomegranate and sparkling golden citrus tonic, garnished with an edible gold leaf and sprig of charred rosemary in a dimly lit high-end lounge setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxZ9y2WHMWaQWOunSISGrktSP-g6XmcCIKV5X5LA5-lTEr0KrPxAbWxsi6KLUHmE7_RH6hJfi-5ghQgw7JSFJtfSpWCLJXK4MS9j7TIRBH5SzAAhvyKoulFDFmefgyiMf8KAUi2nwLH4Lv4vn82FoS7SkU6YUR6o-GPMhxmYOnAPekgWE3nqOPWB-sbzsIHQC3SMTemaaZGYQsYtkNzF9q7_lTKgGnNz6TzmIg1H0yZTJFfx2-Y3eK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-secondary-container text-secondary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              Popular
+            </span>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Golden Velvet Elixir</h3>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">78K</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+                Infusi cold brew 24 jam dengan sari delima Mediterania, sparkling tonic, dan sentuhan emas 24k.
+              </p>
+</div>
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Pesan di Meja</span>
+</button>
+</div>
+</div>
+<!-- Menu 3 -->
+<div class="group rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col hover:border-primary/40 transition-all duration-300">
+<div class="h-56 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A gourmet wagyu beef steak grilled to medium-rare perfection sliced cleanly to reveal pink tender interior, plated artfully with black winter truffle jus, smoked potato mousseline, and microgreens on a matte dark ceramic plate in an elite moody restaurant environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGL_NTHhOwC1XwYWBjBeyqebB4PDLkRaezsHsx8897JEo_PIjERVFxqNvJHFV4Z-WJD42_2gZTVOsNIAfsAKqq_Rbt3wR2b3C2lSoFn6a3Ai9cbeN4_T7JMpQ7D2Xbq3BLgwkW_ungBbVOC9jG98GkKbo8tHJa8v5mQsFR2pTBbNATAa1Ik-BWjbse3wIcTv3wVGml6_9vpcdObUktAzap-HqfBhO_otStWEiqTzNY4USEuxiONTo7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-primary text-surface-container-lowest font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              Chef's Pick
+            </span>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Truffle Wagyu MB7</h3>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">295K</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+                Daging Wagyu marbling 7 panggang arang, puree kentang mentega Prancis, dan reduksi truffle liar.
+              </p>
+</div>
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Pesan di Meja</span>
+</button>
+</div>
+</div>
+<!-- Menu 4 -->
+<div class="group rounded-2xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-md overflow-hidden flex flex-col hover:border-primary/40 transition-all duration-300">
+<div class="h-56 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A golden flaky French croissant filled with dark Valrhona chocolate ganache and hazelnut praline, dusted delicately with cocoa powder and edible gold flakes resting on a black marble table accompanied by a warm demitasse of espresso." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxAVWVRZTSbBn8A9t1IcXwHMHj5_uDWcGncnbzV2qqRxjBmBnw_ueGockNpFi3ahB0cjIrTrL087pJHr5q1oNLYyE5GuiT6Pmq8L7lkkCX8JqEPfY762BFOHIwv7g47EKOxqyWo1rV0ThcJwsGqc6rsodUOO8-93jLywnDQQT-K0bLTUhCVOvxB2KBtzT71CszuyXp3pgXkDJi2K6tldXnv2Nd3dkTiiSUpcjqa0tB85BLr8jlQZ9v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-surface-container-highest text-text-primary font-label-sm text-label-sm uppercase tracking-wider">
+              Pastry
+            </span>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Noir Valrhona Croissant</h3>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">55K</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+                Lipatan 36 layer butter Normandia renyah dengan isian cokelat hitam Valrhona 72% lumer.
+              </p>
+</div>
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Pesan di Meja</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-surface-glass-card border border-glass-border-highlight text-primary font-label-lg text-label-lg hover:bg-primary hover:text-surface-container-lowest transition-all" href="#qr-section">
+<span>Lihat Seluruh 48 Menu Lengkap</span>
+<span class="material-symbols-outlined text-base">restaurant_menu</span>
+</a>
+</div>
+</section>
+<!-- 7. TESTIMONIAL & VIP LOUNGE EXPERIENCE PREVIEW -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="vip">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- VIP Suite Intro (6 cols) -->
+<div class="lg:col-span-6 space-y-6">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest">Private Reservation</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">
+            Privasi Paripurna di <span class="italic text-primary font-normal">VIP Suites</span>
+</h2>
+<p class="font-body-lg text-body-lg text-text-secondary leading-relaxed">
+            Dirancang bagi para eksekutif, negosiator bisnis, maupun pertemuan privat berkelas tinggi. Dilengkapi dengan acoustic isolation, pelayan khusus (dedicated sommelier/barista), dan tablet kontrol pemesanan pribadi.
+          </p>
+<div class="space-y-4 pt-2">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Soundproof Private Space</h4>
+<p class="font-body-sm text-body-sm text-text-secondary">Kenyamanan diskusi tanpa kebisingan ruang publik.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Personal Sommelier &amp; Barista</h4>
+<p class="font-body-sm text-body-sm text-text-secondary">Layanan seduh live table-side eksklusif untuk grup Anda.</p>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<a class="px-6 py-3.5 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold inline-flex items-center gap-2" href="#contact">
+<span class="material-symbols-outlined text-base">calendar_month</span>
+<span>Reservasi Suite VIP</span>
+</a>
+</div>
+</div>
+<!-- Testimonial Bento Card (6 cols) -->
+<div class="lg:col-span-6 space-y-6">
+<div class="p-8 rounded-3xl bg-surface-glass-card border border-glass-border-highlight backdrop-blur-xl relative">
+<span class="material-symbols-outlined text-primary/30 text-6xl absolute top-6 right-6">format_quote</span>
+<div class="flex items-center gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-text-primary leading-relaxed italic mb-6">
+              "Pemesanan langsung dari meja via QR tanpa harus mengunduh aplikasi benar-benar praktis. Kualitas pour-over Geisha mereka konsisten di standar tertinggi yang pernah saya temui di Asia Tenggara."
+            </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border border-primary/40 bg-surface-container-high flex items-center justify-center font-bold text-primary font-headline-sm">
+                RH
+              </div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary">Reza Hadiningrat</h4>
+<p class="font-body-sm text-body-sm text-text-tertiary">Managing Partner di Apex Capital Partners</p>
+</div>
+</div>
+</div>
+<!-- Secondary Testimonial -->
+<div class="p-6 rounded-2xl bg-surface-glass-subtle border border-glass-border-subtle backdrop-blur-md flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Dipercaya oleh lebih dari 500+ anggota VIP terdaftar.</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Rating 4.9 / 5.0</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Operational Hours & Location Quick Anchor Section -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12" id="contact">
+<div class="p-8 lg:p-12 rounded-3xl bg-surface-container-low border border-glass-border-subtle flex flex-col lg:flex-row justify-between items-center gap-8">
+<div class="space-y-2 text-center lg:text-left">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest">Kunjungi Kami</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">Élite Sanctuary Boulevard, Menteng No. 18</h3>
+<p class="font-body-md text-body-md text-text-secondary">Jakarta Pusat — Layanan Valet Parking Gratis &amp; Concierge 24 Jam.</p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<div class="text-center sm:text-right border-y sm:border-y-0 sm:border-r border-glass-border-subtle py-2 sm:pr-6">
+<span class="font-label-sm text-label-sm text-text-tertiary uppercase block">Jam Operasional</span>
+<span class="font-headline-sm text-headline-sm text-primary">10:00 — 01:00 WIB</span>
+</div>
+<a class="px-6 py-3 rounded-xl bg-surface-glass-card border border-white/10 hover:border-primary text-text-primary font-label-md text-label-md flex items-center gap-2 transition-all" href="tel:+62215558900">
+<span class="material-symbols-outlined text-sm text-primary">call</span>
+<span>+62 (21) 555-8900</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- 8. FOOTER (Strictly conforming to Shared Components JSON) -->
+<footer class="mt-24 full-width border-t border-glass-border-subtle bg-surface-container-lowest">
+<div class="w-full px-6 lg:px-12 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Left Brand & Copyright -->
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-wider">
+          Élite Lounge
+        </span>
+<p class="font-body-sm text-body-sm text-text-tertiary text-center md:text-left">
+          © 2025 Élite Lounge &amp; Specialty Brew. All rights reserved. Crafted for connoisseurs.
+        </p>
+</div>
+<!-- Links (JSON Mandated) -->
+<nav class="flex flex-wrap justify-center gap-6 text-label-md font-label-md">
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#menu">Menu</a>
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#story">Our Story</a>
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#vip">Private VIP Booking</a>
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#contact">Operational Hours &amp; Location</a>
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#">Terms &amp; Conditions</a>
+<a class="text-primary font-medium hover:underline transition-all duration-200" href="#">Admin POS Access</a>
+</nav>
+</div>
+</footer>
+<!-- Light Vanilla JS for Promo Tab Filtering micro-interaction -->
+<script>
+    function switchPromoTab(type) {
+      const ongoingCards = document.querySelectorAll('.promo-card.ongoing');
+      const upcomingCards = document.querySelectorAll('.promo-card.upcoming');
+      const btnOngoing = document.getElementById('btnTabOngoing');
+      const btnUpcoming = document.getElementById('btnTabUpcoming');
+
+      if (type === 'ongoing') {
+        ongoingCards.forEach(c => c.classList.remove('hidden'));
+        upcomingCards.forEach(c => c.classList.add('hidden'));
+
+        btnOngoing.className = 'px-5 py-2 rounded-lg text-label-md font-label-md transition-all bg-primary-container text-surface-container-lowest font-bold';
+        btnUpcoming.className = 'px-5 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-text-primary transition-all';
+      } else {
+        ongoingCards.forEach(c => c.classList.add('hidden'));
+        upcomingCards.forEach(c => c.classList.remove('hidden'));
+
+        btnUpcoming.className = 'px-5 py-2 rounded-lg text-label-md font-label-md transition-all bg-primary-container text-surface-container-lowest font-bold';
+        btnOngoing.className = 'px-5 py-2 rounded-lg text-label-md font-label-md text-on-surface-variant hover:text-text-primary transition-all';
+      }
+    }
+  </script>
+</body></html>Update otomatis ke-
