@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pembayaran QRIS Interaktif — Élite Lounge &amp; Specialty Brew</title>
+<!-- Material Symbols Google -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus Jakarta Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim from Design System -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#4d4635",
+            "on-surface": "#e5e2e3",
+            "secondary-fixed": "#fedeb2",
+            "error": "#ffb4ab",
+            "tertiary-container": "#e4a83b",
+            "on-background": "#e5e2e3",
+            "primary-container": "#d4af37",
+            "surface-container-lowest": "#0e0e0f",
+            "inverse-on-surface": "#313031",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+            "text-tertiary": "#6B7280",
+            "status-warning": "#FBBF24",
+            "primary-fixed-dim": "#e9c349",
+            "surface-tint": "#e9c349",
+            "secondary-container": "#584323",
+            "surface-glass-subtle": "rgba(255, 255, 255, 0.03)",
+            "on-tertiary-fixed-variant": "#604100",
+            "surface-glass-card": "rgba(255, 255, 255, 0.05)",
+            "on-secondary-fixed-variant": "#584323",
+            "tertiary-fixed": "#ffdead",
+            "primary-fixed": "#ffe088",
+            "inverse-primary": "#735c00",
+            "on-primary-fixed-variant": "#574500",
+            "tertiary-fixed-dim": "#fabc4d",
+            "outline": "#99907c",
+            "on-secondary-fixed": "#281800",
+            "secondary-fixed-dim": "#e0c298",
+            "surface-container-low": "#1c1b1c",
+            "secondary": "#e0c298",
+            "surface-glass-raised": "rgba(255, 255, 255, 0.08)",
+            "on-error-container": "#ffdad6",
+            "surface-container-high": "#2a2a2b",
+            "accent-amber-glow": "rgba(212, 175, 55, 0.18)",
+            "text-primary": "#F9FAFB",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "background": "#131314",
+            "surface": "#131314",
+            "error-container": "#93000a",
+            "on-surface-variant": "#d0c5af",
+            "on-tertiary": "#432c00",
+            "on-secondary": "#402d0f",
+            "on-secondary-container": "#ceb188",
+            "on-primary": "#3c2f00",
+            "surface-container": "#201f20",
+            "on-tertiary-fixed": "#281900",
+            "surface-variant": "#353436",
+            "on-tertiary-container": "#5d3f00",
+            "primary": "#f2ca50",
+            "on-error": "#690005",
+            "status-success": "#34D399",
+            "tertiary": "#ffc461",
+            "status-danger": "#F87171",
+            "surface-bright": "#3a393a",
+            "on-primary-fixed": "#241a00",
+            "on-primary-container": "#554300",
+            "text-secondary": "#9CA3AF",
+            "surface-container-highest": "#353436",
+            "surface-dim": "#131314",
+            "inverse-surface": "#e5e2e3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "margin-desktop": "3rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "2rem",
+            "margin-mobile": "1rem",
+            "margin": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-xl-mobile": [
+              "Playfair Display"
+            ],
+            "label-sm": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-md": [
+              "Playfair Display"
+            ],
+            "headline-sm": [
+              "Playfair Display"
+            ],
+            "label-lg": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-xl": [
+              "Playfair Display"
+            ],
+            "label-md": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-lg": [
+              "Playfair Display"
+            ],
+            "body-md": [
+              "Plus Jakarta Sans"
+            ],
+            "headline-lg-mobile": [
+              "Playfair Display"
+            ],
+            "body-sm": [
+              "Plus Jakarta Sans"
+            ]
+          },
+          "fontSize": {
+            "body-lg": [
+              "1.125rem",
+              {
+                "lineHeight": "1.6",
+                "letterSpacing": "0.01em",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-xl-mobile": [
+              "2.25rem",
+              {
+                "lineHeight": "1.2",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "600"
+              }
+            ],
+            "label-sm": [
+              "0.6875rem",
+              {
+                "lineHeight": "1.2",
+                "letterSpacing": "0.1em",
+                "fontWeight": "700"
+              }
+            ],
+            "headline-md": [
+              "1.75rem",
+              {
+                "lineHeight": "1.3",
+                "letterSpacing": "0em",
+                "fontWeight": "500"
+              }
+            ],
+            "headline-sm": [
+              "1.25rem",
+              {
+                "lineHeight": "1.4",
+                "letterSpacing": "0.01em",
+                "fontWeight": "500"
+              }
+            ],
+            "label-lg": [
+              "0.875rem",
+              {
+                "lineHeight": "1.3",
+                "letterSpacing": "0.05em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-xl": [
+              "3.5rem",
+              {
+                "lineHeight": "1.15",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "600"
+              }
+            ],
+            "label-md": [
+              "0.75rem",
+              {
+                "lineHeight": "1.25",
+                "letterSpacing": "0.08em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-lg": [
+              "2.5rem",
+              {
+                "lineHeight": "1.2",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-md": [
+              "0.9375rem",
+              {
+                "lineHeight": "1.55",
+                "letterSpacing": "0.01em",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-lg-mobile": [
+              "1.75rem",
+              {
+                "lineHeight": "1.25",
+                "letterSpacing": "0em",
+                "fontWeight": "600"
+              }
+            ],
+            "body-sm": [
+              "0.8125rem",
+              {
+                "lineHeight": "1.5",
+                "letterSpacing": "0.015em",
+                "fontWeight": "400"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Luxury glass & subtle dark background styles */
+    .bg-obsidian-gradient {
+      background: radial-gradient(circle at 50% -10%, #221a10 0%, #0e0e0f 45%, #080809 100%);
+    }
+    .gold-radial-glow {
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.22);
+    }
+    .amber-pulse {
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased selection:bg-primary selection:text-surface-container-lowest min-h-screen bg-obsidian-gradient flex flex-col justify-between">
+<!-- ========================================== -->
+<!-- 1. HEADER & INTERACTIVE CHECKOUT STEPPER  -->
+<!-- ========================================== -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest/85 backdrop-blur-xl border-b border-glass-border-subtle shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3.5">
+<div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<!-- Brand & Return Action -->
+<div class="flex items-center justify-between w-full md:w-auto gap-4">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md py-1.5 px-3 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Kembali ke Checkout</span>
+</a>
+<div class="flex items-center gap-2">
+<span class="text-primary font-headline-md text-headline-sm font-bold tracking-wider">Élite Lounge</span>
+<span class="text-[10px] uppercase tracking-widest text-secondary font-label-sm px-1.5 py-0.5 rounded border border-secondary/30 bg-secondary/10 hidden sm:inline-block">Specialty Brew</span>
+</div>
+<!-- Table Tag for Mobile -->
+<div class="md:hidden flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span>Meja 05</span>
+</div>
+</div>
+<!-- 4-Step Stepper Navigation -->
+<nav aria-label="Progress Stepper" class="w-full md:w-auto overflow-x-auto py-1">
+<ol class="flex items-center gap-1 sm:gap-3 text-label-sm font-label-sm min-w-max">
+<!-- Step 1 -->
+<li class="flex items-center gap-1.5 text-status-success">
+<span class="w-5 h-5 rounded-full bg-status-success/15 border border-status-success/30 flex items-center justify-center text-[12px]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+<span>1. Menu</span>
+</li>
+<li class="w-4 h-[1px] bg-status-success/40"></li>
+<!-- Step 2 -->
+<li class="flex items-center gap-1.5 text-status-success">
+<span class="w-5 h-5 rounded-full bg-status-success/15 border border-status-success/30 flex items-center justify-center text-[12px]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+<span>2. Identitas &amp; Checkout</span>
+</li>
+<li class="w-4 h-[1px] bg-primary/50"></li>
+<!-- Step 3: Active QRIS (Highlighted Gold) -->
+<li class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary text-primary font-bold shadow-[0_0_12px_rgba(212,175,55,0.25)]">
+<span class="w-5 h-5 rounded-full bg-primary text-surface-container-lowest flex items-center justify-center text-[11px] font-extrabold">3</span>
+<span class="tracking-wide">Pembayaran &amp; QRIS</span>
+</li>
+<li class="w-4 h-[1px] bg-outline-variant/40"></li>
+<!-- Step 4 -->
+<li class="flex items-center gap-1.5 text-text-tertiary">
+<span class="w-5 h-5 rounded-full bg-surface-glass-subtle border border-glass-border-subtle flex items-center justify-center text-[11px]">4</span>
+<span>Pelacakan Live</span>
+</li>
+</ol>
+</nav>
+<!-- Desk / Session Metadata (Desktop) -->
+<div class="hidden md:flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+<span class="text-primary text-label-md font-label-md font-semibold">Meja 05</span>
+</div>
+<div class="text-right">
+<p class="text-text-tertiary text-label-sm font-label-sm uppercase">Sesi #ELT-9402</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ========================================== -->
+<!-- MAIN WRAPPER                               -->
+<!-- ========================================== -->
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 w-full">
+<!-- 2. BANNER NOTIFIKASI STATUS PEMBAYARAN -->
+<section class="mb-8 rounded-xl bg-surface-container/70 border border-glass-border-highlight backdrop-blur-xl p-4 sm:p-6 shadow-[0_12px_36px_-6px_rgba(0,0,0,0.6)] relative overflow-hidden">
+<!-- Ambient Glow Behind -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-accent-amber-glow rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+<!-- Left: Alert Copy -->
+<div class="flex items-start gap-4">
+<div class="w-11 h-11 rounded-lg bg-status-warning/15 border border-status-warning/40 flex items-center justify-center text-status-warning shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">hourglass_top</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-status-warning animate-ping"></span>
+<h2 class="text-headline-sm font-headline-sm text-text-primary font-medium">Menunggu Pembayaran QRIS Dinamis</h2>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 max-w-2xl">
+              Selesaikan sebelum waktu habis untuk verifikasi otomatis ke Kasir &amp; Barista Élite Lounge. Sistem akan langsung memperbarui status ke kitchen display secara <span class="text-secondary font-medium">real-time</span>.
+            </p>
+</div>
+</div>
+<!-- Right: Countdown Timer -->
+<div class="flex flex-col sm:items-end justify-center bg-surface-container-lowest/80 border border-glass-border-subtle rounded-xl p-3.5 sm:px-6 min-w-[260px]">
+<div class="flex items-center justify-between w-full sm:justify-end gap-3 mb-1.5">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Waktu Tersisa</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-wider" id="countdown-text">14:58</span>
+</div>
+<!-- Golden Progress Bar -->
+<div class="w-full bg-surface-variant/80 rounded-full h-2 overflow-hidden border border-glass-border-subtle">
+<div class="bg-gradient-to-r from-primary via-tertiary to-primary-container h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(212,175,55,0.5)]" id="countdown-bar" style="width: 82%;"></div>
+</div>
+<span class="text-[11px] text-text-tertiary font-body-sm mt-1">NMID: ID1020349812902 terkunci</span>
+</div>
+</div>
+</section>
+<!-- 3. SPLIT GRID MEWAH (2 KOLOM) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- ======================================== -->
+<!-- KOLOM KIRI (7 SPAN): QRIS CONTAINER     -->
+<!-- ======================================== -->
+<section class="lg:col-span-7 flex flex-col gap-6">
+<!-- Outer Luxury Glass Card for QR -->
+<div class="rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-2xl p-6 sm:p-8 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<!-- Card Header -->
+<div class="flex flex-wrap items-center justify-between border-b border-glass-border-subtle pb-4 gap-3">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">qr_code_scanner</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold">Scan QRIS Interaktif</h3>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Standar Pembayaran Nasional Bank Indonesia &amp; ASPI</p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-text-tertiary">NMID</span>
+<p class="font-mono text-xs text-secondary font-medium tracking-wide">ID1020349812902</p>
+</div>
+</div>
+<!-- QR Luxury Container -->
+<div class="my-6 flex flex-col items-center">
+<div class="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-surface-container-high/90 to-surface-container-lowest border-2 border-glass-border-highlight shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(212,175,55,0.12)] flex flex-col items-center max-w-sm w-full mx-auto">
+<!-- Official Brand Badges: QRIS + GPN -->
+<div class="w-full flex items-center justify-between pb-4 border-b border-glass-border-subtle mb-5">
+<div class="flex items-center gap-1.5">
+<span class="text-[13px] font-extrabold tracking-tighter text-text-primary bg-primary-container/20 px-2 py-0.5 rounded border border-primary/40">QRIS</span>
+<span class="text-[10px] font-bold text-text-tertiary tracking-wider">PEMBAYARAN DIGITAL</span>
+</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-glass-raised border border-glass-border-subtle text-[11px] font-bold text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-status-danger">verified</span>
+<span>GPN</span>
+</div>
+</div>
+<!-- Merchant Name -->
+<div class="text-center mb-4">
+<h4 class="font-label-lg text-label-lg font-bold text-primary tracking-wide uppercase">Élite Lounge &amp; Specialty Brew</h4>
+<p class="text-label-sm font-label-sm text-text-secondary mt-0.5 tracking-wider">OUTLET MENTENG LUXURY ATRIUM</p>
+</div>
+<!-- High Contrast QR Code Canvas Wrapper with Vignette Frame -->
+<div class="relative p-3.5 bg-text-primary rounded-xl shadow-2xl border border-primary/60 group">
+<!-- Exact QR Code SVG Pattern -->
+<svg class="w-56 h-56 sm:w-64 sm:h-64 text-surface-container-lowest" fill="currentColor" viewbox="0 0 250 250">
+<!-- QR Finder Pattern: Top-Left -->
+<rect fill="#0A0A0B" height="60" rx="6" width="60" x="10" y="10"></rect>
+<rect fill="#FFFFFF" height="40" rx="3" width="40" x="20" y="20"></rect>
+<rect fill="#AA820A" height="24" rx="2" width="24" x="28" y="28"></rect>
+<!-- QR Finder Pattern: Top-Right -->
+<rect fill="#0A0A0B" height="60" rx="6" width="60" x="180" y="10"></rect>
+<rect fill="#FFFFFF" height="40" rx="3" width="40" x="190" y="20"></rect>
+<rect fill="#AA820A" height="24" rx="2" width="24" x="198" y="28"></rect>
+<!-- QR Finder Pattern: Bottom-Left -->
+<rect fill="#0A0A0B" height="60" rx="6" width="60" x="10" y="180"></rect>
+<rect fill="#FFFFFF" height="40" rx="3" width="40" x="20" y="190"></rect>
+<rect fill="#AA820A" height="24" rx="2" width="24" x="28" y="198"></rect>
+<!-- Timing Patterns -->
+<rect fill="#0A0A0B" height="10" width="10" x="75" y="35"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="95" y="35"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="115" y="35"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="135" y="35"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="155" y="35"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="35" y="75"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="35" y="95"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="35" y="115"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="35" y="135"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="35" y="155"></rect>
+<!-- Dense Data Nodes (Stylized luxury coffee & hash patterns) -->
+<rect fill="#0A0A0B" height="14" width="14" x="80" y="80"></rect>
+<rect fill="#0A0A0B" height="10" width="10" x="100" y="80"></rect>
+<rect fill="#0A0A0B" height="10" width="20" x="120" y="70"></rect>
+<rect fill="#0A0A0B" height="12" width="12" x="150" y="80"></rect>
+<rect fill="#0A0A0B" height="15" width="15" x="170" y="90"></rect>
+<rect fill="#0A0A0B" height="20" width="10" x="75" y="105"></rect>
+<rect fill="#0A0A0B" height="10" width="25" x="95" y="100"></rect>
+<rect fill="#0A0A0B" height="25" width="15" x="135" y="100"></rect>
+<rect fill="#0A0A0B" height="15" width="20" x="160" y="110"></rect>
+<rect fill="#0A0A0B" height="10" width="20" x="75" y="135"></rect>
+<rect fill="#0A0A0B" height="15" width="15" x="105" y="130"></rect>
+<rect fill="#0A0A0B" height="20" width="15" x="130" y="135"></rect>
+<rect fill="#0A0A0B" height="10" width="30" x="155" y="130"></rect>
+<rect fill="#0A0A0B" height="15" width="15" x="85" y="160"></rect>
+<rect fill="#0A0A0B" height="10" width="25" x="110" y="165"></rect>
+<rect fill="#0A0A0B" height="15" width="20" x="145" y="155"></rect>
+<rect fill="#0A0A0B" height="20" width="15" x="175" y="160"></rect>
+<rect fill="#0A0A0B" height="10" width="30" x="75" y="185"></rect>
+<rect fill="#0A0A0B" height="20" width="20" x="115" y="185"></rect>
+<rect fill="#0A0A0B" height="30" width="10" x="145" y="180"></rect>
+<rect fill="#0A0A0B" height="15" width="25" x="165" y="190"></rect>
+<rect fill="#0A0A0B" height="15" width="15" x="200" y="180"></rect>
+<rect fill="#0A0A0B" height="25" width="15" x="225" y="185"></rect>
+<rect fill="#0A0A0B" height="15" width="20" x="85" y="215"></rect>
+<rect fill="#0A0A0B" height="20" width="15" x="115" y="210"></rect>
+<rect fill="#0A0A0B" height="10" width="25" x="140" y="220"></rect>
+<rect fill="#0A0A0B" height="20" width="20" x="175" y="215"></rect>
+<rect fill="#0A0A0B" height="15" width="25" x="210" y="210"></rect>
+<!-- Center Logo Medallion with Gold Monogram 'É' -->
+<circle cx="125" cy="125" fill="#0A0A0B" r="24" stroke="#D4AF37" stroke-width="2.5"></circle>
+<text fill="#D4AF37" font-family="'Playfair Display', serif" font-size="22" font-weight="bold" text-anchor="middle" x="125" y="134">É</text>
+</svg>
+<div class="absolute inset-0 border-2 border-primary/20 pointer-events-none rounded-lg"></div>
+</div>
+<!-- Locked Tagihan Amount in QR Frame -->
+<div class="mt-5 text-center">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-widest">Nominal Pas Terkunci di QR</span>
+<p class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Rp 576.923</p>
+<p class="text-[11px] text-text-tertiary mt-0.5">Sudah termasuk kode verifikasi unik (3 digit akhir)</p>
+</div>
+</div>
+<!-- Action Buttons below QR -->
+<div class="flex flex-wrap items-center justify-center gap-3 mt-4 w-full">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-glass-raised hover:bg-surface-glass-card border border-glass-border-subtle hover:border-primary/40 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98]" onclick="downloadQRSim()">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>Unduh Kode QR</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-glass-raised hover:bg-surface-glass-card border border-glass-border-subtle hover:border-primary/40 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98]" onclick="copyInvoiceId('INV-ELT-202505-094')">
+<span class="material-symbols-outlined text-[18px] text-secondary">content_copy</span>
+<span id="copy-btn-text">Salin ID: INV-ELT-202505-094</span>
+</button>
+</div>
+</div>
+<!-- Multi E-Wallet & M-Banking Support Badges -->
+<div class="pt-5 border-t border-glass-border-subtle">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider block mb-3 text-center sm:text-left">
+              Dapat Dibayar Menggunakan Seluruh Aplikasi Pembayaran:
+            </span>
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">BCA Mobile</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">Livin Mandiri</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">BRImo</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">GoPay</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">OVO</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">DANA</span>
+</div>
+<div class="flex items-center justify-center py-2 px-2.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle hover:border-primary/30 transition-colors">
+<span class="text-xs font-semibold text-on-surface">ShopeePay</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Box Simulasi Pembayaran (Demo Serverless / LocalStorage) -->
+<div class="rounded-xl bg-surface-container-high/60 border border-primary/30 backdrop-blur-xl p-5 sm:p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2.5 h-2.5 rounded-full bg-status-success animate-ping"></span>
+<h4 class="font-label-lg text-label-lg font-bold text-primary uppercase tracking-wider">Simulasi Pembayaran (Demo POS &amp; KDS Live)</h4>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+            Uji verifikasi webhook pembayaran instant. Mengklik tombol di bawah akan menyimpan status <em>PAID</em> di LocalStorage dan menyiarkan sinyal pesanan ke layar Barista Meja 05.
+          </p>
+<div class="flex flex-col sm:flex-row items-center gap-3">
+<!-- Primary Golden CTA -->
+<button class="w-full sm:flex-1 py-3 px-5 rounded-lg bg-gradient-to-r from-primary via-primary-container to-tertiary text-surface-container-lowest font-bold text-label-lg font-label-lg shadow-[0_0_18px_rgba(212,175,55,0.35)] hover:shadow-[0_0_24px_rgba(212,175,55,0.6)] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.98]" onclick="triggerPaymentSuccess()">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span>⚡ Simulasi Sukses Bayar Sekarang</span>
+</button>
+<!-- Secondary CTA -->
+<button class="w-full sm:w-auto py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-card border border-glass-border-subtle hover:border-primary/30 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] whitespace-nowrap" onclick="alert('Kasir Meja 05 telah dipanggil ke meja Anda untuk penerimaan tunai/EDC.')">
+              Ganti Metode: Bayar Tunai di Kasir Meja 05
+            </button>
+</div>
+<!-- Toast container for feedback -->
+<div class="hidden mt-4 p-3 rounded-lg bg-status-success/15 border border-status-success/30 text-status-success text-body-sm font-body-sm flex items-center gap-2" id="sim-toast">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<span>Pembayaran Berhasil Diverifikasi! Mengalihkan ke Pelacakan Live Barista...</span>
+</div>
+</div>
+</section>
+<!-- ======================================== -->
+<!-- KOLOM KANAN (5 SPAN): RINCIAN TAGIHAN    -->
+<!-- ======================================== -->
+<section class="lg:col-span-5 flex flex-col gap-6">
+<!-- Kartu Identitas Pemesan & Lokasi Meja -->
+<div class="rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-2xl p-5 sm:p-6 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<div class="flex items-center justify-between pb-3 border-b border-glass-border-subtle mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">person_pin</span>
+<h4 class="font-headline-sm text-headline-sm text-text-primary font-semibold">Identitas Pemesan</h4>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-secondary/15 text-secondary border border-secondary/30">Meja Terverifikasi</span>
+</div>
+<div class="space-y-3 text-body-sm font-body-sm">
+<div class="flex items-center justify-between">
+<span class="text-text-tertiary">Nama Pemesan</span>
+<span class="font-semibold text-text-primary">Jonathan Ardiansyah</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-tertiary">No. WhatsApp</span>
+<span class="font-mono text-on-surface">+62 812-8945-6720</span>
+</div>
+<div class="flex items-start justify-between">
+<span class="text-text-tertiary">Lokasi</span>
+<span class="font-medium text-right text-text-primary">Santap di Meja 05 — <span class="text-secondary">Velvet Lounge Garden</span></span>
+</div>
+<div class="pt-2 border-t border-glass-border-subtle">
+<span class="text-text-tertiary text-label-sm font-label-sm block mb-1">Catatan Khusus Barista:</span>
+<p class="italic text-on-surface-variant bg-surface-glass-subtle p-2.5 rounded-lg border border-glass-border-subtle text-xs">
+                “Panama Geisha disajikan bersamaan Noir Valrhona Croissant.”
+              </p>
+</div>
+</div>
+</div>
+<!-- Ringkasan Menu Pesanan (3 Menu / 4 Items) -->
+<div class="rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-2xl p-5 sm:p-6 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<div class="flex items-center justify-between pb-3 border-b border-glass-border-subtle mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
+<h4 class="font-headline-sm text-headline-sm text-text-primary font-semibold">Ringkasan Pesanan</h4>
+</div>
+<span class="text-label-sm font-label-sm text-text-tertiary">4 Items</span>
+</div>
+<!-- Items List -->
+<div class="divide-y divide-glass-border-subtle">
+<!-- Item 1: Panama Geisha -->
+<div class="py-3.5 flex items-start justify-between gap-3 first:pt-0">
+<div class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1x</span>
+<div>
+<h5 class="font-semibold text-text-primary text-body-md font-body-md">Panama Geisha V60 Reserve</h5>
+<p class="text-[12px] text-text-secondary mt-0.5">Hot · 1:16 Floral Profil · 24K Gold Leaf</p>
+</div>
+</div>
+<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 150.000</span>
+</div>
+<!-- Item 2: Truffle Wagyu -->
+<div class="py-3.5 flex items-start justify-between gap-3">
+<div class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1x</span>
+<div>
+<h5 class="font-semibold text-text-primary text-body-md font-body-md">Truffle Wagyu MB7 Steak Frites</h5>
+<p class="text-[12px] text-text-secondary mt-0.5">Medium Rare · French Truffle Purée</p>
+</div>
+</div>
+<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 295.000</span>
+</div>
+<!-- Item 3: Noir Valrhona Croissant -->
+<div class="py-3.5 flex items-start justify-between gap-3 last:pb-0">
+<div class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2x</span>
+<div>
+<h5 class="font-semibold text-text-primary text-body-md font-body-md">Noir Valrhona Croissant</h5>
+<p class="text-[12px] text-text-secondary mt-0.5">Hangat · Normandy Butter Glaze</p>
+</div>
+</div>
+<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 110.000</span>
+</div>
+</div>
+<!-- Breakdown Tagihan Lengkap -->
+<div class="mt-6 pt-4 border-t border-glass-border-subtle space-y-2.5 text-body-sm font-body-sm">
+<div class="flex justify-between items-center text-text-secondary">
+<span>Subtotal Makanan &amp; Minuman</span>
+<span class="text-on-surface">Rp 555.000</span>
+</div>
+<div class="flex justify-between items-center text-status-success">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">loyalty</span>
+<span>Diskon Privilege (GOLDENHOUR)</span>
+</span>
+<span>-Rp 55.500</span>
+</div>
+<div class="flex justify-between items-center text-text-secondary">
+<span>Layanan &amp; Hospitality (5%)</span>
+<span class="text-on-surface">Rp 24.975</span>
+</div>
+<div class="flex justify-between items-center text-text-secondary">
+<span>PB1 Pajak Restoran (10%)</span>
+<span class="text-on-surface">Rp 52.448</span>
+</div>
+<div class="flex justify-between items-center text-text-secondary">
+<span>Kode Unik Transaksi</span>
+<span class="text-secondary font-mono">Rp 0</span>
+</div>
+<!-- Total Akhir Tagihan (Playfair Display Besar) -->
+<div class="pt-4 mt-2 border-t border-glass-border-highlight flex items-baseline justify-between">
+<div>
+<span class="text-label-md font-label-md text-text-tertiary uppercase tracking-wider block">Total Akhir Tagihan</span>
+<span class="text-[11px] text-status-success">Sudah Termasuk Seluruh Pajak</span>
+</div>
+<div class="text-right">
+<span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Rp 576.923</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Jaminan Keamanan SSL & KDS Direct Link -->
+<div class="rounded-xl bg-surface-glass-subtle border border-glass-border-subtle p-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[24px] shrink-0">lock</span>
+<p class="text-body-sm font-body-sm text-text-secondary">
+<strong class="text-on-surface">Enkripsi SSL 256-bit</strong> · Terhubung langsung ke KDS Kitchen Display &amp; POS Kasir Élite Lounge tanpa perantara.
+          </p>
+</div>
+</section>
+</div>
+</main>
+<!-- ========================================== -->
+<!-- 4. FOOTER (Shared Components Pattern)      -->
+<!-- ========================================== -->
+<footer class="w-full bg-surface-container-lowest border-t border-glass-border-subtle mt-16">
+<div class="w-full px-6 lg:px-12 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Copyright -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-wider">Élite Lounge</span>
+<p class="text-body-sm font-body-sm text-text-tertiary">
+          © 2025 Élite Lounge &amp; Specialty Brew. All rights reserved. Crafted for connoisseurs.
+        </p>
+</div>
+<!-- Links & Support -->
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-label-md font-label-md text-text-tertiary">
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#">Menu</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#">Our Story</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#">Private VIP Booking</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#">Operational Hours &amp; Location</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#">Terms &amp; Conditions</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline text-secondary/80" href="#">Admin POS Access</a>
+</div>
+</div>
+</footer>
+<!-- ========================================== -->
+<!-- JAVASCRIPT: TIMER, COPY & SIMULASI DEMO    -->
+<!-- ========================================== -->
+<script>
+    // 1. Interactive 15-Minute Countdown Timer
+    let totalSeconds = 14 * 60 + 58;
+    const initialSeconds = 15 * 60;
+    const countdownEl = document.getElementById('countdown-text');
+    const barEl = document.getElementById('countdown-bar');
+
+    const timerInterval = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(timerInterval);
+        countdownEl.innerText = "00:00 (Kadaluarsa)";
+        countdownEl.classList.remove('text-primary');
+        countdownEl.classList.add('text-status-danger');
+        barEl.style.width = "0%";
+        return;
+      }
+
+      totalSeconds--;
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      
+      const formattedMin = minutes < 10 ? '0' + minutes : minutes;
+      const formattedSec = seconds < 10 ? '0' + seconds : seconds;
+      countdownEl.innerText = `${formattedMin}:${formattedSec}`;
+      
+      const percent = (totalSeconds / initialSeconds) * 100;
+      barEl.style.width = `${percent}%`;
+    }, 1000);
+
+    // 2. Salin Invoice ID Clipboard Action
+    function copyInvoiceId(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('copy-btn-text');
+        const orig = btnText.innerText;
+        btnText.innerText = "Tersalin ke Clipboard!";
+        setTimeout(() => {
+          btnText.innerText = orig;
+        }, 2200);
+      }).catch(err => {
+        alert("ID Invoice: " + text);
+      });
+    }
+
+    // 3. Unduh Kode QR Mock
+    function downloadQRSim() {
+      alert("Gambar kode QR Élite Lounge (NMID: ID1020349812902) berhasil disimpan ke galeri perangkat Anda.");
+    }
+
+    // 4. Simulasi Sukses Bayar (Trigger LocalStorage & BroadcastChannel)
+    function triggerPaymentSuccess() {
+      const orderPayload = {
+        invoiceId: "INV-ELT-202505-094",
+        tableNumber: "05",
+        customerName: "Jonathan Ardiansyah",
+        totalAmount: 576923,
+        status: "PAID_VERIFIED",
+        paidAt: new Date().toISOString(),
+        items: [
+          { name: "Panama Geisha V60 Reserve", qty: 1, price: 150000 },
+          { name: "Truffle Wagyu MB7 Steak Frites", qty: 1, price: 295000 },
+          { name: "Noir Valrhona Croissant", qty: 2, price: 110000 }
+        ]
+      };
+
+      // Save to localStorage
+      localStorage.setItem('elite_lounge_active_order', JSON.stringify(orderPayload));
+
+      // Attempt BroadcastChannel trigger to KDS screen
+      try {
+        const channel = new BroadcastChannel('elite_lounge_pos_channel');
+        channel.postMessage({ type: 'ORDER_PAID', data: orderPayload });
+      } catch (e) {
+        // Fallback silently if BroadcastChannel unsupported
+      }
+
+      // Show toast
+      const toast = document.getElementById('sim-toast');
+      toast.classList.remove('hidden');
+
+      // Feedback redirection simulation
+      setTimeout(() => {
+        toast.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span> <span>Pesanan Terkirim ke Barista &amp; Dapur! Mengalihkan ke Halaman 4: Pelacakan Live...</span>`;
+      }, 1500);
+    }
+  </script>
+</body></html>Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-
+Update otomatis ke-

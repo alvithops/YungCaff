@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Élite Lounge — Form Identitas &amp; Checkout</title>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "status-danger": "#F87171",
+            "on-tertiary-fixed": "#281900",
+            "secondary-fixed-dim": "#e0c298",
+            "surface-glass-card": "rgba(255, 255, 255, 0.05)",
+            "surface": "#131314",
+            "surface-container-low": "#1c1b1c",
+            "on-secondary": "#402d0f",
+            "surface-container-lowest": "#0e0e0f",
+            "tertiary-fixed": "#ffdead",
+            "primary": "#f2ca50",
+            "surface-variant": "#353436",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "on-primary-fixed-variant": "#574500",
+            "error": "#ffb4ab",
+            "outline-variant": "#4d4635",
+            "on-surface-variant": "#d0c5af",
+            "on-surface": "#e5e2e3",
+            "surface-container-high": "#2a2a2b",
+            "surface-bright": "#3a393a",
+            "outline": "#99907c",
+            "on-tertiary-container": "#5d3f00",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+            "text-secondary": "#9CA3AF",
+            "tertiary": "#ffc461",
+            "surface-dim": "#131314",
+            "inverse-surface": "#e5e2e3",
+            "on-tertiary": "#432c00",
+            "background": "#131314",
+            "on-secondary-container": "#ceb188",
+            "accent-amber-glow": "rgba(212, 175, 55, 0.18)",
+            "on-primary-fixed": "#241a00",
+            "on-primary-container": "#554300",
+            "text-primary": "#F9FAFB",
+            "tertiary-container": "#e4a83b",
+            "on-tertiary-fixed-variant": "#604100",
+            "surface-container": "#201f20",
+            "secondary-fixed": "#fedeb2",
+            "surface-glass-raised": "rgba(255, 255, 255, 0.08)",
+            "primary-fixed-dim": "#e9c349",
+            "primary-container": "#d4af37",
+            "error-container": "#93000a",
+            "secondary-container": "#584323",
+            "inverse-on-surface": "#313031",
+            "surface-container-highest": "#353436",
+            "surface-tint": "#e9c349",
+            "tertiary-fixed-dim": "#fabc4d",
+            "status-warning": "#FBBF24",
+            "inverse-primary": "#735c00",
+            "on-secondary-fixed-variant": "#584323",
+            "on-secondary-fixed": "#281800",
+            "text-tertiary": "#6B7280",
+            "on-error": "#690005",
+            "status-success": "#34D399",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#3c2f00",
+            "surface-glass-subtle": "rgba(255, 255, 255, 0.03)",
+            "primary-fixed": "#ffe088",
+            "on-background": "#e5e2e3",
+            "secondary": "#e0c298"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter-desktop": "2rem",
+            "margin-desktop": "3rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "margin": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Playfair Display"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Playfair Display"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Playfair Display"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.25rem", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "700" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.015em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["0.75rem", { "lineHeight": "1.25", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg": ["2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.55", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-xl-mobile": ["2.25rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-md": ["1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-xl": ["3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Ambient backdrop radial glows */
+    .bg-lounge-radial {
+      background: radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 85% 75%, rgba(228, 168, 59, 0.05) 0%, transparent 50%),
+                  #0e0e0f;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex flex-col bg-lounge-radial selection:bg-primary-container selection:text-on-primary-container">
+<!-- ========================================================================= -->
+<!-- 1. HEADER / NAVBAR (Task-focused checkout header with step indicator)    -->
+<!-- ========================================================================= -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest/80 backdrop-blur-md shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center w-full px-4 sm:px-6 lg:px-12 py-3.5 max-w-7xl mx-auto">
+<!-- Brand & Back Action Button -->
+<div class="flex items-center gap-3 sm:gap-6">
+<a class="group flex items-center gap-2 py-1.5 px-3 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-[0.98]" href="#back-to-menu">
+<span class="material-symbols-outlined text-[1.125rem] text-primary">arrow_back</span>
+<span class="font-label-md text-label-md hidden sm:inline">Kembali ke Menu (Meja 05)</span>
+<span class="font-label-md text-label-md sm:hidden">Menu</span>
+</a>
+<div class="h-5 w-px bg-glass-border-subtle hidden sm:block"></div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-md text-headline-sm sm:text-headline-md font-bold text-primary tracking-wide">Élite Lounge</span>
+<span class="hidden md:inline font-label-sm text-label-sm text-text-tertiary">SPECIALTY BREW</span>
+</div>
+</div>
+<!-- Live Step Progress Tracker -->
+<nav aria-label="Alur Pesanan" class="hidden xl:flex items-center gap-2 font-label-md text-label-md">
+<div class="flex items-center gap-1.5 text-status-success font-medium">
+<span class="material-symbols-outlined text-[1rem]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>1. Menu (Selesai)</span>
+</div>
+<span class="material-symbols-outlined text-text-tertiary text-sm">chevron_right</span>
+<div class="flex items-center gap-1.5 text-primary font-bold bg-surface-glass-raised px-2.5 py-1 rounded-full border border-glass-border-highlight">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>2. Form Identitas &amp; Checkout (Aktif)</span>
+</div>
+<span class="material-symbols-outlined text-text-tertiary text-sm">chevron_right</span>
+<div class="flex items-center gap-1.5 text-text-tertiary">
+<span>3. Pembayaran &amp; QRIS</span>
+</div>
+<span class="material-symbols-outlined text-text-tertiary text-sm">chevron_right</span>
+<div class="flex items-center gap-1.5 text-text-tertiary">
+<span>4. Pelacakan Live</span>
+</div>
+</nav>
+<!-- Quick Session Badge / Device State Indicator -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 py-1.5 px-3 rounded-full bg-surface-glass-raised border border-glass-border-highlight/60 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-md text-label-md font-semibold text-primary">Meja 05</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Mobile Step Progress Strip -->
+<div class="xl:hidden w-full bg-surface-container-low px-4 py-2 flex items-center justify-between border-b border-glass-border-subtle font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5 text-status-success">
+<span class="material-symbols-outlined text-[0.875rem]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Menu</span>
+</div>
+<span class="text-text-tertiary">/</span>
+<div class="flex items-center gap-1.5 text-primary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Identitas &amp; Rincian</span>
+</div>
+<span class="text-text-tertiary">/</span>
+<span class="text-text-tertiary">Pembayaran</span>
+<span class="text-text-tertiary">/</span>
+<span class="text-text-tertiary">Live Status</span>
+</div>
+<!-- ========================================================================= -->
+<!-- 2. IDENTITAS MEJA & INFO SESI BANNER                                      -->
+<!-- ========================================================================= -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-6 sm:pt-8">
+<div class="relative overflow-hidden rounded-xl border border-glass-border-highlight bg-gradient-to-r from-surface-glass-raised via-surface-glass-card to-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-lg bg-primary-container/20 border border-primary/40 flex items-center justify-center text-primary shadow-[0_0_16px_rgba(212,175,55,0.25)]">
+<span class="material-symbols-outlined text-[1.5rem]" style="font-variation-settings: 'FILL' 1;">table_restaurant</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[0.6875rem] font-bold font-label-sm bg-primary/15 text-primary border border-primary/30 uppercase tracking-widest">Dine-in Terverifikasi</span>
+<span class="text-text-tertiary font-body-sm text-body-sm">Sesi Langsung #ELT-9402</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm text-text-primary mt-0.5">
+            Pemesanan Meja 05 — <span class="text-secondary italic">Velvet Lounge Garden</span>
+</h1>
+</div>
+</div>
+<div class="flex items-center gap-2 text-text-secondary font-body-sm text-body-sm bg-surface-container-lowest/60 px-3.5 py-2 rounded-lg border border-glass-border-subtle self-start md:self-auto">
+<span class="material-symbols-outlined text-[1.125rem] text-primary">sensors</span>
+<span>Terhubung ke Barista &amp; POS Kasir Realtime</span>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. LAYOUT UTAMA: 2 KOLOM BALANCED SPLIT VIEW                              -->
+<!-- ========================================================================= -->
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 flex-1">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- ===================================================================== -->
+<!-- KOLOM KIRI (7 Cols): FORM IDENTITAS PEMESAN MANDIRI                    -->
+<!-- ===================================================================== -->
+<section class="lg:col-span-7 flex flex-col gap-6">
+<div class="rounded-xl border border-glass-border-subtle bg-surface-container/70 backdrop-blur-xl p-6 sm:p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<!-- Section Title & Explanation -->
+<div class="border-b border-glass-border-subtle pb-5 mb-6">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md mb-1.5 uppercase tracking-wider">
+<span class="material-symbols-outlined text-[1rem]">badge</span>
+<span>Langkah Verifikasi</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Identitas Pemesan &amp; Pengantaran</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-1.5 leading-relaxed">
+              Pesanan ini terhubung langsung secara otomatis ke printer thermal Barista, Kitchen Display System (KDS), dan POS Terminal Kasir Élite Lounge.
+            </p>
+</div>
+<form class="space-y-6" id="checkout-form" onsubmit="event.preventDefault();">
+<!-- Tipe Layanan / Pesanan Switcher -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">
+                Tipe Layanan / Pesanan <span class="text-primary">*</span>
+</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="group relative flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-raised border border-glass-border-highlight text-primary font-label-lg text-label-lg shadow-[0_0_16px_rgba(212,175,55,0.15)] transition-all" type="button">
+<span class="material-symbols-outlined text-[1.25rem]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+<span class="font-semibold">Santap di Meja 05</span>
+<span class="absolute -top-2 right-3 px-1.5 py-0.2 rounded text-[0.625rem] font-bold bg-primary text-on-primary">DINE-IN</span>
+</button>
+<button class="group flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-secondary hover:text-text-primary font-label-lg text-label-lg transition-all" type="button">
+<span class="material-symbols-outlined text-[1.25rem]">takeout_dining</span>
+<span>Bungkus / Takeaway</span>
+</button>
+</div>
+</div>
+<!-- Input Nama Lengkap Pemesan -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="customer-name">
+                  Nama Lengkap Pemesan <span class="text-primary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-text-tertiary">Dicetak pada tiket pesanan</span>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-tertiary">
+<span class="material-symbols-outlined text-[1.25rem]">person</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3 rounded-lg bg-surface-container-lowest/70 border border-glass-border-subtle focus:border-primary focus:ring-1 focus:ring-primary text-text-primary font-body-md text-body-md placeholder:text-text-tertiary transition-all" id="customer-name" name="customer-name" placeholder="Contoh: Jonathan Ardiansyah" required="" type="text" value="Jonathan Ardiansyah"/>
+</div>
+</div>
+<!-- Input Nomor WhatsApp / Kontak Aktif -->
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="customer-phone">
+                  Nomor WhatsApp / Kontak Aktif <span class="text-primary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Struk Digital &amp; Ready Alert</span>
+</div>
+<div class="relative flex">
+<span class="inline-flex items-center px-3.5 rounded-l-lg border border-r-0 border-glass-border-subtle bg-surface-container-high text-on-surface-variant font-label-md text-label-md">
+                  🇮🇩 +62
+                </span>
+<input class="w-full pl-3.5 pr-4 py-3 rounded-r-lg bg-surface-container-lowest/70 border border-glass-border-subtle focus:border-primary focus:ring-1 focus:ring-primary text-text-primary font-body-md text-body-md placeholder:text-text-tertiary transition-all" id="customer-phone" name="customer-phone" placeholder="81234567890" required="" type="tel" value="81289456720"/>
+</div>
+<p class="font-body-sm text-body-sm text-text-tertiary mt-1.5 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[0.875rem] text-primary">info</span>
+                Untuk pengiriman struk digital &amp; notifikasi saat pesanan siap diantar ke Meja 05.
+              </p>
+</div>
+<!-- Catatan Khusus / Special Instructions -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="order-notes">
+                Catatan / Request Khusus Meja (Opsional)
+              </label>
+<div class="relative">
+<textarea class="w-full p-3.5 rounded-lg bg-surface-container-lowest/70 border border-glass-border-subtle focus:border-primary focus:ring-1 focus:ring-primary text-text-primary font-body-md text-body-md placeholder:text-text-tertiary transition-all" id="order-notes" name="order-notes" placeholder="Misal: Tolong disajikan setelah hidangan steak selesai, sediakan gelas es terpisah, jangan terlalu panas untuk kopi." rows="3">Tolong sajikan Panama Geisha V60 berbarengan dengan Noir Valrhona Croissant. Wagyu MB7 disajikan sebagai sajian pertama.</textarea>
+</div>
+</div>
+<!-- Toggles & LocalStorage State -->
+<div class="pt-2 space-y-3.5 border-t border-glass-border-subtle">
+<!-- Toggle 1: WhatsApp Notification -->
+<label class="flex items-start gap-3 cursor-pointer group select-none">
+<div class="relative flex items-center mt-0.5">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant rounded-full peer peer-checked:bg-primary-container transition-colors"></div>
+<div class="absolute left-1 top-1 w-4 h-4 bg-on-primary rounded-full transition-transform peer-checked:translate-x-4"></div>
+</div>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-text-primary group-hover:text-primary transition-colors">
+                    Kirimkan notifikasi status pesanan via WhatsApp
+                  </div>
+<div class="font-body-sm text-body-sm text-text-tertiary">
+                    Menerima update real-time saat pesanan diproses dan siap disajikan.
+                  </div>
+</div>
+</label>
+<!-- Toggle 2: LocalStorage State Save -->
+<label class="flex items-start gap-3 cursor-pointer group select-none">
+<div class="relative flex items-center mt-0.5">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-variant rounded-full peer peer-checked:bg-primary-container transition-colors"></div>
+<div class="absolute left-1 top-1 w-4 h-4 bg-on-primary rounded-full transition-transform peer-checked:translate-x-4"></div>
+</div>
+<div class="text-left">
+<div class="font-label-lg text-label-lg text-text-primary group-hover:text-primary transition-colors">
+                    Simpan identitas di browser untuk kunjungan berikutnya (LocalStorage)
+                  </div>
+<div class="font-body-sm text-body-sm text-text-tertiary">
+                    Identitas aman, terenkripsi lokal di perangkat Anda tanpa perlu login akun.
+                  </div>
+</div>
+</label>
+</div>
+</form>
+</div>
+<!-- VIP Concierge Assurance Box -->
+<div class="rounded-xl border border-glass-border-subtle bg-surface-container-low/60 p-5 flex items-start gap-4">
+<div class="p-2.5 rounded-lg bg-primary-container/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined text-[1.5rem]" style="font-variation-settings: 'FILL' 1;">concierge</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary font-semibold">Layanan Hospitality Meja Pribadi</h4>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">
+              Setiap pesanan dipantau oleh Lead Barista &amp; Butler Meja 05 kami. Bila ada kebutuhan mendesak, Anda dapat menekan tombol panggil pelayan di samping meja Anda.
+            </p>
+</div>
+</div>
+</section>
+<!-- ===================================================================== -->
+<!-- KOLOM KANAN (5 Cols): RINGKASAN RINCIAN PESANAN (ORDER SUMMARY)       -->
+<!-- ===================================================================== -->
+<aside class="lg:col-span-5 flex flex-col gap-6 sticky top-24">
+<div class="rounded-xl border border-glass-border-highlight bg-gradient-to-b from-surface-container-high/90 to-surface-container/90 backdrop-blur-2xl p-6 sm:p-7 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<!-- Card Header -->
+<div class="flex items-center justify-between border-b border-glass-border-subtle pb-4 mb-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[1.25rem]">receipt_long</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Rincian Pesanan</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/30">
+              3 Menu (4 Items)
+            </span>
+</div>
+<!-- List Item Pesanan Selected -->
+<div class="space-y-4 pb-5 border-b border-glass-border-subtle">
+<!-- Item 1: Panama Geisha V60 Reserve -->
+<div class="p-3.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-col gap-2.5 hover:border-glass-border-highlight/50 transition-colors">
+<div class="flex justify-between items-start gap-2">
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h4 class="font-label-lg text-label-lg font-bold text-text-primary">Panama Geisha V60 Reserve</h4>
+<span class="px-1.5 py-0.5 rounded text-[0.625rem] font-bold bg-amber-500/20 text-primary border border-primary/30">RESERVE</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-tertiary mt-0.5 leading-snug">
+                    Suhu: Hot · Ratio: 1:16 Floral · No Sugar · Add-on: Gold Leaf Garnish 24K
+                  </p>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold whitespace-nowrap">
+                  Rp 150.000
+                </span>
+</div>
+<!-- Controls: Edit, Stepper, Delete -->
+<div class="flex justify-between items-center pt-2 border-t border-glass-border-subtle/50 text-xs">
+<button class="flex items-center gap-1 text-text-secondary hover:text-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-[0.95rem]">tune</span>
+<span>Ubah Varian</span>
+</button>
+<div class="flex items-center gap-3">
+<!-- Stepper -->
+<div class="flex items-center bg-surface-container-lowest border border-glass-border-subtle rounded-md">
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-l transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">remove</span>
+</button>
+<span class="w-8 text-center font-label-md text-label-md font-semibold text-text-primary">1</span>
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-r transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">add</span>
+</button>
+</div>
+<!-- Delete button -->
+<button class="text-text-tertiary hover:text-status-danger transition-colors p-1" title="Hapus menu" type="button">
+<span class="material-symbols-outlined text-[1.125rem]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2: Truffle Wagyu MB7 Steak Frites -->
+<div class="p-3.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-col gap-2.5 hover:border-glass-border-highlight/50 transition-colors">
+<div class="flex justify-between items-start gap-2">
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h4 class="font-label-lg text-label-lg font-bold text-text-primary">Truffle Wagyu MB7 Steak Frites</h4>
+<span class="px-1.5 py-0.5 rounded text-[0.625rem] font-bold bg-primary/20 text-primary border border-primary/30">CHEF SIGNATURE</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-tertiary mt-0.5 leading-snug">
+                    Tingkat: Medium Rare · French Truffle Purée · Jus Daging 48 Jam
+                  </p>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold whitespace-nowrap">
+                  Rp 295.000
+                </span>
+</div>
+<!-- Controls: Stepper -->
+<div class="flex justify-between items-center pt-2 border-t border-glass-border-subtle/50 text-xs">
+<button class="flex items-center gap-1 text-text-secondary hover:text-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-[0.95rem]">tune</span>
+<span>Ubah Varian</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container-lowest border border-glass-border-subtle rounded-md">
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-l transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">remove</span>
+</button>
+<span class="w-8 text-center font-label-md text-label-md font-semibold text-text-primary">1</span>
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-r transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">add</span>
+</button>
+</div>
+<button class="text-text-tertiary hover:text-status-danger transition-colors p-1" title="Hapus menu" type="button">
+<span class="material-symbols-outlined text-[1.125rem]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3: Noir Valrhona Croissant (Qty: 2) -->
+<div class="p-3.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-col gap-2.5 hover:border-glass-border-highlight/50 transition-colors">
+<div class="flex justify-between items-start gap-2">
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg font-bold text-text-primary">Noir Valrhona Croissant</h4>
+<p class="font-body-sm text-body-sm text-text-tertiary mt-0.5 leading-snug">
+                    Dipanaskan hangat · Normandy Butter 36 layers (@ Rp 55.000)
+                  </p>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold whitespace-nowrap">
+                  Rp 110.000
+                </span>
+</div>
+<!-- Controls: Stepper -->
+<div class="flex justify-between items-center pt-2 border-t border-glass-border-subtle/50 text-xs">
+<button class="flex items-center gap-1 text-text-secondary hover:text-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-[0.95rem]">tune</span>
+<span>Ubah Suhu</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container-lowest border border-glass-border-subtle rounded-md">
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-l transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">remove</span>
+</button>
+<span class="w-8 text-center font-label-md text-label-md font-semibold text-text-primary">2</span>
+<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-r transition-colors" type="button">
+<span class="material-symbols-outlined text-[1rem]">add</span>
+</button>
+</div>
+<button class="text-text-tertiary hover:text-status-danger transition-colors p-1" title="Hapus menu" type="button">
+<span class="material-symbols-outlined text-[1.125rem]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Kupon Promo / Voucher Privilege VIP -->
+<div class="py-4 border-b border-glass-border-subtle">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">
+              Voucher &amp; Privilege Code VIP
+            </label>
+<div class="relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[1.125rem]">sell</span>
+</div>
+<input class="w-full pl-9 pr-24 py-2.5 rounded-lg bg-surface-container-lowest border border-glass-border-highlight text-primary font-label-md text-label-md font-bold tracking-wider uppercase focus:outline-none" readonly="" type="text" value="GOLDENHOUR"/>
+<div class="absolute right-2 flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-status-success font-bold px-2 py-0.5 rounded bg-status-success/15 border border-status-success/30">
+                  -10% AKTIF
+                </span>
+</div>
+</div>
+</div>
+<!-- Breakdown / Rincian Biaya -->
+<div class="py-4 space-y-2.5 text-text-secondary font-body-sm text-body-sm">
+<div class="flex justify-between items-center">
+<span>Subtotal Item (4 item)</span>
+<span class="text-text-primary font-medium">Rp 555.000</span>
+</div>
+<div class="flex justify-between items-center text-status-success">
+<span class="flex items-center gap-1">
+<span>Diskon Privilege (Golden Hour 10%)</span>
+</span>
+<span class="font-semibold">-Rp 55.500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="flex items-center gap-1">
+<span>Biaya Layanan &amp; Hospitality (5%)</span>
+<span class="material-symbols-outlined text-[0.875rem] text-text-tertiary" title="Pelayanan meja khusus butler">help</span>
+</span>
+<span class="text-text-primary">Rp 24.975</span>
+</div>
+<div class="flex justify-between items-center">
+<span>PB1 / Pajak Restoran (10%)</span>
+<span class="text-text-primary">Rp 52.448</span>
+</div>
+<!-- Fine Gold Separator -->
+<div class="pt-2 border-t border-glass-border-highlight"></div>
+<!-- Final Grand Total -->
+<div class="flex justify-between items-baseline pt-1">
+<div>
+<span class="block font-label-lg text-label-lg text-text-primary font-bold">Total Pembayaran Akhir</span>
+<span class="block text-[0.6875rem] font-body-sm text-text-tertiary">Termasuk seluruh pajak &amp; service charge</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">
+                  Rp 576.923
+                </span>
+</div>
+</div>
+</div>
+<!-- Primary CTA Buttons -->
+<div class="pt-2 space-y-3">
+<button class="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-primary-container via-primary to-primary-container text-on-primary font-label-lg text-label-lg font-bold tracking-wide shadow-[0_0_24px_rgba(212,175,55,0.4)] hover:shadow-[0_0_32px_rgba(212,175,55,0.6)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5" type="button">
+<span class="material-symbols-outlined text-[1.25rem]" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Lanjut ke Pembayaran QRIS (Rp 576.923)</span>
+<span class="material-symbols-outlined text-[1.125rem]">arrow_forward</span>
+</button>
+<button class="w-full py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-primary hover:text-primary font-label-md text-label-md transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[1.125rem]">payments</span>
+<span>Bayar Langsung Tunai / Kartu di Kasir</span>
+</button>
+</div>
+<!-- Micro-copy & Security Guarantee -->
+<div class="mt-5 pt-4 border-t border-glass-border-subtle/60 text-center">
+<div class="flex items-center justify-center gap-1.5 text-text-tertiary text-[0.75rem] font-body-sm">
+<span class="material-symbols-outlined text-[0.875rem] text-status-success">verified_user</span>
+<span>Pemesanan aman terenkripsi - Data tersimpan otomatis di perangkat Anda (LocalStorage State)</span>
+</div>
+</div>
+</div>
+<!-- Help Desk Assistant Pill -->
+<div class="flex items-center justify-between px-4 py-3 rounded-lg bg-surface-container-lowest/80 border border-glass-border-subtle text-text-secondary text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[1.125rem]">live_help</span>
+<span>Butuh bantuan terkait alergi makanan?</span>
+</div>
+<button class="text-primary hover:underline font-label-md text-label-md font-semibold">
+            Panggil Sommelier
+          </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- 4. FOOTER MINI (Shared Component - Footer)                                -->
+<!-- ========================================================================= -->
+<footer class="mt-auto border-t border-glass-border-subtle bg-surface-container-lowest">
+<div class="w-full px-6 lg:px-12 py-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Copyright -->
+<div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+<span class="font-headline-md text-headline-sm font-bold text-primary tracking-wider">Élite Lounge</span>
+<span class="hidden md:inline text-text-tertiary">•</span>
+<p class="font-body-sm text-body-sm text-text-tertiary">
+          © 2025 Élite Lounge &amp; Specialty Brew. All rights reserved. Crafted for connoisseurs.
+        </p>
+</div>
+<!-- Links from Shared Components JSON -->
+<div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-label-md text-label-md text-text-tertiary">
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#menu">Menu</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#story">Our Story</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#vip">Private VIP Booking</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#hours">Operational Hours &amp; Location</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#terms">Terms &amp; Conditions</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#admin">Admin POS Access</a>
+</div>
+</div>
+</footer>
+</body></html>
