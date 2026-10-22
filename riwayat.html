@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Riwayat Transaksi &amp; Kurasi Pesanan — Élite Lounge &amp; Specialty Brew</title>
+<!-- Material Symbols Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#402d0f",
+            "on-surface": "#e5e2e3",
+            "on-tertiary": "#432c00",
+            "on-tertiary-fixed": "#281900",
+            "tertiary-container": "#e4a83b",
+            "surface-container-highest": "#353436",
+            "inverse-on-surface": "#313031",
+            "surface-container": "#201f20",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "surface-container-lowest": "#0e0e0f",
+            "on-surface-variant": "#d0c5af",
+            "surface-bright": "#3a393a",
+            "secondary-container": "#584323",
+            "primary-fixed-dim": "#e9c349",
+            "outline": "#99907c",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-container": "#5d3f00",
+            "surface": "#131314",
+            "on-secondary-fixed": "#281800",
+            "text-secondary": "#9CA3AF",
+            "surface-glass-subtle": "rgba(255, 255, 255, 0.03)",
+            "on-error": "#690005",
+            "primary-fixed": "#ffe088",
+            "surface-dim": "#131314",
+            "surface-variant": "#353436",
+            "tertiary-fixed": "#ffdead",
+            "text-tertiary": "#6B7280",
+            "accent-amber-glow": "rgba(212, 175, 55, 0.18)",
+            "status-danger": "#F87171",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+            "status-warning": "#FBBF24",
+            "tertiary": "#ffc461",
+            "surface-tint": "#e9c349",
+            "on-primary-fixed-variant": "#574500",
+            "on-primary": "#3c2f00",
+            "outline-variant": "#4d4635",
+            "on-secondary-container": "#ceb188",
+            "on-secondary-fixed-variant": "#584323",
+            "surface-glass-raised": "rgba(255, 255, 255, 0.08)",
+            "status-success": "#34D399",
+            "secondary-fixed": "#fedeb2",
+            "surface-glass-card": "rgba(255, 255, 255, 0.05)",
+            "primary-container": "#d4af37",
+            "secondary": "#e0c298",
+            "tertiary-fixed-dim": "#fabc4d",
+            "error-container": "#93000a",
+            "on-primary-fixed": "#241a00",
+            "surface-container-low": "#1c1b1c",
+            "on-tertiary-fixed-variant": "#604100",
+            "text-primary": "#F9FAFB",
+            "on-primary-container": "#554300",
+            "surface-container-high": "#2a2a2b",
+            "inverse-primary": "#735c00",
+            "error": "#ffb4ab",
+            "primary": "#f2ca50",
+            "background": "#131314",
+            "secondary-fixed-dim": "#e0c298",
+            "inverse-surface": "#e5e2e3",
+            "on-background": "#e5e2e3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Playfair Display"],
+            "headline-sm": ["Playfair Display"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-md": ["0.9375rem", { "lineHeight": "1.55", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-xl": ["3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "label-sm": ["0.6875rem", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "700" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.015em", "fontWeight": "400" }],
+            "headline-lg": ["2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-xl-mobile": ["2.25rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "500" }],
+            "label-md": ["0.75rem", { "lineHeight": "1.25", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #0A0A0B;
+      color: #e5e2e3;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 40%),
+        radial-gradient(at 90% 20%, rgba(30, 24, 16, 0.5) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(212, 175, 55, 0.04) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    }
+    .glass-card-elevated {
+      background: rgba(18, 18, 22, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.06);
+    }
+    .gold-gradient-btn {
+      background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+    }
+    .gold-gradient-btn:hover {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- ==================== TOP NAVIGATION BAR (Shared Component) ==================== -->
+<header class="bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md text-primary dark:text-primary docked full-width top sticky z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center w-full px-6 lg:px-12 py-4 max-w-7xl mx-auto">
+<!-- Brand Logo / Product Name -->
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary tracking-wide flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+        Élite Lounge
+      </a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8 text-label-lg font-label-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-glass-subtle transition-all duration-200 px-3 py-1.5 rounded" href="#menu">Menu</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-glass-subtle transition-all duration-200 px-3 py-1.5 rounded" href="#story">Story</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-glass-subtle transition-all duration-200 px-3 py-1.5 rounded" href="#promos">Promos &amp; Events</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant transition-colors hover:text-primary dark:hover:text-primary hover:bg-surface-glass-subtle transition-all duration-200 px-3 py-1.5 rounded" href="#vip">VIP Lounge</a>
+<!-- Active Nav Token for History/Riwayat -->
+<a class="text-primary dark:text-primary font-bold border-b border-primary dark:border-primary pb-1 flex items-center gap-1.5" href="#history">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+          Riwayat Pesanan
+        </a>
+</nav>
+<!-- Trailing Action Cluster & Local Table Indicator -->
+<div class="flex items-center gap-3">
+<!-- Local Table Badge -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-glass-card border border-glass-border-highlight text-secondary">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+<span class="text-label-md font-label-md tracking-wider">MEJA 05 • Velvet Lounge</span>
+</div>
+<button class="gold-gradient-btn text-on-primary-container px-4 py-2 rounded-lg text-label-lg font-label-lg font-bold flex items-center gap-1.5 transition-all" onclick="triggerNewOrder()">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span class="hidden lg:inline">Scan Meja &amp; Pesan</span>
+<span class="lg:hidden">Pesan</span>
+</button>
+<a class="text-label-md font-label-md text-text-tertiary hover:text-primary transition-colors hidden xl:inline-block px-2" href="#admin">
+          Admin / Kasir
+        </a>
+</div>
+</div>
+</header>
+<!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 space-y-10">
+<!-- HERO & LOCAL PROFILE CARD -->
+<section class="space-y-6">
+<!-- Breadcrumb & Table status bar for Mobile -->
+<div class="flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm text-text-secondary sm:hidden">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-base">table_restaurant</span>
+<span>Meja 05 (Garden Lounge)</span>
+</div>
+<span class="text-label-sm font-label-sm text-status-success bg-status-success/10 px-2 py-0.5 rounded border border-status-success/30">Terhubung</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-2">
+<div class="space-y-3 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-glass-card border border-glass-border-subtle text-primary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">database</span>
+            Sinkronisasi Lokal Browser (No-Database • Serverless)
+          </div>
+<h1 class="text-headline-lg-mobile md:text-headline-xl font-headline-xl text-text-primary tracking-tight">
+            Riwayat Transaksi &amp; <span class="text-primary italic">Kurasi Pesanan</span>
+</h1>
+<p class="text-body-md font-body-md text-text-secondary leading-relaxed">
+            Tersimpan aman di memori browser perangkat Anda (LocalStorage). Akses kembali cita rasa favorit dan lakukan Re-Order instan ke meja Anda tanpa antre.
+          </p>
+</div>
+<!-- Quick Summary Mini-Stats -->
+<div class="flex items-center gap-4">
+<div class="glass-card px-5 py-3 rounded-xl border border-glass-border-subtle text-right">
+<p class="text-label-sm font-label-sm text-text-tertiary">Poin Élite Privilege</p>
+<p class="text-headline-sm font-headline-sm text-primary font-bold">1.840 <span class="text-body-sm font-body-sm text-text-secondary font-normal">pts</span></p>
+</div>
+<div class="glass-card px-5 py-3 rounded-xl border border-glass-border-subtle text-right">
+<p class="text-label-sm font-label-sm text-text-tertiary">Status Privilese</p>
+<p class="text-headline-sm font-headline-sm text-secondary font-semibold">Tier Gold VIP</p>
+</div>
+</div>
+</div>
+<!-- LOCAL GUEST IDENTITY BENTO CARD -->
+<div class="glass-card rounded-2xl p-6 lg:p-8 relative overflow-hidden border border-glass-border-highlight">
+<!-- Ambient decorative glow -->
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+<!-- Identity Info -->
+<div class="space-y-1.5 border-b lg:border-b-0 lg:border-r border-glass-border-subtle pb-4 lg:pb-0 lg:pr-6">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Profil Tamu Lokal</span>
+<div class="flex items-center gap-3 pt-1">
+<div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary-container to-secondary flex items-center justify-center text-on-primary font-headline-sm font-bold shadow-md">
+                JA
+              </div>
+<div>
+<h3 class="text-body-lg font-body-lg font-bold text-text-primary" id="guest-name">Jonathan Ardiansyah</h3>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary font-semibold">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Tamu VIP Gold Connoisseur
+                </span>
+</div>
+</div>
+</div>
+<!-- Contact & Table -->
+<div class="space-y-1 border-b lg:border-b-0 lg:border-r border-glass-border-subtle pb-4 lg:pb-0 lg:pr-6">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">WhatsApp &amp; Meja Aktif</span>
+<p class="text-body-md font-body-md text-text-primary font-medium mt-1" id="guest-phone">+62 812-8945-6720</p>
+<p class="text-body-sm font-body-sm text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-status-success">circle</span>
+              Tersambung ke Meja 05 (Garden)
+            </p>
+</div>
+<!-- Cumulative Spending -->
+<div class="space-y-1 border-b lg:border-b-0 lg:border-r border-glass-border-subtle pb-4 lg:pb-0 lg:pr-6">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Akumulasi Transaksi</span>
+<p class="text-headline-sm font-headline-sm text-primary font-bold mt-1">Rp 1.842.000</p>
+<p class="text-body-sm font-body-sm text-text-secondary">4 Kunjungan Terakhir (Bulan Mei)</p>
+</div>
+<!-- Privilege & Reset Actions -->
+<div class="flex flex-col justify-between gap-3">
+<div>
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Manfaat Aktif</span>
+<p class="text-body-sm font-body-sm text-secondary font-medium mt-1">Diskon 10% Otomatis Seluruh Seduhan &amp; Food</p>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 px-3 py-1.5 rounded-lg bg-surface-glass-raised hover:bg-white/10 text-text-primary text-label-md font-label-md border border-glass-border-subtle transition-colors flex items-center justify-center gap-1" onclick="editGuestProfile()">
+<span class="material-symbols-outlined text-sm">edit</span>
+                Edit Profil
+              </button>
+<button class="px-3 py-1.5 rounded-lg bg-red-950/20 hover:bg-red-900/40 text-status-danger text-label-md font-label-md border border-red-500/20 transition-colors flex items-center gap-1" onclick="clearLocalHistory()" title="Hapus rekaman pesanan dari browser ini">
+<span class="material-symbols-outlined text-sm">delete_sweep</span>
+                Reset
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== FILTER, SEARCH & TAB STATUS ==================== -->
+<section class="space-y-4">
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+<!-- Tab Pills -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="order-tabs">
+<button class="tab-btn active px-4 py-2 rounded-xl text-label-lg font-label-lg transition-all border border-primary bg-primary/10 text-primary font-semibold flex items-center gap-2 whitespace-nowrap" onclick="filterOrders('all')">
+<span>Semua Pesanan</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary/20">4</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl text-label-lg font-label-lg transition-all border border-glass-border-subtle text-text-secondary hover:text-text-primary hover:border-white/20 flex items-center gap-2 whitespace-nowrap" onclick="filterOrders('active')">
+<span>Sedang Berlangsung</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-status-warning/20 text-status-warning">1</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl text-label-lg font-label-lg transition-all border border-glass-border-subtle text-text-secondary hover:text-text-primary hover:border-white/20 flex items-center gap-2 whitespace-nowrap" onclick="filterOrders('completed')">
+<span>Selesai Disajikan</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-status-success/20 text-status-success">3</span>
+</button>
+<button class="tab-btn px-4 py-2 rounded-xl text-label-lg font-label-lg transition-all border border-glass-border-subtle text-text-secondary hover:text-text-primary hover:border-white/20 flex items-center gap-2 whitespace-nowrap" onclick="filterOrders('cancelled')">
+<span>Dibatalkan</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-white/5 text-text-tertiary">0</span>
+</button>
+</div>
+<!-- Search Bar & Month Filter -->
+<div class="flex items-center gap-3">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-text-tertiary text-lg">search</span>
+<input class="w-full bg-surface-container-lowest/80 border border-glass-border-subtle rounded-xl pl-10 pr-4 py-2 text-body-sm font-body-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary transition-colors" id="order-search" oninput="searchOrderItems(this.value)" placeholder="Cari ID atau menu..." type="text"/>
+</div>
+<div class="relative">
+<select class="bg-surface-container-lowest/80 border border-glass-border-subtle rounded-xl px-4 py-2 text-label-md font-label-md text-text-primary focus:outline-none focus:border-primary cursor-pointer appearance-none pr-8">
+<option>Mei 2025</option>
+<option>April 2025</option>
+<option>Semua Waktu</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-text-tertiary text-sm pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 1. LIVE / IN-PROGRESS ORDER BANNER ==================== -->
+<section class="space-y-3" id="section-active-order">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-sm font-headline-sm text-text-primary flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-status-warning animate-ping"></span>
+          Pesanan Hari Ini (Sedang Berjalan)
+        </h2>
+<span class="text-label-sm font-label-sm text-status-warning bg-status-warning/10 px-3 py-1 rounded-full border border-status-warning/30 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">timelapse</span>
+          Estimasi Penyajian: 19:57 WIB (±8 menit lagi)
+        </span>
+</div>
+<!-- Live Order Card Container -->
+<div class="glass-card-elevated rounded-2xl p-6 lg:p-7 relative overflow-hidden">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<!-- Left: Order Details & Realtime Tracker -->
+<div class="space-y-4 flex-1">
+<div class="flex flex-wrap items-center gap-3">
+<span class="px-3 py-1 rounded-md bg-primary/20 text-primary font-mono text-label-md font-bold tracking-wider border border-primary/30">
+                #ELT-9402
+              </span>
+<span class="text-body-sm font-body-sm text-text-secondary">•</span>
+<span class="text-body-sm font-body-sm text-text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-primary">table_restaurant</span>
+                Meja 05 (Velvet Lounge Garden)
+              </span>
+<span class="text-body-sm font-body-sm text-text-secondary">•</span>
+<span class="text-body-sm font-body-sm text-text-secondary">Dipesan pukul 19:42 WIB</span>
+</div>
+<!-- Items Ordered list -->
+<div class="space-y-2 pt-2">
+<div class="flex items-start justify-between text-body-md font-body-md py-1 border-b border-glass-border-subtle">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">1x</span>
+<span class="text-text-primary font-medium">Panama Geisha V60 Reserve</span>
+<span class="text-label-sm font-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Hot • Pour Over • Note: Jasmine &amp; Bergamot</span>
+</div>
+<span class="text-text-primary font-medium">Rp 165.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md py-1 border-b border-glass-border-subtle">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">1x</span>
+<span class="text-text-primary font-medium">Truffle Wagyu MB7 Steak Frites</span>
+<span class="text-label-sm font-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Medium Rare • Truffle Jus</span>
+</div>
+<span class="text-text-primary font-medium">Rp 345.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md py-1">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">2x</span>
+<span class="text-text-primary font-medium">Noir Valrhona Croissant</span>
+<span class="text-label-sm font-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Warmed 45s</span>
+</div>
+<span class="text-text-primary font-medium">Rp 90.000</span>
+</div>
+</div>
+<!-- Stepper Progress Bar -->
+<div class="pt-3">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-text-tertiary mb-2">
+<span class="text-primary font-semibold">1. Pesanan Diterima (19:42)</span>
+<span class="text-primary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning animate-ping"></span>
+                  2. Barista &amp; Chef Sedang Meramu
+                </span>
+<span>3. Siap Diantar Meja</span>
+</div>
+<div class="w-full bg-white/5 h-2 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-primary to-status-warning h-full rounded-full w-3/5 transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<!-- Right: Summary & Action Buttons -->
+<div class="lg:w-72 flex flex-col justify-between p-5 rounded-xl bg-surface-container-lowest/70 border border-glass-border-subtle space-y-4">
+<div>
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Metode Pembayaran</span>
+<div class="flex items-center justify-between mt-1">
+<span class="text-body-sm font-body-sm text-text-primary font-medium">QRIS Dinamis (BCA/Gopay)</span>
+<span class="text-label-sm font-label-sm text-status-success font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  Lunas
+                </span>
+</div>
+<div class="mt-3 pt-3 border-t border-glass-border-subtle flex justify-between items-baseline">
+<span class="text-body-sm font-body-sm text-text-secondary">Total Tagihan</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary">Rp 576.923</span>
+</div>
+<p class="text-label-sm font-label-sm text-text-tertiary text-right">(Termasuk Tax 10% &amp; Service 7%)</p>
+</div>
+<div class="space-y-2">
+<button class="w-full py-2.5 rounded-lg bg-surface-glass-raised hover:bg-white/10 text-primary border border-glass-border-highlight text-label-md font-label-md font-semibold transition-all flex items-center justify-center gap-2" onclick="openLiveTrackingModal()">
+<span class="material-symbols-outlined text-base">radar</span>
+                Lacak Pesanan Live →
+              </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/5 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1" onclick="viewDigitalReceipt('#ELT-9402')">
+<span class="material-symbols-outlined text-sm">receipt</span>
+                  Struk Digital
+                </button>
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/5 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1" onclick="callButlerPrompt()">
+<span class="material-symbols-outlined text-sm">room_service</span>
+                  Panggil Butler
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 2. PAST ORDERS LIST (WITH INSTANT RE-ORDER) ==================== -->
+<section class="space-y-6 pt-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-glass-border-subtle pb-4">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-text-primary">Transaksi Lampau Tersimpan</h2>
+<p class="text-body-sm font-body-sm text-text-secondary">Pilih pesanan sebelumnya untuk mengulang racikan yang sama tanpa perlu mencari ulang di menu.</p>
+</div>
+<span class="text-label-sm font-label-sm text-text-tertiary self-start sm:self-auto">3 Arsip Pesanan</span>
+</div>
+<!-- Container For Orders Cards -->
+<div class="space-y-5" id="past-orders-container">
+<!-- ORDER CARD 1: May 18, 2025 -->
+<div class="order-card glass-card rounded-2xl p-6 lg:p-7 transition-all hover:border-glass-border-highlight relative" data-id="ELT-8921" data-status="completed">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<!-- Left Info -->
+<div class="space-y-4 flex-1">
+<div class="flex flex-wrap items-center justify-between lg:justify-start gap-3">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded bg-white/5 text-secondary font-mono text-label-md font-bold border border-white/10">
+                    #ELT-8921
+                  </span>
+<span class="text-label-sm font-label-sm text-status-success bg-status-success/15 px-2.5 py-1 rounded-full border border-status-success/30 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Selesai Disajikan
+                  </span>
+</div>
+<div class="flex items-center gap-3 text-body-sm font-body-sm text-text-secondary">
+<span>18 Mei 2025 • 20:15 WIB</span>
+<span>•</span>
+<span class="text-text-primary">Meja 03 (Indoor Private Bar)</span>
+</div>
+</div>
+<!-- Menu Items detail -->
+<div class="space-y-3 pt-1">
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">2x Kyoto Matcha Ceremonial Cloud</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Varian: Silk Oat Milk • Less Sugar (30%) • Extra Cold Cloud Foam</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 144.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">1x Pistachio Basque Burnt Cheesecake</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Freshly Torched with Maldon Sea Salt Flakes</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 68.000</span>
+</div>
+</div>
+<!-- Customer Feedback Stamp -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+                Ulasan Anda: "Matcha cloud sangat halus, pas berpadu dengan gurih pistachio cheesecake." (★★★★★)
+              </div>
+</div>
+<!-- Right Actions & Total Price -->
+<div class="lg:w-80 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-glass-border-subtle pt-4 lg:pt-0 lg:pl-6 space-y-4">
+<div class="flex lg:flex-col justify-between items-end lg:items-end">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Total Transaksi</span>
+<div class="text-right">
+<p class="text-headline-sm font-headline-sm font-bold text-primary">Rp 212.000</p>
+<p class="text-label-sm font-label-sm text-text-tertiary">QRIS Settled via Kasir</p>
+</div>
+</div>
+<!-- Action Buttons with Re-Order Primary -->
+<div class="space-y-2 pt-2">
+<!-- Interactive Re-Order Trigger -->
+<button class="w-full gold-gradient-btn text-on-primary-container py-2.5 px-4 rounded-xl text-label-md font-label-md font-bold flex items-center justify-center gap-2 transition-all" onclick="openReOrderModal('ELT-8921', 'Meja 05', 'Rp 212.000', [
+                  {name: 'Kyoto Matcha Ceremonial Cloud', qty: 2, note: 'Silk Oat Milk, Less Sugar (30%)', price: 'Rp 144.000'},
+                  {name: 'Pistachio Basque Burnt Cheesecake', qty: 1, note: 'Fresh Maldon Sea Salt', price: 'Rp 68.000'}
+                ])">
+<span class="material-symbols-outlined text-base">bolt</span>
+                  ⚡ Re-Order ke Meja Sekarang
+                </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="downloadPdfReceipt('ELT-8921')">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Unduh Struk PDF
+                  </button>
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="showReviewModal('ELT-8921')">
+<span class="material-symbols-outlined text-sm">rate_review</span>
+                    Beri Ulasan
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ORDER CARD 2: May 10, 2025 -->
+<div class="order-card glass-card rounded-2xl p-6 lg:p-7 transition-all hover:border-glass-border-highlight relative" data-id="ELT-8410" data-status="completed">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<!-- Left Info -->
+<div class="space-y-4 flex-1">
+<div class="flex flex-wrap items-center justify-between lg:justify-start gap-3">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded bg-white/5 text-secondary font-mono text-label-md font-bold border border-white/10">
+                    #ELT-8410
+                  </span>
+<span class="text-label-sm font-label-sm text-status-success bg-status-success/15 px-2.5 py-1 rounded-full border border-status-success/30 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Selesai Disajikan
+                  </span>
+</div>
+<div class="flex items-center gap-3 text-body-sm font-body-sm text-text-secondary">
+<span>10 Mei 2025 • 19:00 WIB</span>
+<span>•</span>
+<span class="text-text-primary">Meja VIP Suite 01 (Executive Dining)</span>
+</div>
+</div>
+<!-- Menu Items detail -->
+<div class="space-y-3 pt-1">
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">2x Truffle Wagyu MB7 Steak Frites</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Kematangan: Medium • Truffle Jus &amp; Hand-cut Fries</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 690.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">1x Salmon en Croûte au Beurre Blanc</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Tasmanian Salmon, Butter Spinach, Puff Pastry</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 174.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">2x Golden Velvet Elixir Cold Brew</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Infused with Madagascar Vanilla &amp; 24K Edible Gold Flakes</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 90.000</span>
+</div>
+</div>
+</div>
+<!-- Right Actions & Total Price -->
+<div class="lg:w-80 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-glass-border-subtle pt-4 lg:pt-0 lg:pl-6 space-y-4">
+<div class="flex lg:flex-col justify-between items-end lg:items-end">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Total Transaksi</span>
+<div class="text-right">
+<p class="text-headline-sm font-headline-sm font-bold text-primary">Rp 954.000</p>
+<p class="text-label-sm font-label-sm text-text-tertiary">Kartu Kredit Visa Infinite (Paid)</p>
+</div>
+</div>
+<!-- Action Buttons with Re-Order Primary -->
+<div class="space-y-2 pt-2">
+<button class="w-full gold-gradient-btn text-on-primary-container py-2.5 px-4 rounded-xl text-label-md font-label-md font-bold flex items-center justify-center gap-2 transition-all" onclick="openReOrderModal('ELT-8410', 'Meja 05', 'Rp 954.000', [
+                  {name: 'Truffle Wagyu MB7 Steak Frites', qty: 2, note: 'Tingkat Medium', price: 'Rp 690.000'},
+                  {name: 'Salmon en Croûte au Beurre Blanc', qty: 1, note: 'Tasmanian Salmon', price: 'Rp 174.000'},
+                  {name: 'Golden Velvet Elixir Cold Brew', qty: 2, note: 'Vanilla &amp; 24k Gold', price: 'Rp 90.000'}
+                ])">
+<span class="material-symbols-outlined text-base">bolt</span>
+                  ⚡ Re-Order ke Meja Sekarang
+                </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="downloadPdfReceipt('ELT-8410')">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Unduh Struk PDF
+                  </button>
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="viewInvoiceDetail('ELT-8410')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                    Detail Pajak
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ORDER CARD 3: May 02, 2025 (Takeaway) -->
+<div class="order-card glass-card rounded-2xl p-6 lg:p-7 transition-all hover:border-glass-border-highlight relative" data-id="ELT-7804" data-status="completed">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<!-- Left Info -->
+<div class="space-y-4 flex-1">
+<div class="flex flex-wrap items-center justify-between lg:justify-start gap-3">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded bg-white/5 text-secondary font-mono text-label-md font-bold border border-white/10">
+                    #ELT-7804
+                  </span>
+<span class="text-label-sm font-label-sm text-status-success bg-status-success/15 px-2.5 py-1 rounded-full border border-status-success/30 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Selesai Diambil
+                  </span>
+</div>
+<div class="flex items-center gap-3 text-body-sm font-body-sm text-text-secondary">
+<span>02 Mei 2025 • 14:30 WIB</span>
+<span>•</span>
+<span class="text-secondary font-medium">Bungkus / Takeaway Express</span>
+</div>
+</div>
+<!-- Menu Items detail -->
+<div class="space-y-3 pt-1">
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">1x Artisan Cold Drip Ethiopia Guji (Slow Drip 12h)</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Glass Bottle 250ml • Notes of Peach Blossom &amp; Wild Honey</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 90.000</span>
+</div>
+<div class="flex items-start justify-between text-body-md font-body-md">
+<div class="space-y-0.5">
+<p class="text-text-primary font-medium">2x Noir Valrhona Croissant</p>
+<p class="text-body-sm font-body-sm text-text-tertiary">Takeaway Sealed Box</p>
+</div>
+<span class="text-text-secondary font-medium">Rp 90.000</span>
+</div>
+</div>
+</div>
+<!-- Right Actions & Total Price -->
+<div class="lg:w-80 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-glass-border-subtle pt-4 lg:pt-0 lg:pl-6 space-y-4">
+<div class="flex lg:flex-col justify-between items-end lg:items-end">
+<span class="text-label-sm font-label-sm text-text-tertiary uppercase">Total Transaksi</span>
+<div class="text-right">
+<p class="text-headline-sm font-headline-sm font-bold text-primary">Rp 180.000</p>
+<p class="text-label-sm font-label-sm text-text-tertiary">QRIS Settled</p>
+</div>
+</div>
+<!-- Action Buttons with Re-Order Primary -->
+<div class="space-y-2 pt-2">
+<button class="w-full gold-gradient-btn text-on-primary-container py-2.5 px-4 rounded-xl text-label-md font-label-md font-bold flex items-center justify-center gap-2 transition-all" onclick="openReOrderModal('ELT-7804', 'Meja 05', 'Rp 180.000', [
+                  {name: 'Artisan Cold Drip Ethiopia Guji', qty: 1, note: 'Bottle 250ml', price: 'Rp 90.000'},
+                  {name: 'Noir Valrhona Croissant', qty: 2, note: 'Sealed Takeaway Pack', price: 'Rp 90.000'}
+                ])">
+<span class="material-symbols-outlined text-base">bolt</span>
+                  ⚡ Re-Order ke Meja Sekarang
+                </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="downloadPdfReceipt('ELT-7804')">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Unduh Struk PDF
+                  </button>
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="alert('Katalog takeaways siap sedia untuk diantar ke lobi valet.')">
+<span class="material-symbols-outlined text-sm">share</span>
+                    Kirim ke WA
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== VIP RECOMMENDATION BANNER ==================== -->
+<section class="glass-card rounded-2xl p-6 lg:p-8 border border-glass-border-subtle relative overflow-hidden my-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+<div class="space-y-2 max-w-xl">
+<div class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary uppercase font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+            Rekomendasi Cerdas Sesuai Selera Anda
+          </div>
+<h3 class="text-headline-sm font-headline-sm text-text-primary font-bold">
+            Menyukai Panama Geisha &amp; Wagyu MB7?
+          </h3>
+<p class="text-body-sm font-body-sm text-text-secondary">
+            Berdasarkan 4 riwayat pesanan Anda, Barista kami menyarankan <strong class="text-secondary font-semibold">"Sumatra Kerinci Anaerobic Slow Natural"</strong> dan hidangan penutup <strong class="text-secondary font-semibold">"Valrhona Dark Chocolate Soufflé"</strong> untuk sesi santap berikutnya.
+          </p>
+</div>
+<div class="flex items-center gap-3 whitespace-nowrap">
+<button class="px-5 py-3 rounded-xl bg-surface-glass-raised hover:bg-white/10 text-text-primary border border-glass-border-highlight text-label-md font-label-md font-bold transition-all" onclick="alert('Kurasi menu rekomendasi ditambahkan ke daftar keinginan profil Anda.')">
+            Simpan ke Wishlist
+          </button>
+<button class="gold-gradient-btn text-on-primary-container px-6 py-3 rounded-xl text-label-md font-label-md font-bold transition-all" onclick="triggerNewOrder()">
+            Jelajahi Menu Rekomendasi
+          </button>
+</div>
+</div>
+</section>
+</main>
+<!-- ==================== INTERACTIVE RE-ORDER MODAL PREVIEW ==================== -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300" id="reorder-modal">
+<div class="glass-card-elevated max-w-lg w-full rounded-2xl p-6 lg:p-8 space-y-6 border border-glass-border-highlight shadow-2xl transform scale-95 transition-transform duration-300" id="reorder-modal-content">
+<!-- Modal Header -->
+<div class="flex items-start justify-between border-b border-glass-border-subtle pb-4">
+<div>
+<span class="text-label-sm font-label-sm text-primary uppercase font-semibold">Konfirmasi Re-Order Instan</span>
+<h3 class="text-headline-sm font-headline-sm text-text-primary font-bold" id="modal-order-id">Pesanan #ELT-8921</h3>
+<p class="text-body-sm font-body-sm text-text-secondary mt-0.5">Item akan diteruskan langsung ke dapur &amp; meja Anda saat ini.</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-text-secondary hover:text-text-primary flex items-center justify-center transition-colors" onclick="closeReOrderModal()">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Target Destination Table Badge -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest border border-glass-border-subtle">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">table_restaurant</span>
+<div>
+<p class="text-label-sm font-label-sm text-text-tertiary">Tujuan Antar Saat Ini:</p>
+<p class="text-body-sm font-body-sm text-text-primary font-bold">Meja 05 — Velvet Lounge Garden</p>
+</div>
+</div>
+<button class="text-label-sm font-label-sm text-secondary hover:underline" onclick="alert('Untuk mengganti nomor meja, silakan pindai barcode fisik di atas meja Anda.')">Ganti Meja</button>
+</div>
+<!-- Item Checklist & Freshness Status -->
+<div class="space-y-3">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-text-tertiary uppercase">
+<span>Item yang Disiapkan Kembali</span>
+<span class="text-status-success font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check</span>
+            Bahan Siap &amp; Tersedia
+          </span>
+</div>
+<div class="space-y-2 max-h-48 overflow-y-auto pr-1" id="modal-item-list">
+<!-- Dynamic contents injected via JS -->
+</div>
+</div>
+<!-- Total Price and Notes -->
+<div class="pt-3 border-t border-glass-border-subtle space-y-2">
+<div class="flex justify-between items-baseline">
+<span class="text-body-md font-body-md text-text-secondary">Subtotal Pesanan Re-Order:</span>
+<span class="text-headline-sm font-headline-sm text-primary font-bold" id="modal-total-price">Rp 212.000</span>
+</div>
+<p class="text-label-sm font-label-sm text-text-tertiary">Metode pembayaran akan ditagihkan via QRIS di meja atau ditambahkan ke tagihan kasir Meja 05.</p>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-2 pt-2">
+<button class="w-full gold-gradient-btn text-on-primary-container py-3 px-4 rounded-xl text-label-lg font-label-lg font-bold flex items-center justify-center gap-2 transition-all" onclick="executeReOrder()">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+          Kirim Langsung ke Kasir &amp; Barista
+        </button>
+<button class="w-full py-2.5 rounded-xl bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-md font-label-md transition-colors text-center" onclick="customizeInMenu()">
+          Buka di Menu untuk Kustomisasi Ulang
+        </button>
+</div>
+</div>
+</div>
+<!-- ==================== FOOTER (Shared Component) ==================== -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest full-width border-t border-glass-border-subtle dark:border-glass-border-subtle mt-16">
+<div class="w-full px-6 lg:px-12 py-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Copyright -->
+<div class="space-y-2 text-center md:text-left">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary tracking-wider block">
+          Élite Lounge
+        </span>
+<p class="text-body-sm font-body-sm text-text-tertiary dark:text-text-tertiary max-w-md">
+          © 2025 Élite Lounge &amp; Specialty Brew. All rights reserved. Crafted for connoisseurs.
+        </p>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-label-md font-label-md">
+<a class="text-text-tertiary dark:text-text-tertiary hover:text-primary dark:hover:text-primary hover:underline transition-all duration-200" href="#menu">Menu</a>
+<a class="text-text-tertiary dark:text-text-tertiary hover:text-primary dark:hover:text-primary hover:underline transition-all duration-200" href="#story">Our Story</a>
+<a class="text-text-tertiary dark:text-text-tertiary hover:text-primary dark:hover:text-primary hover:underline transition-all duration-200" href="#vip">Private VIP Booking</a>
+<a class="text-text-tertiary dark:text-text-tertiary hover:text-primary dark:hover:text-primary hover:underline transition-all duration-200" href="#hours">Operational Hours &amp; Location</a>
+<a class="text-text-tertiary dark:text-text-tertiary hover:text-primary dark:hover:text-primary hover:underline transition-all duration-200" href="#terms">Terms &amp; Conditions</a>
+<a class="text-primary dark:text-primary font-medium hover:underline transition-all duration-200" href="#pos">Admin POS Access</a>
+</div>
+</div>
+</footer>
+<!-- ==================== INLINE JAVASCRIPT LOGIC ==================== -->
+<script>
+    // Initialize LocalStorage Data if not present
+    document.addEventListener("DOMContentLoaded", () => {
+      const defaultProfile = {
+        name: "Jonathan Ardiansyah",
+        phone: "+62 812-8945-6720",
+        table: "Meja 05",
+        tier: "Gold Connoisseur"
+      };
+
+      if (!localStorage.getItem("elite_guest_profile")) {
+        localStorage.setItem("elite_guest_profile", JSON.stringify(defaultProfile));
+      } else {
+        const stored = JSON.parse(localStorage.getItem("elite_guest_profile"));
+        document.getElementById("guest-name").textContent = stored.name || defaultProfile.name;
+        document.getElementById("guest-phone").textContent = stored.phone || defaultProfile.phone;
+      }
+    });
+
+    // Re-Order Modal State Management
+    let currentSelectedOrder = null;
+
+    function openReOrderModal(orderId, table, price, items) {
+      currentSelectedOrder = { orderId, table, price, items };
+      
+      document.getElementById("modal-order-id").textContent = "Pesanan #" + orderId;
+      document.getElementById("modal-total-price").textContent = price;
+
+      const container = document.getElementById("modal-item-list");
+      container.innerHTML = "";
+
+      items.forEach(item => {
+        const itemRow = document.createElement("div");
+        itemRow.className = "flex items-start justify-between p-2.5 rounded-lg bg-surface-glass-card border border-glass-border-subtle text-body-sm";
+        itemRow.innerHTML = `
+          <div>
+            <p class="font-bold text-text-primary">${item.qty}x ${item.name}</p>
+            <p class="text-label-sm font-label-sm text-text-tertiary">${item.note}</p>
+          </div>
+          <span class="text-secondary font-medium">${item.price}</span>
+        `;
+        container.appendChild(itemRow);
+      });
+
+      const modal = document.getElementById("reorder-modal");
+      const content = document.getElementById("reorder-modal-content");
+      modal.classList.remove("hidden");
+      setTimeout(() => {
+        modal.classList.remove("opacity-0");
+        content.classList.remove("scale-95");
+      }, 10);
+    }
+
+    function closeReOrderModal() {
+      const modal = document.getElementById("reorder-modal");
+      const content = document.getElementById("reorder-modal-content");
+      modal.classList.add("opacity-0");
+      content.classList.add("scale-95");
+      setTimeout(() => {
+        modal.classList.add("hidden");
+      }, 300);
+    }
+
+    function executeReOrder() {
+      if (!currentSelectedOrder) return;
+      
+      // Store into localStorage as fresh in-progress transaction
+      const activeOrderPayload = {
+        reorderFrom: currentSelectedOrder.orderId,
+        table: "Meja 05",
+        timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+        items: currentSelectedOrder.items,
+        total: currentSelectedOrder.price,
+        status: "Sedang Berjalan — Dikirim ke Barista"
+      };
+
+      localStorage.setItem("elite_active_order", JSON.stringify(activeOrderPayload));
+
+      closeReOrderModal();
+
+      // Notification feedback
+      setTimeout(() => {
+        alert(`Pesanan ${currentSelectedOrder.orderId} BERHASIL di-Reorder!\n\nItem telah dikirimkan ke Barista & Kasir untuk disajikan di MEJA 05.\nEstimasi penyajian: ±12 menit.`);
+        const activeSection = document.getElementById("section-active-order");
+        if (activeSection) {
+          activeSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 350);
+    }
+
+    function customizeInMenu() {
+      closeReOrderModal();
+      alert("Mengarahkan Anda ke menu Élite Lounge dengan racikan tersimpan untuk penyesuaian topping / gula.");
+    }
+
+    // Filter Logic for Orders Tabs
+    function filterOrders(status) {
+      const tabs = document.querySelectorAll(".tab-btn");
+      tabs.forEach(tab => {
+        tab.classList.remove("active", "border-primary", "bg-primary/10", "text-primary", "font-semibold");
+        tab.classList.add("border-glass-border-subtle", "text-text-secondary");
+      });
+
+      event.currentTarget.classList.add("active", "border-primary", "bg-primary/10", "text-primary", "font-semibold");
+      event.currentTarget.classList.remove("border-glass-border-subtle", "text-text-secondary");
+
+      const cards = document.querySelectorAll(".order-card");
+      const activeSection = document.getElementById("section-active-order");
+
+      if (status === 'active') {
+        cards.forEach(card => card.style.display = 'none');
+        activeSection.style.display = 'block';
+        activeSection.scrollIntoView({ behavior: 'smooth' });
+      } else if (status === 'completed') {
+        cards.forEach(card => card.style.display = 'block');
+        activeSection.style.display = 'none';
+      } else if (status === 'cancelled') {
+        cards.forEach(card => card.style.display = 'none');
+        activeSection.style.display = 'none';
+      } else {
+        cards.forEach(card => card.style.display = 'block');
+        activeSection.style.display = 'block';
+      }
+    }
+
+    // Live search in past orders
+    function searchOrderItems(keyword) {
+      const query = keyword.toLowerCase().trim();
+      const cards = document.querySelectorAll(".order-card");
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Guest Profile Actions
+    function editGuestProfile() {
+      const currentName = document.getElementById("guest-name").textContent;
+      const currentPhone = document.getElementById("guest-phone").textContent;
+
+      const newName = prompt("Ubah Nama Tamu VIP:", currentName);
+      if (!newName) return;
+      const newPhone = prompt("Ubah No WhatsApp untuk Struk & Notifikasi:", currentPhone);
+      if (!newPhone) return;
+
+      const updated = {
+        name: newName,
+        phone: newPhone,
+        table: "Meja 05",
+        tier: "Gold Connoisseur"
+      };
+
+      localStorage.setItem("elite_guest_profile", JSON.stringify(updated));
+      document.getElementById("guest-name").textContent = newName;
+      document.getElementById("guest-phone").textContent = newPhone;
+      alert("Profil Tamu Lokal berhasil diperbarui di memori browser.");
+    }
+
+    function clearLocalHistory() {
+      if (confirm("Apakah Anda yakin ingin menghapus data riwayat pemesanan dari memori browser perangkat ini?")) {
+        localStorage.removeItem("elite_guest_profile");
+        localStorage.removeItem("elite_active_order");
+        alert("Riwayat lokal browser berhasil dibersihkan.");
+        location.reload();
+      }
+    }
+
+    function triggerNewOrder() {
+      alert("Membuka kamera pemindai QR Meja Élite Lounge... Silakan arahkan kamera ke barcode meja Anda.");
+    }
+
+    function openLiveTrackingModal() {
+      alert("Menghubungkan ke Kitchen Display System (KDS)... Barista: Chef Andrean sedang melakukan extraction pour-over Geisha V60.");
+    }
+
+    function viewDigitalReceipt(orderId) {
+      alert(`Membuka Struk Digital ${orderId} Resmi Élite Lounge & Specialty Brew.\nStatus: LUNAS via QRIS Dinamis.`);
+    }
+
+    function callButlerPrompt() {
+      alert("Layanan Butler Meja 05 telah dipanggil. Butler kami akan mendatangi meja Anda dalam ±1 menit.");
+    }
+
+    function downloadPdfReceipt(orderId) {
+      alert(`Mengunduh Struk Resmi #${orderId} (Format PDF Digital Bersegel Élite Lounge)...`);
+    }
+
+    function showReviewModal(orderId) {
+      alert(`Terima kasih. Masukan Anda untuk pesanan ${orderId} membantu Barista & Sommelier kami menjaga standar tertinggi.`);
+    }
+
+    function viewInvoiceDetail(orderId) {
+      alert(`Faktur Pajak Restoran & Detail Layanan untuk ${orderId} telah terarsip secara elektronik.`);
+    }
+  </script>
+</body></html>perub
