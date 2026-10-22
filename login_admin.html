@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akses Admin &amp; Kasir POS | Élite Lounge &amp; Specialty Brew</title>
+<!-- Material Symbols Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Playfair Display & Plus Jakarta Sans Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#e9c349",
+            "on-secondary": "#402d0f",
+            "accent-amber-glow": "rgba(212, 175, 55, 0.18)",
+            "on-primary": "#3c2f00",
+            "on-secondary-fixed-variant": "#584323",
+            "primary-fixed-dim": "#e9c349",
+            "error-container": "#93000a",
+            "background": "#131314",
+            "on-tertiary-container": "#5d3f00",
+            "surface-container-highest": "#353436",
+            "on-surface": "#e5e2e3",
+            "surface-glass-subtle": "rgba(255, 255, 255, 0.03)",
+            "surface-glass-raised": "rgba(255, 255, 255, 0.08)",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#574500",
+            "surface-glass-card": "rgba(255, 255, 255, 0.05)",
+            "text-secondary": "#9CA3AF",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+            "surface-variant": "#353436",
+            "tertiary-fixed": "#ffdead",
+            "tertiary-fixed-dim": "#fabc4d",
+            "on-tertiary": "#432c00",
+            "on-surface-variant": "#d0c5af",
+            "secondary": "#e0c298",
+            "tertiary": "#ffc461",
+            "on-tertiary-fixed": "#281900",
+            "outline-variant": "#4d4635",
+            "surface-dim": "#131314",
+            "inverse-primary": "#735c00",
+            "text-primary": "#F9FAFB",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "surface": "#131314",
+            "primary": "#f2ca50",
+            "status-success": "#34D399",
+            "inverse-surface": "#e5e2e3",
+            "status-warning": "#FBBF24",
+            "on-primary-fixed": "#241a00",
+            "on-error": "#690005",
+            "surface-container-lowest": "#0e0e0f",
+            "secondary-container": "#584323",
+            "on-secondary-fixed": "#281800",
+            "inverse-on-surface": "#313031",
+            "error": "#ffb4ab",
+            "outline": "#99907c",
+            "on-tertiary-fixed-variant": "#604100",
+            "surface-container": "#201f20",
+            "on-background": "#e5e2e3",
+            "tertiary-container": "#e4a83b",
+            "on-primary-container": "#554300",
+            "on-secondary-container": "#ceb188",
+            "text-tertiary": "#6B7280",
+            "status-danger": "#F87171",
+            "secondary-fixed": "#fedeb2",
+            "primary-container": "#d4af37",
+            "surface-bright": "#3a393a",
+            "primary-fixed": "#ffe088",
+            "surface-container-high": "#2a2a2b",
+            "surface-container-low": "#1c1b1c",
+            "secondary-fixed-dim": "#e0c298"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Playfair Display"],
+            "headline-xl-mobile": ["Playfair Display"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"]
+          },
+          "fontSize": {
+            "label-sm": ["0.6875rem", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "700" }],
+            "headline-md": ["1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-xl-mobile": ["2.25rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.55", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.015em", "fontWeight": "400" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-lg": ["2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.75rem", { "lineHeight": "1.25", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "label-lg": ["0.875rem", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Material symbols helper */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    /* Radial atmospheric lighting for obsidian canvas */
+    .obsidian-radial-glow {
+      background: radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 85% 80%, rgba(228, 168, 59, 0.05) 0%, transparent 50%),
+                  #0e0e0f;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
+<!-- Ambient Light Orbs -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-secondary-container/20 rounded-full blur-[140px]"></div>
+</div>
+<!-- Top Minimalist Brand Header -->
+<header class="w-full bg-surface-container-lowest/80 backdrop-blur-md sticky top-0 z-40 border-b border-glass-border-subtle">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex flex-wrap items-center justify-between gap-4">
+<!-- Left: Logo & Portal Tag -->
+<div class="flex items-center gap-4">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-wide flex items-center gap-2 group" href="#">
+<span class="w-2.5 h-2.5 rounded-full bg-primary inline-block shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span>
+          Élite Lounge
+        </a>
+<span class="hidden sm:inline-block h-4 w-[1px] bg-glass-border-subtle"></span>
+<span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-glass-raised border border-glass-border-subtle font-label-sm text-label-sm text-secondary uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="lock">lock</span>
+          Portal Kasir &amp; Admin POS
+        </span>
+</div>
+<!-- Right: Guest Portal Backlink & System Status Badge -->
+<div class="flex items-center gap-3 sm:gap-6">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-surface-glass-subtle border border-glass-border-subtle font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+<span>Local Auth • Browser Session</span>
+</div>
+<a class="inline-flex items-center gap-1.5 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform" data-icon="arrow_back">arrow_back</span>
+<span>Kembali ke Portal Tamu</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content Shell -->
+<main class="relative z-10 flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-12 py-10 lg:py-16">
+<div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+<!-- LEFT HIGHLIGHT PANEL: Terminal Metrics & Atmosphere -->
+<div class="lg:col-span-5 flex flex-col justify-between rounded-xl bg-surface-glass-card border border-glass-border-subtle p-6 lg:p-8 backdrop-blur-xl relative overflow-hidden shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<!-- Visual Backdrop Vignette -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-cover bg-center" data-alt="Dark aesthetic interior of a luxury subterranean cocktail lounge and specialty coffee bar featuring ambient bronze lighting, polished marble counters, and espresso machines with soft cinematic vapor in deep obsidian tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHy823HunnG2VPCDfA41wnCsqzeRaNMRK4Hxdmhv-oUjGqek3ylK8Ss5AT9YJXZaUar5SOsdFBeP47nsOx66Q3gBfD523GKS_V-0Mt0iJkqlREbxnCTPrrIwVN-Z4keJO6Fd_UnZ-hgSWD_qn3zc2Tlm6MoHbM1kiTAxqkLn5eRR9l3DYLi29yxYkD0CppxJ4U33rafGj1ciT4RuCJAofFBzIRTRMPJpBq6D2t7IeNzhuO2XII1AzL')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
+</div>
+<!-- Upper Info Area -->
+<div class="relative z-10 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/40 border border-glass-border-highlight text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="point_of_sale">point_of_sale</span>
+            TERMINAL STATUS: READY
+          </div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">
+              Sistem Operasional <br/><span class="italic text-primary font-normal">Kolektif Presisi</span>
+</h1>
+<p class="font-body-sm text-body-sm text-text-secondary">
+              Akses khusus stasiun POS Barista, Kitchen Display System (KDS), validasi pesanan meja, dan rekapitulasi penjualan harian Élite Lounge.
+            </p>
+</div>
+<!-- Real-Time Station Widgets -->
+<div class="space-y-3 pt-2">
+<!-- Terminal Item -->
+<div class="p-3.5 rounded-lg bg-surface-glass-raised border border-glass-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-surface-container-high border border-glass-border-subtle flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="desktop_windows">desktop_windows</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary">POS Terminal #01</div>
+<div class="font-body-sm text-body-sm text-text-tertiary">Main Bar &amp; Dining Area</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded bg-status-success/15 text-status-success border border-status-success/30">ONLINE</span>
+</div>
+<!-- KDS Hub -->
+<div class="p-3.5 rounded-lg bg-surface-glass-raised border border-glass-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-surface-container-high border border-glass-border-subtle flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="soup_kitchen">soup_kitchen</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary">KDS Network Hub</div>
+<div class="font-body-sm text-body-sm text-text-tertiary">2 Stasiun Aktif (Brew &amp; Grill)</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded bg-primary/10 text-primary border border-glass-border-highlight">SYNCED</span>
+</div>
+<!-- Active Shift Card -->
+<div class="p-3.5 rounded-lg bg-surface-glass-raised border border-glass-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-surface-container-high border border-glass-border-subtle flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary">Shift Malam (16:00 - 00:00)</div>
+<div class="font-body-sm text-body-sm text-text-tertiary">Supervisor: Bpk. Hendra W.</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-glass-subtle text-on-surface-variant">ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- Lower Footnote on Left Panel -->
+<div class="relative z-10 pt-6 mt-6 border-t border-glass-border-subtle flex items-center gap-3 text-text-tertiary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="verified_user">verified_user</span>
+<span>Protokol Enkripsi Internal Berbasis Sesi Aman Terisolasi.</span>
+</div>
+</div>
+<!-- RIGHT PANEL: Authentication Form Card -->
+<div class="lg:col-span-7 flex flex-col justify-center rounded-xl bg-surface-container-low/90 border border-glass-border-subtle backdrop-blur-2xl p-6 sm:p-10 shadow-[0_20px_40px_rgba(0,0,0,0.7),_0_0_25px_rgba(212,175,55,0.08)] relative">
+<!-- Subtle Top Hairline Amber Highlight -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-80"></div>
+<!-- Form Header -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-surface-glass-raised border border-glass-border-highlight text-primary shadow-[0_0_16px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined text-[24px]" data-icon="admin_panel_settings">admin_panel_settings</span>
+</span>
+<span class="font-label-sm text-label-sm tracking-wider text-text-tertiary">v2.4-STABLE</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-semibold text-text-primary tracking-tight">
+            Akses Terproteksi Kasir &amp; Manajer
+          </h2>
+<p class="font-body-md text-body-md text-text-secondary mt-1">
+            Masuk untuk mengakses Live Order KDS, Analisis Pendapatan, dan Manajemen Menu.
+          </p>
+</div>
+<!-- Role Quick Selectors -->
+<div class="mb-6">
+<label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2.5">
+            Pilih Peran / Shift Otoritas:
+          </label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="roleButtonGroup">
+<button class="role-btn text-left p-2.5 rounded-lg border border-glass-border-highlight bg-secondary-container/30 text-primary transition-all duration-200" onclick="selectRole(this, 'kasir.utama@elitelounge.id')" type="button">
+<div class="font-label-md text-label-md font-bold flex items-center justify-between">
+<span>Head Cashier</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-tertiary mt-0.5">Kasir Meja &amp; POS</div>
+</button>
+<button class="role-btn text-left p-2.5 rounded-lg border border-glass-border-subtle bg-surface-glass-subtle text-on-surface-variant hover:border-glass-border-highlight transition-all duration-200" onclick="selectRole(this, 'manager@elitelounge.id')" type="button">
+<div class="font-label-md text-label-md font-bold flex items-center justify-between">
+<span>Store Manager</span>
+<span class="material-symbols-outlined text-[16px] opacity-0" data-icon="check_circle">check_circle</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-tertiary mt-0.5">Laporan &amp; Audit</div>
+</button>
+<button class="role-btn text-left p-2.5 rounded-lg border border-glass-border-subtle bg-surface-glass-subtle text-on-surface-variant hover:border-glass-border-highlight transition-all duration-200" onclick="selectRole(this, 'barista.lead@elitelounge.id')" type="button">
+<div class="font-label-md text-label-md font-bold flex items-center justify-between">
+<span>Master Barista</span>
+<span class="material-symbols-outlined text-[16px] opacity-0" data-icon="check_circle">check_circle</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-tertiary mt-0.5">KDS Brew Feed</div>
+</button>
+</div>
+</div>
+<!-- Form Elements -->
+<form class="space-y-5" id="adminLoginForm" onsubmit="handleFormSubmit(event)">
+<!-- ID / Email Input -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-primary mb-1.5" for="usernameInput">
+              Username atau ID Karyawan
+            </label>
+<div class="relative flex items-center">
+<span class="absolute left-3.5 text-text-tertiary material-symbols-outlined text-[20px]" data-icon="badge">badge</span>
+<input class="w-full bg-black/40 border border-glass-border-subtle rounded-lg pl-11 pr-4 py-3 text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-body-md text-body-md" id="usernameInput" placeholder="ADMIN-ELITE-01 atau email resmi" required="" type="text" value="kasir.utama@elitelounge.id"/>
+</div>
+</div>
+<!-- Password / PIN Input -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block font-label-lg text-label-lg text-text-primary" for="passwordInput">
+                Password / PIN Otorisasi
+              </label>
+<button class="font-label-sm text-label-sm text-primary hover:underline transition-all" onclick="quickFillDemo()" type="button">
+                Gunakan Kredensial Demo
+              </button>
+</div>
+<div class="relative flex items-center">
+<span class="absolute left-3.5 text-text-tertiary material-symbols-outlined text-[20px]" data-icon="key">key</span>
+<input class="w-full bg-black/40 border border-glass-border-subtle rounded-lg pl-11 pr-11 py-3 text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-body-md text-body-md" id="passwordInput" placeholder="••••••••" required="" type="password" value="elite2025"/>
+<button class="absolute right-3 text-text-tertiary hover:text-text-primary p-1 focus:outline-none" onclick="togglePasswordVisibility()" title="Tampilkan / Sembunyikan Sandi" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Session Checkbox & Security Toggle -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1">
+<label class="flex items-center gap-2.5 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded border-glass-border-subtle bg-surface-container-high text-primary focus:ring-0 focus:ring-offset-0 cursor-pointer" id="rememberSession" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                Pertahankan Sesi Aktif di Browser (LocalStorage)
+              </span>
+</label>
+<span class="font-label-sm text-label-sm text-text-tertiary">
+              SHA-256 Mocked Auth
+            </span>
+</div>
+<!-- Demo Helper Pill / Credentials banner -->
+<div class="p-3 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="info">info</span>
+<span>Demo ID: <strong class="text-text-primary font-medium">admin@elitelounge.id</strong> • PIN: <strong class="text-text-primary font-medium">elite2025</strong></span>
+</div>
+<button class="font-label-sm text-label-sm px-2.5 py-1 rounded bg-secondary-container/40 hover:bg-secondary-container text-primary border border-glass-border-highlight transition-all" onclick="quickFillDemo()" type="button">
+              Terapkan Demo
+            </button>
+</div>
+<!-- Submit Primary Button -->
+<button class="w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-primary-container to-tertiary-container hover:from-primary hover:to-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_0_18px_rgba(212,175,55,0.35)] hover:shadow-[0_0_24px_rgba(212,175,55,0.5)] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" id="loginSubmitBtn" type="submit">
+<span>Masuk ke Dashboard Admin</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Feedback Alert Toast Container (Hidden by default) -->
+<div class="hidden mt-4 p-3 rounded-lg bg-status-success/15 border border-status-success/30 text-status-success font-body-sm text-body-sm flex items-center gap-2" id="loginFeedback">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+<span id="feedbackText">Autentikasi terverifikasi. Mengalihkan ke KDS Management...</span>
+</div>
+<!-- Security Warning Notice -->
+<div class="mt-6 pt-5 border-t border-glass-border-subtle flex items-start gap-2.5 text-text-tertiary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-outline flex-shrink-0 mt-0.5" data-icon="shield">shield</span>
+<p>
+            Akses ini hanya diperuntukkan bagi staf internal yang berwenang. Semua aktivitas masuk dan pencetakan struk tercatat pada audit log terminal lokal.
+          </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Minimalist Luxury Footer -->
+<footer class="w-full border-t border-glass-border-subtle bg-surface-container-lowest py-6">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+<div class="font-body-sm text-body-sm text-text-tertiary">
+        © 2025 <span class="text-text-primary font-medium">Élite Lounge &amp; Specialty Brew</span>. All rights reserved. Crafted for connoisseurs.
+      </div>
+<div class="flex items-center gap-6 font-label-md text-label-md text-text-tertiary">
+<a class="hover:text-primary transition-colors" href="#" onclick="alert('Untuk mereset sesi, buka Developer Tools &gt; Application &gt; LocalStorage &gt; Hapus data elite_session.'); return false;">
+          Reset Kredensial Sesi
+        </a>
+<span class="w-1 h-1 rounded-full bg-glass-border-subtle"></span>
+<a class="hover:text-primary transition-colors" href="#">Bantuan Operasional POS</a>
+<span class="w-1 h-1 rounded-full bg-glass-border-subtle"></span>
+<span class="text-primary/70">Terminal #01 (Encrypted)</span>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+    // Role selection handler
+    function selectRole(buttonEl, email) {
+      const buttons = document.querySelectorAll('.role-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-glass-border-highlight', 'bg-secondary-container/30', 'text-primary');
+        btn.classList.add('border-glass-border-subtle', 'bg-surface-glass-subtle', 'text-on-surface-variant');
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.add('opacity-0');
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      });
+
+      buttonEl.classList.remove('border-glass-border-subtle', 'bg-surface-glass-subtle', 'text-on-surface-variant');
+      buttonEl.classList.add('border-glass-border-highlight', 'bg-secondary-container/30', 'text-primary');
+      const activeIcon = buttonEl.querySelector('.material-symbols-outlined');
+      if (activeIcon) {
+        activeIcon.classList.remove('opacity-0');
+        activeIcon.style.fontVariationSettings = "'FILL' 1";
+      }
+
+      const usernameInput = document.getElementById('usernameInput');
+      if (usernameInput) {
+        usernameInput.value = email;
+      }
+    }
+
+    // Toggle Password visibility
+    function togglePasswordVisibility() {
+      const passField = document.getElementById('passwordInput');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passField.type === 'password') {
+        passField.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passField.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    }
+
+    // Quick Fill demo credentials
+    function quickFillDemo() {
+      document.getElementById('usernameInput').value = 'admin@elitelounge.id';
+      document.getElementById('passwordInput').value = 'elite2025';
+      
+      const toast = document.getElementById('loginFeedback');
+      const toastText = document.getElementById('feedbackText');
+      toast.classList.remove('hidden');
+      toast.classList.remove('bg-status-danger/15', 'text-status-danger', 'border-status-danger/30');
+      toast.classList.add('bg-status-success/15', 'text-status-success', 'border-status-success/30');
+      toastText.textContent = 'Kredensial demo siap digunakan!';
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Mock Login Process
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      const originalText = submitBtn.innerHTML;
+      const toast = document.getElementById('loginFeedback');
+      const toastText = document.getElementById('feedbackText');
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px] animate-spin" data-icon="progress_activity">progress_activity</span>
+        <span>Memverifikasi Otorisasi Sesi...</span>
+      `;
+
+      setTimeout(() => {
+        const username = document.getElementById('usernameInput').value.trim();
+        const remember = document.getElementById('rememberSession').checked;
+
+        // Mock store session state
+        if (remember) {
+          localStorage.setItem('elite_admin_authenticated', 'true');
+          localStorage.setItem('elite_admin_user', username);
+          localStorage.setItem('elite_admin_role', 'Administrator POS');
+        }
+
+        toast.classList.remove('hidden');
+        toastText.textContent = `Akses Diberikan: Selamat datang kembali, ${username}. Mengarahkan ke Live POS & KDS...`;
+        
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+          <span>Akses Terverifikasi!</span>
+        `;
+        submitBtn.classList.replace('from-primary-container', 'from-status-success');
+        submitBtn.classList.replace('to-tertiary-container', 'to-status-success');
+
+        setTimeout(() => {
+          // Fallback feedback for single-page preview
+          toastText.textContent = `Sesi aktif terkonfirmasi. Menghubungkan ke Terminal Kasir Meja #01...`;
+        }, 1200);
+
+      }, 1000);
+    }
+  </script>
+</body></html>bahan
