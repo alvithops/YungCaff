@@ -3,7 +3,7 @@
 <html class="dark" lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Akses Admin &amp; Kasir POS | Élite Lounge &amp; Specialty Brew</title>
+<title>Akses Admin &amp; Kasir POS | YungCaff</title>
 <!-- Material Symbols Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Playfair Display & Plus Jakarta Sans Fonts -->
@@ -145,9 +145,9 @@
 <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex flex-wrap items-center justify-between gap-4">
 <!-- Left: Logo & Portal Tag -->
 <div class="flex items-center gap-4">
-<a class="font-headline-md text-headline-md font-bold text-primary tracking-wide flex items-center gap-2 group" href="#">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-wide flex items-center gap-2 group" href="index.html">
 <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span>
-          Élite Lounge
+          YungCaff
         </a>
 <span class="hidden sm:inline-block h-4 w-[1px] bg-glass-border-subtle"></span>
 <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-glass-raised border border-glass-border-subtle font-label-sm text-label-sm text-secondary uppercase tracking-widest">
@@ -161,7 +161,7 @@
 <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
 <span>Local Auth • Browser Session</span>
 </div>
-<a class="inline-flex items-center gap-1.5 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-all duration-200 group" href="#">
+<a class="inline-flex items-center gap-1.5 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-all duration-200 group" href="index.html">
 <span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform" data-icon="arrow_back">arrow_back</span>
 <span>Kembali ke Portal Tamu</span>
 </a>
@@ -189,7 +189,7 @@
               Sistem Operasional <br/><span class="italic text-primary font-normal">Kolektif Presisi</span>
 </h1>
 <p class="font-body-sm text-body-sm text-text-secondary">
-              Akses khusus stasiun POS Barista, Kitchen Display System (KDS), validasi pesanan meja, dan rekapitulasi penjualan harian Élite Lounge.
+              Akses khusus stasiun POS Barista, Kitchen Display System (KDS), validasi pesanan meja, dan rekapitulasi penjualan harian YungCaff.
             </p>
 </div>
 <!-- Real-Time Station Widgets -->
@@ -366,14 +366,14 @@
 <footer class="w-full border-t border-glass-border-subtle bg-surface-container-lowest py-6">
 <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
 <div class="font-body-sm text-body-sm text-text-tertiary">
-        © 2025 <span class="text-text-primary font-medium">Élite Lounge &amp; Specialty Brew</span>. All rights reserved. Crafted for connoisseurs.
+        © 2025 <span class="text-text-primary font-medium">YungCaff</span>. All rights reserved. Crafted for connoisseurs.
       </div>
 <div class="flex items-center gap-6 font-label-md text-label-md text-text-tertiary">
 <a class="hover:text-primary transition-colors" href="#" onclick="alert('Untuk mereset sesi, buka Developer Tools &gt; Application &gt; LocalStorage &gt; Hapus data elite_session.'); return false;">
           Reset Kredensial Sesi
         </a>
 <span class="w-1 h-1 rounded-full bg-glass-border-subtle"></span>
-<a class="hover:text-primary transition-colors" href="#">Bantuan Operasional POS</a>
+<a class="hover:text-primary transition-colors" href="index.html#contact">Bantuan Operasional POS</a>
 <span class="w-1 h-1 rounded-full bg-glass-border-subtle"></span>
 <span class="text-primary/70">Terminal #01 (Encrypted)</span>
 </div>
@@ -476,6 +476,10 @@
           // Fallback feedback for single-page preview
           toastText.textContent = `Sesi aktif terkonfirmasi. Menghubungkan ke Terminal Kasir Meja #01...`;
         }, 1200);
+
+        setTimeout(() => {
+          window.location.href = 'dashboard_admin.html';
+        }, 2200);
 
       }, 1000);
     }

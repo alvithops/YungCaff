@@ -3,7 +3,7 @@
 <html class="dark" lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Élite Lounge — Form Identitas &amp; Checkout</title>
+<title>YungCaff — Form Identitas &amp; Checkout</title>
 <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -154,14 +154,14 @@
 <div class="flex justify-between items-center w-full px-4 sm:px-6 lg:px-12 py-3.5 max-w-7xl mx-auto">
 <!-- Brand & Back Action Button -->
 <div class="flex items-center gap-3 sm:gap-6">
-<a class="group flex items-center gap-2 py-1.5 px-3 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-[0.98]" href="#back-to-menu">
+<a class="group flex items-center gap-2 py-1.5 px-3 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-[0.98]" href="menu.html">
 <span class="material-symbols-outlined text-[1.125rem] text-primary">arrow_back</span>
 <span class="font-label-md text-label-md hidden sm:inline">Kembali ke Menu (Meja 05)</span>
 <span class="font-label-md text-label-md sm:hidden">Menu</span>
 </a>
 <div class="h-5 w-px bg-glass-border-subtle hidden sm:block"></div>
 <div class="flex items-baseline gap-1.5">
-<span class="font-headline-md text-headline-sm sm:text-headline-md font-bold text-primary tracking-wide">Élite Lounge</span>
+<span class="font-headline-md text-headline-sm sm:text-headline-md font-bold text-primary tracking-wide">YungCaff</span>
 <span class="hidden md:inline font-label-sm text-label-sm text-text-tertiary">SPECIALTY BREW</span>
 </div>
 </div>
@@ -253,24 +253,25 @@
 </div>
 <h2 class="font-headline-md text-headline-md text-text-primary">Identitas Pemesan &amp; Pengantaran</h2>
 <p class="font-body-md text-body-md text-text-secondary mt-1.5 leading-relaxed">
-              Pesanan ini terhubung langsung secara otomatis ke printer thermal Barista, Kitchen Display System (KDS), dan POS Terminal Kasir Élite Lounge.
+              Pesanan ini terhubung langsung secara otomatis ke printer thermal Barista, Kitchen Display System (KDS), dan POS Terminal Kasir YungCaff.
             </p>
 </div>
-<form class="space-y-6" id="checkout-form" onsubmit="event.preventDefault();">
+<form class="space-y-6" id="checkout-form" onsubmit="event.preventDefault(); submitOrder();">
 <!-- Tipe Layanan / Pesanan Switcher -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-2">
                 Tipe Layanan / Pesanan <span class="text-primary">*</span>
 </label>
 <div class="grid grid-cols-2 gap-3">
-<button class="group relative flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-raised border border-glass-border-highlight text-primary font-label-lg text-label-lg shadow-[0_0_16px_rgba(212,175,55,0.15)] transition-all" type="button">
+<button id="btnDineIn" class="group relative flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-raised border border-glass-border-highlight text-primary font-label-lg text-label-lg shadow-[0_0_16px_rgba(212,175,55,0.15)] transition-all" type="button">
 <span class="material-symbols-outlined text-[1.25rem]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
 <span class="font-semibold">Santap di Meja 05</span>
-<span class="absolute -top-2 right-3 px-1.5 py-0.2 rounded text-[0.625rem] font-bold bg-primary text-on-primary">DINE-IN</span>
+<span id="badgeDineIn" class="absolute -top-2 right-3 px-1.5 py-0.2 rounded text-[0.625rem] font-bold bg-primary text-on-primary">DINE-IN</span>
 </button>
-<button class="group flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-secondary hover:text-text-primary font-label-lg text-label-lg transition-all" type="button">
+<button id="btnTakeaway" class="group relative flex items-center justify-center gap-2.5 py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-secondary hover:text-text-primary font-label-lg text-label-lg transition-all" type="button">
 <span class="material-symbols-outlined text-[1.25rem]">takeout_dining</span>
 <span>Bungkus / Takeaway</span>
+<span id="badgeTakeaway" class="hidden absolute -top-2 right-3 px-1.5 py-0.2 rounded text-[0.625rem] font-bold bg-secondary text-on-secondary">TAKEAWAY</span>
 </button>
 </div>
 </div>
@@ -322,7 +323,7 @@
 <!-- Toggle 1: WhatsApp Notification -->
 <label class="flex items-start gap-3 cursor-pointer group select-none">
 <div class="relative flex items-center mt-0.5">
-<input checked="" class="peer sr-only" type="checkbox"/>
+<input id="tglWa" checked="" class="peer sr-only" type="checkbox"/>
 <div class="w-10 h-6 bg-surface-variant rounded-full peer peer-checked:bg-primary-container transition-colors"></div>
 <div class="absolute left-1 top-1 w-4 h-4 bg-on-primary rounded-full transition-transform peer-checked:translate-x-4"></div>
 </div>
@@ -338,7 +339,7 @@
 <!-- Toggle 2: LocalStorage State Save -->
 <label class="flex items-start gap-3 cursor-pointer group select-none">
 <div class="relative flex items-center mt-0.5">
-<input checked="" class="peer sr-only" type="checkbox"/>
+<input id="tglSaveId" checked="" class="peer sr-only" type="checkbox"/>
 <div class="w-10 h-6 bg-surface-variant rounded-full peer peer-checked:bg-primary-container transition-colors"></div>
 <div class="absolute left-1 top-1 w-4 h-4 bg-on-primary rounded-full transition-transform peer-checked:translate-x-4"></div>
 </div>
@@ -378,12 +379,12 @@
 <span class="material-symbols-outlined text-primary text-[1.25rem]">receipt_long</span>
 <h3 class="font-headline-sm text-headline-sm text-text-primary">Rincian Pesanan</h3>
 </div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/30">
+<span id="orderMenuBadge" class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/30">
               3 Menu (4 Items)
             </span>
 </div>
 <!-- List Item Pesanan Selected -->
-<div class="space-y-4 pb-5 border-b border-glass-border-subtle">
+<div id="orderItemsList" class="space-y-4 pb-5 border-b border-glass-border-subtle">
 <!-- Item 1: Panama Geisha V60 Reserve -->
 <div class="p-3.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-col gap-2.5 hover:border-glass-border-highlight/50 transition-colors">
 <div class="flex justify-between items-start gap-2">
@@ -507,9 +508,9 @@
 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary">
 <span class="material-symbols-outlined text-[1.125rem]">sell</span>
 </div>
-<input class="w-full pl-9 pr-24 py-2.5 rounded-lg bg-surface-container-lowest border border-glass-border-highlight text-primary font-label-md text-label-md font-bold tracking-wider uppercase focus:outline-none" readonly="" type="text" value="GOLDENHOUR"/>
+<input id="voucherInput" class="w-full pl-9 pr-24 py-2.5 rounded-lg bg-surface-container-lowest border border-glass-border-highlight text-primary font-label-md text-label-md font-bold tracking-wider uppercase focus:outline-none" readonly="" type="text" value="GOLDENHOUR"/>
 <div class="absolute right-2 flex items-center gap-1">
-<span class="font-label-sm text-label-sm text-status-success font-bold px-2 py-0.5 rounded bg-status-success/15 border border-status-success/30">
+<span id="voucherBadge" class="font-label-sm text-label-sm text-status-success font-bold px-2 py-0.5 rounded bg-status-success/15 border border-status-success/30">
                   -10% AKTIF
                 </span>
 </div>
@@ -517,26 +518,26 @@
 </div>
 <!-- Breakdown / Rincian Biaya -->
 <div class="py-4 space-y-2.5 text-text-secondary font-body-sm text-body-sm">
-<div class="flex justify-between items-center">
-<span>Subtotal Item (4 item)</span>
-<span class="text-text-primary font-medium">Rp 555.000</span>
+<div id="rowSubtotal" class="flex justify-between items-center">
+<span id="sumSubtotalCount">Subtotal Item (4 item)</span>
+<span id="sumSubtotal" class="text-text-primary font-medium">Rp 555.000</span>
 </div>
 <div class="flex justify-between items-center text-status-success">
 <span class="flex items-center gap-1">
 <span>Diskon Privilege (Golden Hour 10%)</span>
 </span>
-<span class="font-semibold">-Rp 55.500</span>
+<span id="sumDiscount" class="font-semibold">-Rp 55.500</span>
 </div>
 <div class="flex justify-between items-center">
 <span class="flex items-center gap-1">
 <span>Biaya Layanan &amp; Hospitality (5%)</span>
 <span class="material-symbols-outlined text-[0.875rem] text-text-tertiary" title="Pelayanan meja khusus butler">help</span>
 </span>
-<span class="text-text-primary">Rp 24.975</span>
+<span id="sumService" class="text-text-primary">Rp 24.975</span>
 </div>
 <div class="flex justify-between items-center">
 <span>PB1 / Pajak Restoran (10%)</span>
-<span class="text-text-primary">Rp 52.448</span>
+<span id="sumPB1" class="text-text-primary">Rp 52.448</span>
 </div>
 <!-- Fine Gold Separator -->
 <div class="pt-2 border-t border-glass-border-highlight"></div>
@@ -548,19 +549,19 @@
 </div>
 <div class="text-right">
 <span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">
-                  Rp 576.923
+                  <span id="sumTotal">Rp 576.923</span>
                 </span>
 </div>
 </div>
 </div>
 <!-- Primary CTA Buttons -->
 <div class="pt-2 space-y-3">
-<button class="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-primary-container via-primary to-primary-container text-on-primary font-label-lg text-label-lg font-bold tracking-wide shadow-[0_0_24px_rgba(212,175,55,0.4)] hover:shadow-[0_0_32px_rgba(212,175,55,0.6)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5" type="button">
+<button class="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-primary-container via-primary to-primary-container text-on-primary font-label-lg text-label-lg font-bold tracking-wide shadow-[0_0_24px_rgba(212,175,55,0.4)] hover:shadow-[0_0_32px_rgba(212,175,55,0.6)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5" type="button" onclick="submitOrder()">
 <span class="material-symbols-outlined text-[1.25rem]" style="font-variation-settings: 'FILL' 1;">lock</span>
-<span>Lanjut ke Pembayaran QRIS (Rp 576.923)</span>
+<span id="payBtnText">Lanjut ke Pembayaran QRIS (Rp 576.923)</span>
 <span class="material-symbols-outlined text-[1.125rem]">arrow_forward</span>
 </button>
-<button class="w-full py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-primary hover:text-primary font-label-md text-label-md transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="button">
+<button class="w-full py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-glass-border-highlight text-text-primary hover:text-primary font-label-md text-label-md transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="button" onclick="submitCash()">
 <span class="material-symbols-outlined text-[1.125rem]">payments</span>
 <span>Bayar Langsung Tunai / Kartu di Kasir</span>
 </button>
@@ -579,7 +580,7 @@
 <span class="material-symbols-outlined text-primary text-[1.125rem]">live_help</span>
 <span>Butuh bantuan terkait alergi makanan?</span>
 </div>
-<button class="text-primary hover:underline font-label-md text-label-md font-semibold">
+<button class="text-primary hover:underline font-label-md text-label-md font-semibold" onclick="alert('Sommelier kami akan menghampiri meja Anda dalam beberapa saat. Silakan tunggu.')">
             Panggil Sommelier
           </button>
 </div>
@@ -593,21 +594,238 @@
 <div class="w-full px-6 lg:px-12 py-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
 <!-- Brand & Copyright -->
 <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-<span class="font-headline-md text-headline-sm font-bold text-primary tracking-wider">Élite Lounge</span>
+<span class="font-headline-md text-headline-sm font-bold text-primary tracking-wider">YungCaff</span>
 <span class="hidden md:inline text-text-tertiary">•</span>
 <p class="font-body-sm text-body-sm text-text-tertiary">
-          © 2025 Élite Lounge &amp; Specialty Brew. All rights reserved. Crafted for connoisseurs.
+          © 2025 YungCaff. All rights reserved. Crafted for connoisseurs.
         </p>
 </div>
 <!-- Links from Shared Components JSON -->
 <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-label-md text-label-md text-text-tertiary">
-<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#menu">Menu</a>
-<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#story">Our Story</a>
-<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#vip">Private VIP Booking</a>
-<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#hours">Operational Hours &amp; Location</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="menu.html">Menu</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="index.html#story">Our Story</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="index.html#vip">Private VIP Booking</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="index.html#contact">Operational Hours &amp; Location</a>
 <a class="hover:text-primary transition-colors duration-200 hover:underline" href="#terms">Terms &amp; Conditions</a>
-<a class="hover:text-primary transition-colors duration-200 hover:underline" href="#admin">Admin POS Access</a>
+<a class="hover:text-primary transition-colors duration-200 hover:underline" href="login_admin.html">Admin POS Access</a>
 </div>
 </div>
 </footer>
+<script>
+    /* ===== YungCaff Order Engine v2 (order.html) ===== */
+    (function () {
+      var STORAGE_CART = 'yungcaff_cart_v1';
+      var STORAGE_MODE = 'yungcaff_order_mode';
+      var STORAGE_ID = 'yungcaff_identity_v1';
+      function rp(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+      function loadCart() { try { return JSON.parse(localStorage.getItem(STORAGE_CART)) || []; } catch (e) { return []; } }
+      function saveCart(c) { try { localStorage.setItem(STORAGE_CART, JSON.stringify(c)); } catch (e) {} }
+
+      var DEMO = [
+        { sig: 'demo1', name: 'Panama Geisha V60 Reserve', opts: ['Suhu: Hot', 'Ratio: 1:16 Floral', 'No Sugar', 'Add-on: Gold Leaf Garnish 24K'], note: '', qty: 1, unit: 150000, total: 150000 },
+        { sig: 'demo2', name: 'Truffle Wagyu MB7 Steak Frites', opts: ['Tingkat: Medium Rare', 'French Truffle Purre', 'Jus Daging 48 Jam'], note: '', qty: 1, unit: 295000, total: 295000 },
+        { sig: 'demo3', name: 'Noir Valrhona Croissant', opts: ['Dipanaskan hangat', 'Normandy Butter 36 layers'], note: '', qty: 2, unit: 55000, total: 110000 }
+      ];
+      function cloneDemo() { return DEMO.map(function (d) { return JSON.parse(JSON.stringify(d)); }); }
+
+      var cart = loadCart();
+      var isDemo = !cart.length;
+      var items = isDemo ? cloneDemo() : cart;
+      var discountOn = true;
+
+      var list = document.getElementById('orderItemsList');
+      if (!list) return;
+
+      function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+      function render() {
+        if (!items.length) {
+          list.innerHTML = '<div class="p-6 text-center rounded-lg bg-surface-glass-subtle border border-glass-border-subtle">' +
+            '<p class="font-body-md text-body-md text-text-secondary mb-3">Keranjang Anda kosong.</p>' +
+            '<a class="text-primary hover:underline font-label-md text-label-md font-semibold" href="menu.html">Kembali ke Menu</a></div>';
+          updateTotals();
+          return;
+        }
+        list.innerHTML = items.map(function (it, i) {
+          var opts = it.opts && it.opts.length ? it.opts.join(' · ') : 'Tanpa kustomisasi';
+          if (it.note) opts += ' · Catatan: ' + it.note;
+          return '<div class="p-3.5 rounded-lg bg-surface-glass-subtle border border-glass-border-subtle flex flex-col gap-2.5 hover:border-glass-border-highlight/50 transition-colors">' +
+            '<div class="flex justify-between items-start gap-2">' +
+            '<div class="flex-1">' +
+            '<div class="flex items-center gap-2">' +
+            '<h4 class="font-label-lg text-label-lg font-bold text-text-primary">' + esc(it.name) + '</h4>' +
+            '</div>' +
+            '<p class="font-body-sm text-body-sm text-text-tertiary mt-0.5 leading-snug">' + esc(opts) + ' (@ ' + rp(it.unit) + ')</p>' +
+            '</div>' +
+            '<span class="font-headline-sm text-headline-sm text-primary font-bold whitespace-nowrap">' + rp(it.total) + '</span>' +
+            '</div>' +
+            '<div class="flex justify-between items-center pt-2 border-t border-glass-border-subtle/50 text-xs">' +
+            '<a class="flex items-center gap-1 text-text-secondary hover:text-primary transition-colors font-label-sm text-label-sm" href="menu.html">' +
+            '<span class="material-symbols-outlined text-[0.95rem]">tune</span><span>Ubah Varian</span></a>' +
+            '<div class="flex items-center gap-3">' +
+            '<div class="flex items-center bg-surface-container-lowest border border-glass-border-subtle rounded-md">' +
+            '<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-l transition-colors" type="button" data-act="dec" data-i="' + i + '">' +
+            '<span class="material-symbols-outlined text-[1rem]">remove</span></button>' +
+            '<span class="w-8 text-center font-label-md text-label-md font-semibold text-text-primary">' + it.qty + '</span>' +
+            '<button class="w-7 h-7 flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-glass-raised rounded-r transition-colors" type="button" data-act="inc" data-i="' + i + '">' +
+            '<span class="material-symbols-outlined text-[1rem]">add</span></button>' +
+            '</div>' +
+            '<button class="text-text-tertiary hover:text-status-danger transition-colors p-1" title="Hapus menu" type="button" data-act="del" data-i="' + i + '">' +
+            '<span class="material-symbols-outlined text-[1.125rem]">delete</span></button>' +
+            '</div></div></div>';
+        }).join('');
+        updateTotals();
+      }
+
+      function updateTotals() {
+        var totalQty = items.reduce(function (a, i) { return a + i.qty; }, 0);
+        var sub = items.reduce(function (a, i) { return a + i.total; }, 0);
+        var disc = discountOn ? Math.round(sub * 0.10) : 0;
+        var serv = Math.round((sub - disc) * 0.05);
+        var pb1 = Math.round((sub - disc + serv) * 0.10);
+        var grand = sub - disc + serv + pb1;
+        var badge = document.getElementById('orderMenuBadge');
+        var cnt = document.getElementById('sumSubtotalCount');
+        if (badge) badge.textContent = items.length + ' Menu (' + totalQty + ' Items)';
+        if (cnt) cnt.textContent = 'Subtotal Item (' + totalQty + ' item)';
+        document.getElementById('sumSubtotal').textContent = rp(sub);
+        document.getElementById('sumDiscount').textContent = disc ? '-' + rp(disc) : 'Tidak ada diskon';
+        document.getElementById('sumService').textContent = rp(serv);
+        document.getElementById('sumPB1').textContent = rp(pb1);
+        document.getElementById('sumTotal').textContent = rp(grand);
+        document.getElementById('payBtnText').textContent = 'Lanjut ke Pembayaran QRIS (' + rp(grand) + ')';
+        window.__orderTotal = grand;
+      }
+
+      list.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-act]');
+        if (!b) return;
+        var i = parseInt(b.getAttribute('data-i'), 10);
+        var act = b.getAttribute('data-act');
+        if (!items[i]) return;
+        if (act === 'inc' && items[i].qty < 20) { items[i].qty++; items[i].total = items[i].unit * items[i].qty; }
+        if (act === 'dec') {
+          if (items[i].qty > 1) { items[i].qty--; items[i].total = items[i].unit * items[i].qty; }
+          else { items.splice(i, 1); }
+        }
+        if (act === 'del') items.splice(i, 1);
+        if (!isDemo) saveCart(items);
+        render();
+      });
+
+      /* --- Tipe layanan: Dine-in / Takeaway --- */
+      var btnDine = document.getElementById('btnDineIn');
+      var btnTake = document.getElementById('btnTakeaway');
+      var badgeDine = document.getElementById('badgeDineIn');
+      var badgeTake = document.getElementById('badgeTakeaway');
+      var mode = 'dine';
+      try { mode = localStorage.getItem(STORAGE_MODE) || 'dine'; } catch (e) {}
+      function applyMode() {
+        var dineOn = mode === 'dine';
+        btnDine.classList.toggle('bg-surface-glass-raised', dineOn);
+        btnDine.classList.toggle('border-glass-border-highlight', dineOn);
+        btnDine.classList.toggle('text-primary', dineOn);
+        btnDine.classList.toggle('bg-surface-glass-subtle', !dineOn);
+        btnDine.classList.toggle('border-glass-border-subtle', !dineOn);
+        btnDine.classList.toggle('text-text-secondary', !dineOn);
+        btnTake.classList.toggle('bg-surface-glass-raised', !dineOn);
+        btnTake.classList.toggle('border-glass-border-highlight', !dineOn);
+        btnTake.classList.toggle('text-primary', !dineOn);
+        btnTake.classList.toggle('bg-surface-glass-subtle', dineOn);
+        btnTake.classList.toggle('border-glass-border-subtle', dineOn);
+        btnTake.classList.toggle('text-text-secondary', dineOn);
+        badgeDine.classList.toggle('hidden', !dineOn);
+        badgeTake.classList.toggle('hidden', dineOn);
+        try { localStorage.setItem(STORAGE_MODE, mode); } catch (e) {}
+      }
+      btnDine.addEventListener('click', function () { mode = 'dine'; applyMode(); });
+      btnTake.addEventListener('click', function () { mode = 'takeaway'; applyMode(); });
+      applyMode();
+
+      /* --- Voucher / Kode Privilege --- */
+      var voucher = document.getElementById('voucherInput');
+      var vBadge = document.getElementById('voucherBadge');
+      var VALID = ['PRIVILEGE10', 'GOLDENHOUR', 'YUNGCAFF'];
+      var V_BADGE_OK = 'font-label-sm text-label-sm text-status-success font-bold px-2 py-0.5 rounded bg-status-success/15 border border-status-success/30';
+      var V_BADGE_OFF = 'font-label-sm text-label-sm text-text-tertiary font-bold px-2 py-0.5 rounded bg-surface-container-high border border-glass-border-subtle';
+      var V_BADGE_ERR = 'font-label-sm text-label-sm text-status-danger font-bold px-2 py-0.5 rounded bg-status-danger/15 border border-status-danger/30';
+      function applyVoucher() {
+        var v = (voucher.value || '').trim().toUpperCase();
+        if (!v) {
+          discountOn = true;
+          vBadge.className = V_BADGE_OK;
+          vBadge.textContent = '-10% AKTIF';
+        } else if (VALID.indexOf(v) !== -1) {
+          discountOn = true;
+          vBadge.className = V_BADGE_OK;
+          vBadge.textContent = 'Kode ' + v + ' aktif -10%';
+        } else {
+          discountOn = false;
+          vBadge.className = V_BADGE_ERR;
+          vBadge.textContent = 'Kode tidak valid';
+        }
+        updateTotals();
+      }
+      voucher.addEventListener('input', applyVoucher);
+
+      /* --- Identitas: simpan & pulihkan --- */
+      var fName = document.getElementById('customer-name');
+      var fPhone = document.getElementById('customer-phone');
+      var fNotes = document.getElementById('order-notes');
+      var tglSave = document.getElementById('tglSaveId');
+      function saveIdentity() {
+        if (!tglSave.checked) return;
+        try {
+          localStorage.setItem(STORAGE_ID, JSON.stringify({ name: fName.value, phone: fPhone.value, notes: fNotes.value }));
+        } catch (e) {}
+      }
+      try {
+        var idSaved = JSON.parse(localStorage.getItem(STORAGE_ID) || 'null');
+        if (idSaved) {
+          fName.value = idSaved.name || '';
+          fPhone.value = idSaved.phone || '';
+          fNotes.value = idSaved.notes || '';
+        }
+      } catch (e) {}
+      [fName, fPhone, fNotes].forEach(function (el) { el.addEventListener('input', saveIdentity); });
+      tglSave.addEventListener('change', function () { if (tglSave.checked) saveIdentity(); });
+
+      /* --- Submit checkout: validasi + navigasi --- */
+      function validateIdentity() {
+        var ok = true;
+        [fName, fPhone].forEach(function (el) {
+          if (!el.value.trim()) { el.style.borderColor = '#F87171'; ok = false; }
+          else { el.style.borderColor = ''; }
+        });
+        if (!ok) {
+          alert('Mohon lengkapi identitas pemesan (Nama Lengkap & Nomor WhatsApp) sebelum melanjutkan ke pembayaran.');
+          (!fName.value.trim() ? fName : fPhone).focus();
+        }
+        return ok;
+      }
+      [fName, fPhone].forEach(function (el) {
+        el.addEventListener('input', function () { if (el.value.trim()) el.style.borderColor = ''; });
+      });
+      function saveLastTotal() {
+        try { localStorage.setItem('yungcaff_last_total', String(window.__orderTotal || 0)); } catch (e) {}
+      }
+      window.submitOrder = function () {
+        if (!validateIdentity()) return false;
+        saveIdentity();
+        saveLastTotal();
+        window.location.href = 'halaman_pembayaran.html';
+        return true;
+      };
+      window.submitCash = function () {
+        if (!validateIdentity()) return false;
+        saveIdentity();
+        saveLastTotal();
+        window.location.href = 'status.html';
+        return true;
+      };
+
+      render();
+    })();
+  </script>
+
 </body></html>
