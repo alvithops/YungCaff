@@ -157,7 +157,7 @@
 <header class="docked full-width top sticky z-50 bg-surface-container-lowest/80 backdrop-blur-md border-b border-glass-border-subtle shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all">
 <div class="flex justify-between items-center w-full px-6 lg:px-12 py-4 max-w-7xl mx-auto">
 <!-- Brand Logo Anchor -->
-<a class="flex items-center gap-2 group" href="#">
+<a class="flex items-center gap-2 group" href="index.html">
 <span class="text-headline-md font-headline-md font-bold text-primary tracking-wide transition-transform group-hover:scale-[1.02]">
           YungCaff
         </span>
@@ -165,7 +165,7 @@
 </a>
 <!-- Desktop Navigation Links (Context: Landing Page) -->
 <nav class="hidden lg:flex items-center gap-8">
-<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#menu">Menu</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="menu.html">Menu</a>
 <a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#story">Our Story</a>
 <a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#promos">Promo &amp; Event</a>
 <a class="text-on-surface-variant font-label-lg text-label-lg transition-colors hover:text-primary hover:bg-surface-glass-subtle px-3 py-1.5 rounded" href="#vip">VIP Lounge</a>
@@ -174,7 +174,7 @@
 <!-- Trailing Action Buttons -->
 <div class="flex items-center gap-3">
 <!-- Admin / Kasir Glass Outline Button -->
-<a class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-glass-subtle border border-white/15 text-text-primary text-label-md font-label-md hover:border-primary hover:bg-primary/10 transition-all active:scale-[0.98]" href="#">
+<a class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-glass-subtle border border-white/15 text-text-primary text-label-md font-label-md hover:border-primary hover:bg-primary/10 transition-all active:scale-[0.98]" href="login_admin.html">
 <span class="material-symbols-outlined text-sm text-secondary">admin_panel_settings</span>
 <span>Akses Kasir / Admin</span>
 </a>
@@ -226,6 +226,10 @@
 <a class="px-6 py-3.5 rounded-xl bg-surface-glass-card border border-white/10 hover:border-primary/50 text-text-primary font-label-lg text-label-lg text-center backdrop-blur-md transition-all active:scale-[0.98]" href="#story">
               Filosofi &amp; Kisah Kami
             </a>
+<a class="px-7 py-3.5 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold text-center tracking-wide shadow-lg active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2" href="menu.html">
+              <span class="material-symbols-outlined text-lg">restaurant_menu</span>
+              <span>Buka Menu Lengkap</span>
+            </a>
 </div>
 </div>
 <!-- Right Quick Action Widget (5 Cols) -->
@@ -244,10 +248,10 @@
 <p class="font-body-sm text-body-sm text-text-tertiary">Tanpa antrean, real-time tracking</p>
 </div>
 </div>
-<span class="px-2.5 py-1 rounded bg-status-success/15 border border-status-success/30 text-status-success text-label-sm font-label-sm uppercase tracking-wider">Online</span>
+<span id="storeStatus" class="px-2.5 py-1 rounded bg-status-success/15 border border-status-success/30 text-status-success text-label-sm font-label-sm uppercase tracking-wider" title="Jam operasional 08:00 - 24:00 WIB">Buka</span>
 </div>
 <!-- Table Input / Selection Simulator -->
-<form class="space-y-4" id="tableForm" onsubmit="event.preventDefault(); alert('Mengarahkan ke Menu untuk Meja ' + document.getElementById('tableSelect').value);">
+<form class="space-y-4" id="tableForm" onsubmit="event.preventDefault(); window.location.href='menu.html?table=' + encodeURIComponent(document.getElementById('tableSelect').value);">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="tableSelect">Pilih Posisi Duduk / Nomor Meja Anda</label>
 <div class="relative">
@@ -539,7 +543,7 @@
                 Catatan melati liar, peach putih, dan aroma madu bunga bergamot dengan keasaman elegan.
               </p>
 </div>
-<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="window.location.href='order.html';">
 <span class="material-symbols-outlined text-sm">add</span>
 <span>Pesan di Meja</span>
 </button>
@@ -564,7 +568,7 @@
                 Infusi cold brew 24 jam dengan sari delima Mediterania, sparkling tonic, dan sentuhan emas 24k.
               </p>
 </div>
-<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="window.location.href='order.html';">
 <span class="material-symbols-outlined text-sm">add</span>
 <span>Pesan di Meja</span>
 </button>
@@ -589,7 +593,7 @@
                 Daging Wagyu marbling 7 panggang arang, puree kentang mentega Prancis, dan reduksi truffle liar.
               </p>
 </div>
-<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="window.location.href='order.html';">
 <span class="material-symbols-outlined text-sm">add</span>
 <span>Pesan di Meja</span>
 </button>
@@ -614,7 +618,7 @@
                 Lipatan 36 layer butter Normandia renyah dengan isian cokelat hitam Valrhona 72% lumer.
               </p>
 </div>
-<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="alert('Menu dimasukkan ke draf Meja.');">
+<button class="mt-4 w-full py-2.5 rounded-lg bg-surface-glass-subtle border border-white/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-surface-container-lowest transition-all flex items-center justify-center gap-1.5" onclick="window.location.href='order.html';">
 <span class="material-symbols-outlined text-sm">add</span>
 <span>Pesan di Meja</span>
 </button>
@@ -622,7 +626,7 @@
 </div>
 </div>
 <div class="mt-12 text-center">
-<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-surface-glass-card border border-glass-border-highlight text-primary font-label-lg text-label-lg hover:bg-primary hover:text-surface-container-lowest transition-all" href="#qr-section">
+<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-surface-glass-card border border-glass-border-highlight text-primary font-label-lg text-label-lg hover:bg-primary hover:text-surface-container-lowest transition-all" href="menu.html">
 <span>Lihat Seluruh 48 Menu Lengkap</span>
 <span class="material-symbols-outlined text-base">restaurant_menu</span>
 </a>
@@ -733,12 +737,12 @@
 </div>
 <!-- Links (JSON Mandated) -->
 <nav class="flex flex-wrap justify-center gap-6 text-label-md font-label-md">
-<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#menu">Menu</a>
+<a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="menu.html">Menu</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#story">Our Story</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#vip">Private VIP Booking</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#contact">Operational Hours &amp; Location</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#">Terms &amp; Conditions</a>
-<a class="text-primary font-medium hover:underline transition-all duration-200" href="#">Admin POS Access</a>
+<a class="text-primary font-medium hover:underline transition-all duration-200" href="login_admin.html">Admin POS Access</a>
 </nav>
 </div>
 </footer>
@@ -760,7 +764,7 @@
 <p class="mt-2 font-body-sm text-body-sm text-neutral-800 tracking-[0.25em] select-all" id="barcodeValue">YUNGCAFF-MEJA-05</p>
 </div>
 <div class="mt-5 flex flex-col sm:flex-row gap-3">
-<a class="flex-1 py-3 px-4 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold text-center transition-all active:scale-[0.98]" href="#" onclick="event.preventDefault(); closeScanModal(); alert('Mengarahkan ke Menu untuk Meja ' + document.getElementById('tableSelect').value);">
+<a class="flex-1 py-3 px-4 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold text-center transition-all active:scale-[0.98]" href="#" onclick="event.preventDefault(); closeScanModal(); window.location.href='menu.html?table=' + encodeURIComponent(document.getElementById('tableSelect').value);">
 <span>Buka Menu Meja</span>
 </a>
 <button class="flex-1 py-3 px-4 rounded-xl bg-surface-glass-subtle border border-white/15 text-text-primary font-label-lg text-label-lg transition-all hover:border-primary/40 active:scale-[0.98]" onclick="closeScanModal()" type="button">
@@ -874,4 +878,24 @@
       }
     });
   </script>
+<script>
+    /* Status toko: Buka 08:00 - 24:00 WIB */
+    (function () {
+      var el = document.getElementById('storeStatus');
+      if (!el) return;
+      var OPEN_CLASSES = ['bg-status-success/15', 'border-status-success/30', 'text-status-success'];
+      var CLOSED_CLASSES = ['bg-status-danger/15', 'border-status-danger/30', 'text-status-danger'];
+      function updateStoreStatus() {
+        var h = new Date().getHours();
+        var isOpen = h >= 8; /* 08:00 s/d 23:59 (tutup 00:00-07:59) */
+        el.textContent = isOpen ? 'Buka' : 'Tutup';
+        OPEN_CLASSES.forEach(function (c) { el.classList.toggle(c, isOpen); });
+        CLOSED_CLASSES.forEach(function (c) { el.classList.toggle(c, !isOpen); });
+        el.setAttribute('title', 'Jam operasional 08:00 - 24:00 WIB');
+      }
+      updateStoreStatus();
+      setInterval(updateStoreStatus, 60000);
+    })();
+  </script>
 </body></html>
+ubahan
