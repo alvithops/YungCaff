@@ -262,7 +262,7 @@
 </div>
 </section>
 <!-- 2. Hero Live Tracking Status Box (Dynamic Status Banner) -->
-<section class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#1a1814]/90 via-[#141416]/90 to-[#0e0e0f]/95 backdrop-blur-2xl border border-glass-border-highlight p-6 lg:p-8 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<section class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#1a1814]/90 via-[#141416]/90 to-[#0e0e0f]/95 backdrop-blur-2xl border border-glass-border-highlight p-6 lg:p-8 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]" id="heroStatusBox">
 <!-- Ambient decorative glow -->
 <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary/10 blur-[90px] pointer-events-none"></div>
 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
@@ -405,23 +405,8 @@
 </div>
 </div>
 </div>
-<!-- Step 4 (Pending) -->
+<!-- Step 4 (Pending) - Siap Diantar -->
 <div class="relative flex items-start gap-4 group opacity-75">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-glass-border-subtle text-text-tertiary flex items-center justify-center shrink-0 z-10 bg-background">
-<span class="material-symbols-outlined text-[20px]">hotel_class</span>
-</div>
-<div class="flex-grow pt-1">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-<h3 class="text-label-lg font-label-lg text-text-secondary font-medium">Quality Check &amp; Garnish 24K Gold Leaf</h3>
-<span class="text-label-sm font-label-sm text-text-tertiary">Menunggu</span>
-</div>
-<p class="text-body-sm font-body-sm text-text-tertiary mt-1">
-                  Inspeksi standar plating YungCaff dan penyematan serpihan emas murni 24 karat yang dapat dikonsumsi.
-                </p>
-</div>
-</div>
-<!-- Step 5 (Pending) -->
-<div class="relative flex items-start gap-4 group opacity-60">
 <div class="w-10 h-10 rounded-full bg-surface-container-highest border border-glass-border-subtle text-text-tertiary flex items-center justify-center shrink-0 z-10 bg-background">
 <span class="material-symbols-outlined text-[20px]">room_service</span>
 </div>
@@ -431,9 +416,8 @@
 <span class="text-label-sm font-label-sm text-text-tertiary">Menunggu Butler Meja</span>
 </div>
 <p class="text-body-sm font-body-sm text-text-tertiary mt-1">
-                  Personal butler Anda akan membawakan nampan saji dengan penutup kubah cloche perak langsung ke Meja 05.
-                </p>
-</div>
+Personal butler Anda akan membawakan nampan saji dengan penutup kubah cloche perak langsung ke Meja 05.
+</p>
 </div>
 </div>
 </div>
@@ -446,21 +430,21 @@
 <span class="material-symbols-outlined text-primary text-[20px]">developer_mode</span>
 <span class="text-label-lg font-label-lg text-primary font-bold">Simulasi Perubahan Status KDS (Demo / Tester)</span>
 </div>
-<span class="text-[11px] font-label-sm text-text-tertiary bg-surface-glass-card px-2 py-0.5 rounded border border-glass-border-subtle">No Database • Local State</span>
+<span class="text-[11px] font-label-sm text-text-tertiary bg-surface-glass-card px-2 py-0.5 rounded border border-glass-border-subtle">No Database • Local State • Synced with Dashboard</span>
 </div>
 <p class="text-body-sm font-body-sm text-text-secondary mb-4">
-              Uji interaksi alur kerja tanpa backend: Tekan tombol berikut untuk memicu perubahan tahapan dapur secara instan.
-            </p>
+Uji interaksi alur kerja tanpa backend: Tekan tombol berikut untuk memicu perubahan tahapan dapur secara instan. Perubahan akan tersimpan ke localStorage dan sinkron dengan Dashboard Admin.
+</p>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-<button class="px-3 py-2.5 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-primary text-text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center" onclick="updateSimStatus(1)">
-                1. Sedang Disiapkan
-              </button>
-<button class="px-3 py-2.5 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-primary text-text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center" onclick="updateSimStatus(2)">
-                2. Siap Diantar
-              </button>
-<button class="px-3 py-2.5 rounded-lg bg-primary/20 hover:bg-primary/30 border border-primary/50 text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center font-bold" onclick="updateSimStatus(3)">
-                3. Selesai Disajikan
-              </button>
+<button class="px-3 py-2.5 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-primary text-text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center" onclick="updateSimStatus('preparing')">
+1. Sedang Disiapkan
+</button>
+<button class="px-3 py-2.5 rounded-lg bg-surface-glass-card hover:bg-surface-glass-raised border border-glass-border-subtle hover:border-primary text-text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center" onclick="updateSimStatus('ready')">
+2. Siap Diantar
+</button>
+<button class="px-3 py-2.5 rounded-lg bg-primary/20 hover:bg-primary/30 border border-primary/50 text-primary text-label-md font-label-md transition-all active:scale-[0.98] text-center font-bold" onclick="updateSimStatus('served')">
+3. Selesai Disajikan
+</button>
 </div>
 </div>
 <!-- Butler Quick Service Actions -->
@@ -511,53 +495,26 @@
 <div class="grid grid-cols-2 gap-3 text-body-sm font-body-sm pb-5 border-b border-glass-border-subtle">
 <div>
 <p class="text-text-tertiary text-[11px] uppercase tracking-wider">Order ID</p>
-<p class="font-bold text-text-primary">#ELT-9402</p>
+<p class="font-bold text-text-primary" id="receiptOrderId">#ELT-9402</p>
 </div>
 <div class="text-right">
-<p class="text-text-tertiary text-[11px] uppercase tracking-wider">Tanggal &amp; Waktu</p>
-<p class="font-medium text-text-primary">24 Mei 2025, 19:42 WIB</p>
+<p class="text-text-tertiary text-[11px] uppercase tracking-wider">Tanggal & Waktu</p>
+<p class="font-medium text-text-primary" id="receiptDateTime">24 Mei 2025, 19:42 WIB</p>
 </div>
 <div>
 <p class="text-text-tertiary text-[11px] uppercase tracking-wider">Meja</p>
-<p class="font-bold text-primary">Meja 05 (Garden)</p>
+<p class="font-bold text-primary" id="receiptTable">Meja 05 (Garden)</p>
 </div>
 <div class="text-right">
 <p class="text-text-tertiary text-[11px] uppercase tracking-wider">Tamu VIP</p>
-<p class="font-medium text-text-primary truncate">Jonathan Ardiansyah</p>
+<p class="font-medium text-text-primary truncate" id="receiptCustomer">Jonathan Ardiansyah</p>
 </div>
 </div>
 <!-- Order Items Section -->
 <div class="space-y-4">
-<p class="text-label-sm font-label-sm uppercase tracking-wider text-text-tertiary">Rincian Hidangan &amp; Specialty Brew</p>
-<!-- Item 1 -->
-<div class="space-y-1 pb-3 border-b border-glass-border-subtle/50">
-<div class="flex justify-between items-start gap-2">
-<span class="text-body-md font-body-md font-medium text-text-primary">1x Panama Geisha V60 Reserve</span>
-<span class="text-body-md font-body-md font-bold text-primary shrink-0">Rp 150.000</span>
-</div>
-<p class="text-[12px] text-text-secondary leading-relaxed">
-                    Catatan: Suhu Hot, Rasio 1:16 Floral, 24K Gold Leaf Garnish
-                  </p>
-</div>
-<!-- Item 2 -->
-<div class="space-y-1 pb-3 border-b border-glass-border-subtle/50">
-<div class="flex justify-between items-start gap-2">
-<span class="text-body-md font-body-md font-medium text-text-primary">1x Truffle Wagyu MB7 Steak Frites</span>
-<span class="text-body-md font-body-md font-bold text-primary shrink-0">Rp 295.000</span>
-</div>
-<p class="text-[12px] text-text-secondary leading-relaxed">
-                    Catatan: Medium Rare, Jus Daging 48 Jam, Sea Salt Brittany
-                  </p>
-</div>
-<!-- Item 3 -->
-<div class="space-y-1 pb-3 border-b border-glass-border-subtle/50">
-<div class="flex justify-between items-start gap-2">
-<span class="text-body-md font-body-md font-medium text-text-primary">2x Noir Valrhona Croissant</span>
-<span class="text-body-md font-body-md font-bold text-primary shrink-0">Rp 110.000</span>
-</div>
-<p class="text-[12px] text-text-secondary leading-relaxed">
-                    Catatan: Disajikan hangat bersama Geisha V60
-                  </p>
+<p class="text-label-sm font-label-sm uppercase tracking-wider text-text-tertiary">Rincian Hidangan & Specialty Brew</p>
+<div id="receiptItemsContainer">
+<!-- Items will be rendered by JavaScript -->
 </div>
 </div>
 <!-- Perforation Visual Divider -->
@@ -567,35 +524,9 @@
 <div class="w-5 h-5 -mr-8 rounded-full bg-background border-l border-glass-border-subtle"></div>
 </div>
 <!-- Calculation Details -->
-<div class="space-y-2 text-body-sm font-body-sm">
-<div class="flex justify-between text-text-secondary">
-<span>Subtotal Pesanan</span>
-<span class="text-text-primary font-medium">Rp 555.000</span>
-</div>
-<div class="flex justify-between text-tertiary">
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[15px]">loyalty</span>
-                    Diskon VIP (GOLDENHOUR -10%)
-                  </span>
-<span>-Rp 55.500</span>
-</div>
-<div class="flex justify-between text-text-secondary">
-<span>Service Charge (5%)</span>
-<span>Rp 24.975</span>
-</div>
-<div class="flex justify-between text-text-secondary">
-<span>PB1 Pajak Restoran (10%)</span>
-<span>Rp 52.448</span>
-</div>
-<div class="pt-3 border-t border-glass-border-subtle flex justify-between items-baseline">
-<div>
-<span class="text-label-lg font-label-lg font-bold text-text-primary uppercase">Total Terbayar</span>
-<p class="text-[11px] text-status-success font-medium">Metode QRIS • Ref #QRIS-992144</p>
-</div>
-<span class="text-headline-md font-headline-md font-bold text-primary">Rp 576.923</span>
-</div>
-</div>
-<!-- Action Triggers -->
+<div class="space-y-2 text-body-sm font-body-sm" id="receiptBreakdown">
+<!-- Breakdown will be rendered by JavaScript -->
+</div><!-- Action Triggers -->
 <div class="pt-4 space-y-3">
 <button class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-primary-container to-[#aa820a] hover:from-[#e5bd40] hover:to-[#be9312] text-on-primary-fixed font-label-lg font-bold text-center flex items-center justify-center gap-2 shadow-[0_0_16px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 transition-all active:scale-[0.98]" onclick="downloadReceipt()">
 <span class="material-symbols-outlined text-[20px]">download</span>
@@ -649,23 +580,356 @@
 </footer>
 <!-- Light Vanilla Script for Real-time Simulator & Micro-interactions -->
 <script>
-    function updateSimStatus(stage) {
+    // ==========================================
+    // ORDER DATA LOADER FROM LOCALSTORAGE
+    // ==========================================
+    function rp(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+
+    function loadOrderData() {
+      // Priority 1: Active order from payment (elite_lounge_active_order)
+      // Priority 2: Active order from riwayat re-order (elite_active_order)
+      // Priority 3: Orders from dashboard (yungcaff_orders)
+      let orderData = null;
+      let source = '';
+
+      try {
+        const activeOrder = JSON.parse(localStorage.getItem('elite_lounge_active_order') || 'null');
+        if (activeOrder && activeOrder.items) {
+          orderData = {
+            invoiceId: activeOrder.invoiceId || 'ELT-' + Date.now().toString().slice(-6),
+            tableNumber: activeOrder.tableNumber || '05',
+            customerName: activeOrder.customerName || 'Pelanggan',
+            totalAmount: activeOrder.totalAmount || 0,
+            status: activeOrder.status || 'preparing',
+            paidAt: activeOrder.paidAt,
+            items: activeOrder.items.map(item => ({
+              name: item.name,
+              qty: item.qty || 1,
+              price: item.price || Math.round(item.total / (item.qty || 1)),
+              total: item.price * (item.qty || 1)
+            }))
+          };
+          source = 'activeOrder';
+        }
+      } catch (e) {}
+
+      if (!orderData) {
+        try {
+          const eliteOrder = JSON.parse(localStorage.getItem('elite_active_order') || 'null');
+          if (eliteOrder && eliteOrder.items) {
+            orderData = {
+              invoiceId: eliteOrder.id || 'ELT-' + Date.now().toString().slice(-6),
+              tableNumber: eliteOrder.table ? eliteOrder.table.replace('Meja ', '') : '05',
+              customerName: 'Jonathan Ardiansyah',
+              totalAmount: parseInt(eliteOrder.total.replace(/[^\d]/g, '')) || 0,
+              status: 'preparing',
+              items: eliteOrder.items.map(item => ({
+                name: item.name,
+                qty: item.qty,
+                price: parseInt(item.price.replace(/[^\d]/g, '')) || 0,
+                total: (parseInt(item.price.replace(/[^\d]/g, '')) || 0) * item.qty
+              }))
+            };
+            source = 'eliteOrder';
+          }
+        } catch (e) {}
+      }
+
+      if (!orderData) {
+        try {
+          const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+          if (orders.length > 0) {
+            const latest = orders[0]; // Most recent order
+            orderData = {
+              invoiceId: latest.id || 'ELT-' + Date.now().toString().slice(-6),
+              tableNumber: latest.table ? latest.table.replace('Meja ', '') : '05',
+              customerName: latest.customer || 'Pelanggan',
+              totalAmount: latest.total || 0,
+              status: latest.status || 'preparing',
+              items: (latest.items || []).map(item => ({
+                name: item.name,
+                qty: item.qty || 1,
+                price: item.price || 0,
+                total: (item.price || 0) * (item.qty || 1)
+              }))
+            };
+            source = 'dashboardOrder';
+          }
+        } catch (e) {}
+      }
+
+      // Fallback to demo data
+      if (!orderData) {
+        orderData = {
+          invoiceId: 'ELT-9402',
+          tableNumber: '05',
+          customerName: 'Jonathan Ardiansyah',
+          totalAmount: 576923,
+          status: 'preparing',
+          items: [
+            { name: 'Panama Geisha V60 Reserve', qty: 1, price: 150000, total: 150000 },
+            { name: 'Truffle Wagyu MB7 Steak Frites', qty: 1, price: 295000, total: 295000 },
+            { name: 'Noir Valrhona Croissant', qty: 2, price: 55000, total: 110000 }
+          ]
+        };
+        source = 'demo';
+      }
+
+      return { orderData, source };
+    }
+
+    function renderReceipt(orderData) {
+      const { invoiceId, tableNumber, customerName, totalAmount, status, items, paidAt } = orderData;
+      
+      // Update metadata
+      document.getElementById('receiptOrderId').textContent = '#' + invoiceId;
+      document.getElementById('receiptTable').textContent = 'Meja ' + tableNumber + (tableNumber === '05' ? ' (Garden)' : '');
+      document.getElementById('receiptCustomer').textContent = customerName;
+      
+      // Format date
+      const date = paidAt ? new Date(paidAt) : new Date();
+      const formattedDate = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
+                           ', ' + date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+      document.getElementById('receiptDateTime').textContent = formattedDate;
+
+      // Render items
+      const container = document.getElementById('receiptItemsContainer');
+      if (container) {
+        container.innerHTML = items.map(item => `
+          <div class="space-y-1 pb-3 border-b border-glass-border-subtle/50">
+            <div class="flex justify-between items-start gap-2">
+              <span class="text-body-md font-body-md font-medium text-text-primary">${item.qty}x ${item.name}</span>
+              <span class="text-body-md font-body-md font-bold text-primary shrink-0">${rp(item.total)}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Calculate breakdown
+      const subtotal = items.reduce((sum, item) => sum + item.total, 0);
+      const discount = Math.round(subtotal * 0.10);
+      const afterDiscount = subtotal - discount;
+      const service = Math.round(afterDiscount * 0.05);
+      const tax = Math.round((afterDiscount + service) * 0.10);
+      const grandTotal = afterDiscount + service + tax;
+
+      // Render breakdown
+      const breakdown = document.getElementById('receiptBreakdown');
+      if (breakdown) {
+        breakdown.innerHTML = `
+          <div class="flex justify-between text-text-secondary">
+            <span>Subtotal Pesanan</span>
+            <span class="text-text-primary font-medium">${rp(subtotal)}</span>
+          </div>
+          <div class="flex justify-between text-tertiary">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[15px]">loyalty</span>
+              Diskon VIP (GOLDENHOUR -10%)
+            </span>
+            <span>-${rp(discount)}</span>
+          </div>
+          <div class="flex justify-between text-text-secondary">
+            <span>Service Charge (5%)</span>
+            <span>${rp(service)}</span>
+          </div>
+          <div class="flex justify-between text-text-secondary">
+            <span>PB1 Pajak Restoran (10%)</span>
+            <span>${rp(tax)}</span>
+          </div>
+          <div class="pt-3 border-t border-glass-border-subtle flex justify-between items-baseline">
+            <div>
+              <span class="text-label-lg font-label-lg font-bold text-text-primary uppercase">Total Terbayar</span>
+              <p class="text-[11px] text-status-success font-medium">Metode QRIS &bull; Ref #QRIS-${invoiceId.slice(-6)}</p>
+            </div>
+            <span class="text-headline-md font-headline-md font-bold text-primary">${rp(grandTotal)}</span>
+          </div>
+        `;
+      }
+
+      // Update hero status based on order status
+      updateHeroStatus(status);
+      
+      // Update timeline steps
+      updateTimeline(status);
+    }
+
+    function updateHeroStatus(status) {
+      const heroBox = document.getElementById('heroStatusBox');
+      if (!heroBox) return;
+      
+      const statusConfig = {
+        'preparing': {
+          label: 'In Progress — Barista & Chef Active',
+          title: 'Pesanan Diterima & Sedang Diramu Barista',
+          desc: 'Master Brewer kami sedang menyiapkan pesanan Anda dengan presisi.',
+          countdown: 12,
+          progress: '60%',
+          timelineStep: 3
+        },
+        'ready': {
+          label: 'Ready to Serve — Pesanan Siap Diantar',
+          title: 'Pesanan Siap Diantar ke Meja',
+          desc: 'Pesanan telah lolos inspeksi kualitas dan siap diantar oleh Butler.',
+          countdown: 4,
+          progress: '88%',
+          timelineStep: 4
+        },
+        'served': {
+          label: 'Completed — Selamat Menikmati',
+          title: 'Pesanan Telah Tiba di Meja Anda',
+          desc: 'Selamat menikmati hidangan dan minuman YungCaff.',
+          countdown: 0,
+          progress: '100%',
+          timelineStep: 4
+        }
+      };
+      
+      const config = statusConfig[status] || statusConfig['preparing'];
+      
+      // Update hero box content
+      const statusEl = heroBox.querySelector('.text-label-md');
+      if (statusEl) statusEl.textContent = config.label;
+      
+      const titleEl = heroBox.querySelector('h1');
+      if (titleEl) titleEl.textContent = config.title;
+      
+      const descEl = heroBox.querySelector('h1 + p');
+      if (descEl) descEl.textContent = config.desc;
+      
+      const countdownEl = document.getElementById('countdown-val');
+      if (countdownEl) countdownEl.textContent = config.countdown;
+      
+      const progressEl = document.getElementById('progress-indicator');
+      if (progressEl) progressEl.style.width = config.progress;
+      
+      const progressTextEl = heroBox.querySelector('.text-primary.font-bold');
+      if (progressTextEl) progressTextEl.textContent = config.progress + ' Selesai';
+    }
+
+    function updateTimeline(status) {
+      const steps = document.querySelectorAll('#menuGrid ~ main .space-y-8 > div');
+      // Timeline steps are: 1. Pesanan Dibuat, 2. Diterima KDS, 3. Sedang Disiapkan, 4. Siap Diantar
+      const stepStatus = {
+        'preparing': [true, true, true, false],
+        'ready': [true, true, true, true],
+        'served': [true, true, true, true]
+      };
+      
+      const active = stepStatus[status] || stepStatus['preparing'];
+      
+      // Update vertical timeline (steps 1-4)
+      const timelineItems = document.querySelectorAll('.space-y-8.relative > div.relative');
+      timelineItems.forEach((item, idx) => {
+        if (idx < 4) {
+          const icon = item.querySelector('.w-10.h-10');
+          const title = item.querySelector('h3');
+          const time = item.querySelector('.text-label-sm');
+          const content = item.querySelector('.flex-grow > div:last-child');
+          
+          if (active[idx]) {
+            if (idx === 2 && status === 'preparing') {
+              // Step 3 - Active
+              icon.className = 'w-10 h-10 rounded-full bg-primary/25 border-2 border-primary text-primary flex items-center justify-center shrink-0 z-10 bg-background shadow-[0_0_20px_rgba(212,175,55,0.45)]';
+              icon.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">coffee_maker</span>';
+              if (title) title.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span> Sedang Dipersiapkan oleh Master Barista & Chef';
+              if (time) { time.className = 'text-label-sm font-label-sm text-primary font-bold'; time.textContent = 'AKTIF'; }
+              if (content) content.className = 'mt-2.5 text-body-sm font-body-sm text-on-surface-variant space-y-1.5';
+            } else if (idx === 3 && (status === 'ready' || status === 'served')) {
+              // Step 4 - Active/Complete
+              icon.className = 'w-10 h-10 rounded-full bg-primary/25 border-2 border-primary text-primary flex items-center justify-center shrink-0 z-10 bg-background shadow-[0_0_20px_rgba(212,175,55,0.45)]';
+              icon.innerHTML = '<span class="material-symbols-outlined text-[20px]">room_service</span>';
+              if (title) title.textContent = 'Siap Diantar ke Meja 05';
+              if (time) { time.className = 'text-label-sm font-label-sm text-primary font-bold'; time.textContent = status === 'served' ? 'SELESAI' : 'AKTIF'; }
+              item.classList.remove('opacity-75');
+            } else {
+              // Completed steps
+              icon.className = 'w-10 h-10 rounded-full bg-status-success/20 border border-status-success text-status-success flex items-center justify-center shrink-0 z-10 bg-background';
+              if (idx === 0) icon.innerHTML = '<span class="material-symbols-outlined text-[20px]">done_all</span>';
+              else if (idx === 1) icon.innerHTML = '<span class="material-symbols-outlined text-[20px]">receipt_long</span>';
+              else if (idx === 2) icon.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span>';
+              if (time) { time.className = 'text-label-sm font-label-sm text-status-success font-medium'; time.textContent = 'Berhasil'; }
+              item.classList.remove('opacity-75', 'opacity-60');
+            }
+          } else {
+            // Pending steps
+            icon.className = 'w-10 h-10 rounded-full bg-surface-container-highest border border-glass-border-subtle text-text-tertiary flex items-center justify-center shrink-0 z-10 bg-background';
+            if (idx === 3) icon.innerHTML = '<span class="material-symbols-outlined text-[20px]">room_service</span>';
+            if (title) title.className = 'text-label-lg font-label-lg text-text-secondary font-medium';
+            if (time) { time.className = 'text-label-sm font-label-sm text-text-tertiary'; time.textContent = 'Menunggu'; }
+            item.classList.add('opacity-75');
+          }
+        }
+      });
+    }
+
+    // Load and render on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const { orderData } = loadOrderData();
+      renderReceipt(orderData);
+      
+      // Listen for storage changes (sync with dashboard)
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'elite_lounge_active_order' || e.key === 'yungcaff_orders' || e.key === 'elite_active_order') {
+          const { orderData } = loadOrderData();
+          renderReceipt(orderData);
+        }
+      });
+      
+      // Also listen for BroadcastChannel from dashboard
+      try {
+        const channel = new BroadcastChannel('elite_lounge_pos_channel');
+        channel.onmessage = (e) => {
+          if (e.data.type === 'ORDER_STATUS_UPDATE') {
+            const { orderData } = loadOrderData();
+            renderReceipt(orderData);
+          }
+        };
+      } catch (e) {}
+    });
+
+    function updateSimStatus(status) {
       const countdownEl = document.getElementById('countdown-val');
       const progressEl = document.getElementById('progress-indicator');
       
-      if (stage === 1) {
-        countdownEl.innerText = "12";
-        progressEl.style.width = "60%";
-        alert("Status KDS Dapur: Sedang dipersiapkan oleh Master Barista (V60 92°C).");
-      } else if (stage === 2) {
-        countdownEl.innerText = "4";
-        progressEl.style.width = "88%";
-        alert("Status KDS Dapur: Quality Check Selesai. Butler bersiap mengantar ke Meja 05.");
-      } else if (stage === 3) {
-        countdownEl.innerText = "0";
-        progressEl.style.width = "100%";
-        alert("Status KDS Dapur: Pesanan telah tiba di Meja 05. Selamat menikmati hidangan YungCaff.");
-      }
+      const statusMap = {
+        'preparing': { countdown: 12, progress: '60%', msg: 'Status KDS Dapur: Sedang dipersiapkan oleh Master Barista (V60 92°C).' },
+        'ready': { countdown: 4, progress: '88%', msg: 'Status KDS Dapur: Pesanan siap diantar. Butler bersiap mengantar ke Meja 05.' },
+        'served': { countdown: 0, progress: '100%', msg: 'Status KDS Dapur: Pesanan telah tiba di Meja 05. Selamat menikmati hidangan YungCaff.' }
+      };
+      
+      const config = statusMap[status] || statusMap['preparing'];
+      
+      if (countdownEl) countdownEl.innerText = config.countdown;
+      if (progressEl) progressEl.style.width = config.progress;
+      alert(config.msg);
+      
+      // Update order status in localStorage (synced with dashboard)
+      try {
+        const activeOrder = JSON.parse(localStorage.getItem('elite_lounge_active_order') || 'null');
+        if (activeOrder) {
+          activeOrder.status = status;
+          localStorage.setItem('elite_lounge_active_order', JSON.stringify(activeOrder));
+          
+          // Broadcast to dashboard
+          try {
+            const channel = new BroadcastChannel('elite_lounge_pos_channel');
+            channel.postMessage({ type: 'ORDER_STATUS_UPDATE', data: activeOrder });
+          } catch (e) {}
+        }
+        
+        // Also update yungcaff_orders for dashboard
+        const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+        if (orders.length > 0) {
+          orders[0].status = status;
+          orders[0].statusLabel = status === 'preparing' ? 'Sedang Disiapkan' : (status === 'ready' ? 'Siap Diantar' : 'Selesai');
+          orders[0].statusColor = status === 'preparing' ? 'status-warning' : (status === 'ready' ? 'status-success' : 'status-success');
+          localStorage.setItem('yungcaff_orders', JSON.stringify(orders));
+        }
+      } catch (e) {}
+      
+      // Re-render receipt
+      const { orderData } = loadOrderData();
+      renderReceipt(orderData);
     }
 
     function downloadReceipt() {
@@ -674,12 +938,12 @@
       btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Membuat PDF...</span>`;
       setTimeout(() => {
         btn.innerHTML = originalText;
-        alert("Struk resmi PDF #ELT-9402 telah diunduh dengan sertifikat tanda tangan digital.");
+        alert("Struk resmi PDF telah diunduh dengan sertifikat tanda tangan digital.");
       }, 1200);
     }
 
     function sendWhatsappReceipt() {
-      alert("Salinan struk dan tautan live status telah berhasil dikirimkan via WhatsApp ke +62 812-8945-6720.");
+      alert("Salinan struk dan tautan live status telah berhasil dikirimkan via WhatsApp.");
     }
   </script>
 </body></html>

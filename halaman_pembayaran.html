@@ -584,86 +584,22 @@
 </div>
 </div>
 </div>
-<!-- Ringkasan Menu Pesanan (3 Menu / 4 Items) -->
-<div class="rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-2xl p-5 sm:p-6 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]">
+<!-- Ringkasan Menu Pesanan (Dynamic from localStorage) -->
+<div class="rounded-xl bg-surface-glass-card border border-glass-border-subtle backdrop-blur-2xl p-5 sm:p-6 shadow-[0_16px_48px_-8px_rgba(0,0,0,0.6)]" id="orderSummaryCard">
 <div class="flex items-center justify-between pb-3 border-b border-glass-border-subtle mb-4">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
 <h4 class="font-headline-sm text-headline-sm text-text-primary font-semibold">Ringkasan Pesanan</h4>
 </div>
-<span class="text-label-sm font-label-sm text-text-tertiary">4 Items</span>
+<span class="text-label-sm font-label-sm text-text-tertiary" id="itemCountBadge">0 Items</span>
 </div>
-<!-- Items List -->
-<div class="divide-y divide-glass-border-subtle">
-<!-- Item 1: Panama Geisha -->
-<div class="py-3.5 flex items-start justify-between gap-3 first:pt-0">
-<div class="flex gap-3 items-start">
-<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1x</span>
-<div>
-<h5 class="font-semibold text-text-primary text-body-md font-body-md">Panama Geisha V60 Reserve</h5>
-<p class="text-[12px] text-text-secondary mt-0.5">Hot · 1:16 Floral Profil · 24K Gold Leaf</p>
-</div>
-</div>
-<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 150.000</span>
-</div>
-<!-- Item 2: Truffle Wagyu -->
-<div class="py-3.5 flex items-start justify-between gap-3">
-<div class="flex gap-3 items-start">
-<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1x</span>
-<div>
-<h5 class="font-semibold text-text-primary text-body-md font-body-md">Truffle Wagyu MB7 Steak Frites</h5>
-<p class="text-[12px] text-text-secondary mt-0.5">Medium Rare · French Truffle Purée</p>
-</div>
-</div>
-<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 295.000</span>
-</div>
-<!-- Item 3: Noir Valrhona Croissant -->
-<div class="py-3.5 flex items-start justify-between gap-3 last:pb-0">
-<div class="flex gap-3 items-start">
-<span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2x</span>
-<div>
-<h5 class="font-semibold text-text-primary text-body-md font-body-md">Noir Valrhona Croissant</h5>
-<p class="text-[12px] text-text-secondary mt-0.5">Hangat · Normandy Butter Glaze</p>
-</div>
-</div>
-<span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">Rp 110.000</span>
-</div>
+<!-- Items List (Populated by JS) -->
+<div class="divide-y divide-glass-border-subtle" id="orderItemsContainer">
+<!-- Items will be rendered here by JavaScript -->
 </div>
 <!-- Breakdown Tagihan Lengkap -->
-<div class="mt-6 pt-4 border-t border-glass-border-subtle space-y-2.5 text-body-sm font-body-sm">
-<div class="flex justify-between items-center text-text-secondary">
-<span>Subtotal Makanan &amp; Minuman</span>
-<span class="text-on-surface">Rp 555.000</span>
-</div>
-<div class="flex justify-between items-center text-status-success">
-<span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[16px]">loyalty</span>
-<span>Diskon Privilege (GOLDENHOUR)</span>
-</span>
-<span>-Rp 55.500</span>
-</div>
-<div class="flex justify-between items-center text-text-secondary">
-<span>Layanan &amp; Hospitality (5%)</span>
-<span class="text-on-surface">Rp 24.975</span>
-</div>
-<div class="flex justify-between items-center text-text-secondary">
-<span>PB1 Pajak Restoran (10%)</span>
-<span class="text-on-surface">Rp 52.448</span>
-</div>
-<div class="flex justify-between items-center text-text-secondary">
-<span>Kode Unik Transaksi</span>
-<span class="text-secondary font-mono">Rp 0</span>
-</div>
-<!-- Total Akhir Tagihan (Playfair Display Besar) -->
-<div class="pt-4 mt-2 border-t border-glass-border-highlight flex items-baseline justify-between">
-<div>
-<span class="text-label-md font-label-md text-text-tertiary uppercase tracking-wider block">Total Akhir Tagihan</span>
-<span class="text-[11px] text-status-success">Sudah Termasuk Seluruh Pajak</span>
-</div>
-<div class="text-right">
-<span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Rp 576.923</span>
-</div>
-</div>
+<div class="mt-6 pt-4 border-t border-glass-border-subtle space-y-2.5 text-body-sm font-body-sm" id="billBreakdown">
+<!-- Breakdown will be rendered here by JavaScript -->
 </div>
 </div>
 <!-- Jaminan Keamanan SSL & KDS Direct Link -->
@@ -703,6 +639,188 @@
 <!-- JAVASCRIPT: TIMER, COPY & SIMULASI DEMO    -->
 <!-- ========================================== -->
 <script>
+    // ==========================================
+    // ORDER DATA LOADER FROM LOCALSTORAGE
+    // ==========================================
+    function rp(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+
+    function loadOrderData() {
+      // Priority 1: Cart from menu.html (yungcaff_cart_v1)
+      // Priority 2: Active order from order.html (elite_lounge_active_order)
+      // Priority 3: Active order from riwayat re-order (elite_active_order)
+      let orderData = null;
+      let source = '';
+
+      try {
+        // Check for cart from menu
+        const cart = JSON.parse(localStorage.getItem('yungcaff_cart_v1') || '[]');
+        if (cart.length > 0) {
+          orderData = {
+            items: cart.map(item => ({
+              name: item.name,
+              qty: item.qty,
+              price: item.unit,
+              total: item.total,
+              opts: item.opts || [],
+              note: item.note || ''
+            })),
+            customerName: localStorage.getItem('yungcaff_identity_v1') ? JSON.parse(localStorage.getItem('yungcaff_identity_v1')).name : '',
+            tableNumber: new URLSearchParams(window.location.search).get('table') || '05'
+          };
+          source = 'cart';
+        }
+      } catch (e) {}
+
+      // Check for active order (from order.html submit or payment)
+      if (!orderData) {
+        try {
+          const activeOrder = JSON.parse(localStorage.getItem('elite_lounge_active_order') || 'null');
+          if (activeOrder && activeOrder.items) {
+            orderData = {
+              items: activeOrder.items,
+              customerName: activeOrder.customerName || '',
+              tableNumber: activeOrder.tableNumber || '05',
+              invoiceId: activeOrder.invoiceId,
+              totalAmount: activeOrder.totalAmount
+            };
+            source = 'activeOrder';
+          }
+        } catch (e) {}
+      }
+
+      // Check for elite_active_order (from riwayat re-order)
+      if (!orderData) {
+        try {
+          const eliteOrder = JSON.parse(localStorage.getItem('elite_active_order') || 'null');
+          if (eliteOrder && eliteOrder.items) {
+            orderData = {
+              items: eliteOrder.items.map(item => ({
+                name: item.name,
+                qty: item.qty,
+                price: parseInt(item.price.replace(/[^\d]/g, '')) || 0,
+                total: (parseInt(item.price.replace(/[^\d]/g, '')) || 0) * item.qty,
+                note: item.note || ''
+              })),
+              customerName: 'Jonathan Ardiansyah', // default from demo
+              tableNumber: eliteOrder.table ? eliteOrder.table.replace('Meja ', '') : '05',
+              totalAmount: parseInt(eliteOrder.total.replace(/[^\d]/g, '')) || 0
+            };
+            source = 'eliteOrder';
+          }
+        } catch (e) {}
+      }
+
+      // Fallback to demo data if nothing found
+      if (!orderData) {
+        orderData = {
+          items: [
+            { name: 'Panama Geisha V60 Reserve', qty: 1, price: 150000, total: 150000, opts: ['Hot', '1:16 Floral', '24K Gold Leaf'], note: '' },
+            { name: 'Truffle Wagyu MB7 Steak Frites', qty: 1, price: 295000, total: 295000, opts: ['Medium Rare', 'French Truffle Purée'], note: '' },
+            { name: 'Noir Valrhona Croissant', qty: 2, price: 55000, total: 110000, opts: ['Hangat', 'Normandy Butter Glaze'], note: '' }
+          ],
+          customerName: 'Jonathan Ardiansyah',
+          tableNumber: '05'
+        };
+        source = 'demo';
+      }
+
+      return { orderData, source };
+    }
+
+    function renderOrderSummary(orderData) {
+      const container = document.getElementById('orderItemsContainer');
+      const breakdown = document.getElementById('billBreakdown');
+      const badge = document.getElementById('itemCountBadge');
+      if (!container || !breakdown) return;
+
+      const items = orderData.items || [];
+      const totalQty = items.reduce((sum, item) => sum + (item.qty || 1), 0);
+      const subtotal = items.reduce((sum, item) => sum + (item.total || item.price * (item.qty || 1)), 0);
+      
+      // Calculate discounts, service, tax
+      const discount = Math.round(subtotal * 0.10); // 10% Golden Hour
+      const afterDiscount = subtotal - discount;
+      const service = Math.round(afterDiscount * 0.05); // 5% service
+      const tax = Math.round((afterDiscount + service) * 0.10); // 10% PB1
+      const grandTotal = afterDiscount + service + tax;
+
+      // Update badge
+      if (badge) badge.textContent = totalQty + ' Items';
+
+      // Render items
+      container.innerHTML = items.map((item, idx) => {
+        const opts = item.opts && item.opts.length ? item.opts.join(' · ') : '';
+        const note = item.note ? ' · Catatan: ' + item.note : '';
+        const displayOpts = opts + note;
+        const unitPrice = item.price || (item.total / (item.qty || 1));
+        return `
+          <div class="py-3.5 flex items-start justify-between gap-3 ${idx === 0 ? 'first:pt-0' : ''} ${idx === items.length - 1 ? 'last:pb-0' : ''}">
+            <div class="flex gap-3 items-start">
+              <span class="w-6 h-6 rounded bg-primary/10 border border-primary/30 text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">${item.qty || 1}x</span>
+              <div>
+                <h5 class="font-semibold text-text-primary text-body-md font-body-md">${item.name}</h5>
+                <p class="text-[12px] text-text-secondary mt-0.5">${displayOpts}</p>
+              </div>
+            </div>
+            <span class="font-semibold text-on-surface text-body-md font-body-md whitespace-nowrap">${rp(item.total || unitPrice * (item.qty || 1))}</span>
+          </div>
+        `;
+      }).join('');
+
+      // Render breakdown
+      breakdown.innerHTML = `
+        <div class="flex justify-between items-center text-text-secondary">
+          <span>Subtotal Makanan & Minuman</span>
+          <span class="text-on-surface">${rp(subtotal)}</span>
+        </div>
+        <div class="flex justify-between items-center text-status-success">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">loyalty</span>
+            <span>Diskon Privilege (GOLDENHOUR 10%)</span>
+          </span>
+          <span>-${rp(discount)}</span>
+        </div>
+        <div class="flex justify-between items-center text-text-secondary">
+          <span>Layanan & Hospitality (5%)</span>
+          <span class="text-on-surface">${rp(service)}</span>
+        </div>
+        <div class="flex justify-between items-center text-text-secondary">
+          <span>PB1 Pajak Restoran (10%)</span>
+          <span class="text-on-surface">${rp(tax)}</span>
+        </div>
+        <div class="flex justify-between items-center text-text-secondary">
+          <span>Kode Unik Transaksi</span>
+          <span class="text-secondary font-mono">Rp 0</span>
+        </div>
+        <!-- Total Akhir Tagihan (Playfair Display Besar) -->
+        <div class="pt-4 mt-2 border-t border-glass-border-highlight flex items-baseline justify-between">
+          <div>
+            <span class="text-label-md font-label-md text-text-tertiary uppercase tracking-wider block">Total Akhir Tagihan</span>
+            <span class="text-[11px] text-status-success">Sudah Termasuk Seluruh Pajak</span>
+          </div>
+          <div class="text-right">
+            <span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight" id="grandTotalDisplay">${rp(grandTotal)}</span>
+          </div>
+        </div>
+      `;
+
+      // Store grand total globally for payment
+      window.__grandTotal = grandTotal;
+      window.__orderData = orderData;
+    }
+
+    // Load and render on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const { orderData } = loadOrderData();
+      renderOrderSummary(orderData);
+      
+      // Update customer info in identity card
+      const nameEl = document.querySelector('.font-semibold.text-text-primary');
+      if (nameEl && orderData.customerName) {
+        nameEl.textContent = orderData.customerName;
+      }
+    });
+
     // 1. Interactive 15-Minute Countdown Timer
     let totalSeconds = 14 * 60 + 58;
     const initialSeconds = 15 * 60;
@@ -752,22 +870,53 @@
 
     // 4. Simulasi Sukses Bayar (Trigger LocalStorage & BroadcastChannel)
     function triggerPaymentSuccess() {
+      const orderData = window.__orderData;
+      const grandTotal = window.__grandTotal || 0;
+      
+      if (!orderData || !orderData.items || !orderData.items.length) {
+        alert('Tidak ada data pesanan untuk diproses.');
+        return;
+      }
+
+      const invoiceId = 'INV-ELT-' + Date.now().toString().slice(-8);
       const orderPayload = {
-        invoiceId: "INV-ELT-202505-094",
-        tableNumber: "05",
-        customerName: "Jonathan Ardiansyah",
-        totalAmount: 576923,
-        status: "PAID_VERIFIED",
+        invoiceId: invoiceId,
+        tableNumber: orderData.tableNumber || '05',
+        customerName: orderData.customerName || 'Pelanggan',
+        totalAmount: grandTotal,
+        status: 'PAID_VERIFIED',
         paidAt: new Date().toISOString(),
-        items: [
-          { name: "Panama Geisha V60 Reserve", qty: 1, price: 150000 },
-          { name: "Truffle Wagyu MB7 Steak Frites", qty: 1, price: 295000 },
-          { name: "Noir Valrhona Croissant", qty: 2, price: 110000 }
-        ]
+        items: orderData.items.map(item => ({
+          name: item.name,
+          qty: item.qty || 1,
+          price: item.price || Math.round(item.total / (item.qty || 1))
+        }))
       };
 
-      // Save to localStorage
+      // Save to localStorage for status.html and dashboard
       localStorage.setItem('elite_lounge_active_order', JSON.stringify(orderPayload));
+      
+      // Also save to yungcaff_orders for dashboard_admin.html
+      try {
+        const existingOrders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+        existingOrders.unshift({
+          id: invoiceId,
+          table: 'Meja ' + (orderData.tableNumber || '05'),
+          customer: orderData.customerName || 'Pelanggan',
+          items: orderData.items.map(item => ({
+            name: item.name,
+            qty: item.qty || 1,
+            price: item.price || Math.round(item.total / (item.qty || 1))
+          })),
+          total: grandTotal,
+          status: 'paid',
+          statusLabel: 'Lunas',
+          statusColor: 'status-success',
+          timestamp: new Date().toISOString(),
+          paymentMethod: 'QRIS'
+        });
+        localStorage.setItem('yungcaff_orders', JSON.stringify(existingOrders));
+      } catch (e) {}
 
       // Attempt BroadcastChannel trigger to KDS screen
       try {
@@ -783,11 +932,12 @@
 
       // Feedback redirection simulation
       setTimeout(() => {
-        toast.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span> <span>Pesanan Terkirim ke Barista &amp; Dapur! Mengalihkan ke Halaman 4: Pelacakan Live...</span>`;
+        toast.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span> <span>Pembayaran Berhasil! Pesanan Terkirim ke Barista & Dapur. Mengalihkan ke Pelacakan Live...</span>`;
       }, 1500);
 
       setTimeout(() => {
-        window.location.href = 'status.html';
+        // Redirect with checkout completed flag
+        window.location.href = 'menu.html?checkout=completed';
       }, 3000);
     }
   </script>
