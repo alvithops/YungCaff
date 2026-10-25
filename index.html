@@ -251,7 +251,7 @@
 <span id="storeStatus" class="px-2.5 py-1 rounded bg-status-success/15 border border-status-success/30 text-status-success text-label-sm font-label-sm uppercase tracking-wider" title="Jam operasional 08:00 - 24:00 WIB">Buka</span>
 </div>
 <!-- Table Input / Selection Simulator -->
-<form class="space-y-4" id="tableForm" onsubmit="event.preventDefault(); window.location.href='menu.html?table=' + encodeURIComponent(document.getElementById('tableSelect').value);">
+<form class="space-y-4" id="tableForm" onsubmit="event.preventDefault(); handleTableSelect();">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="tableSelect">Pilih Posisi Duduk / Nomor Meja Anda</label>
 <div class="relative">
@@ -259,23 +259,24 @@
 <span class="material-symbols-outlined text-lg">table_restaurant</span>
 </span>
 <select class="w-full pl-10 pr-4 py-3 rounded-xl bg-surface-container-lowest border border-white/10 text-text-primary font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="tableSelect">
-<option selected="" value="Meja 05">Meja 05 — Velvet Lounge Garden</option>
-<option value="Meja 02">Meja 02 — Bar Counter Espresso</option>
-<option value="Meja 08">Meja 08 — Central Chandelier</option>
-<option value="VIP Suite 1">VIP Suite 1 — Private Cellar Room</option>
+<option selected="" value="Meja 05" data-area="Velvet Lounge Garden">Meja 05 — Velvet Lounge Garden</option>
+<option value="Meja 02" data-area="Bar Counter Espresso">Meja 02 — Bar Counter Espresso</option>
+<option value="Meja 08" data-area="Central Chandelier">Meja 08 — Central Chandelier</option>
+<option value="VIP Suite 1" data-area="Private Cellar Room">VIP Suite 1 — Private Cellar Room</option>
 </select>
 </div>
+<p class="text-body-sm font-body-sm text-text-tertiary mt-2" id="tableStatusHint"></p>
 </div>
 <!-- Quick Perks list inside widget -->
 <div class="p-3.5 rounded-xl bg-surface-glass-subtle border border-glass-border-subtle flex items-center justify-between text-body-sm font-body-sm text-text-secondary">
 <span class="flex items-center gap-1.5">
 <span class="material-symbols-outlined text-primary text-sm">bolt</span>
-                  Bebas instalasi aplikasi
-                </span>
+Bebas instalasi aplikasi
+</span>
 <span class="flex items-center gap-1.5">
 <span class="material-symbols-outlined text-primary text-sm">verified</span>
-                  Verifikasi otomatis
-                </span>
+Verifikasi otomatis
+</span>
 </div>
 <button class="w-full py-3.5 px-4 rounded-xl gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]" type="submit">
 <span>Buka Menu Meja Ini</span>
@@ -879,6 +880,121 @@
     });
   </script>
 <script>
+    /* Table Occupancy Checker - Cek meja yang sudah dipesan dari localStorage */
+    (function () {
+      const tableSelect = document.getElementById('tableSelect');
+      const tableStatusHint = document.getElementById('tableStatusHint');
+      const form = document.getElementById('tableForm');
+      if (!tableSelect || !tableStatusHint) return;
+
+      // Table definitions with area mapping
+      const tableData = {
+        'Meja 05': 'Velvet Lounge Garden',
+        'Meja 02': 'Bar Counter Espresso',
+        'Meja 08': 'Central Chandelier',
+        'VIP Suite 1': 'Private Cellar Room'
+      };
+
+      // Check localStorage for active orders
+      function getOccupiedTables() {
+        const occupied = new Set();
+        try {
+          // Check elite_lounge_active_order (from payment)
+          const activeOrder = localStorage.getItem('elite_lounge_active_order');
+          if (activeOrder) {
+            const order = JSON.parse(activeOrder);
+            if (order.tableNumber) occupied.add('Meja ' + order.tableNumber);
+          }
+          // Check elite_active_order (from riwayat re-order)
+          const activeOrder2 = localStorage.getItem('elite_active_order');
+          if (activeOrder2) {
+            const order = JSON.parse(activeOrder2);
+            if (order.table) {
+              const tableNum = order.table.replace('Meja ', '');
+              occupied.add('Meja ' + tableNum);
+            }
+          }
+          // Check yungcaff_orders (admin dashboard orders)
+          const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+          orders.forEach(o => {
+            if (o.table && o.status !== 'completed' && o.status !== 'cancelled' && o.status !== 'selesai') {
+              occupied.add(o.table);
+            }
+          });
+        } catch (e) {}
+        return occupied;
+      }
+
+      function updateTableAvailability() {
+        const occupied = getOccupiedTables();
+        const options = tableSelect.querySelectorAll('option');
+        let hasAvailable = false;
+        
+        options.forEach(opt => {
+          const tableName = opt.value;
+          const isOccupied = occupied.has(tableName);
+          opt.disabled = isOccupied;
+          if (isOccupied) {
+            opt.textContent = tableName + ' — ' + tableData[tableName] + ' (Dipesan)';
+            opt.style.color = '#9CA3AF';
+          } else {
+            opt.textContent = tableName + ' — ' + tableData[tableName];
+            opt.style.color = '';
+            hasAvailable = true;
+          }
+        });
+
+        // Update hint text
+        const occupiedCount = occupied.size;
+        const totalCount = options.length;
+        if (occupiedCount > 0) {
+          tableStatusHint.innerHTML = `<span class="material-symbols-outlined text-sm text-status-warning align-middle">info</span> ${occupiedCount} dari ${totalCount} meja sedang dipesan. Pilih meja yang tersedia.`;
+          tableStatusHint.className = 'text-body-sm font-body-sm text-status-warning mt-2';
+        } else {
+          tableStatusHint.innerHTML = `<span class="material-symbols-outlined text-sm text-status-success align-middle">check_circle</span> Semua meja tersedia untuk dipesan.`;
+          tableStatusHint.className = 'text-body-sm font-body-sm text-status-success mt-2';
+        }
+
+        // Auto-select first available if current is occupied
+        const currentValue = tableSelect.value;
+        if (occupied.has(currentValue)) {
+          for (const opt of options) {
+            if (!opt.disabled) {
+              tableSelect.value = opt.value;
+              break;
+            }
+          }
+        }
+      }
+
+      function handleTableSelect() {
+        const selectedTable = tableSelect.value;
+        const occupied = getOccupiedTables();
+        if (occupied.has(selectedTable)) {
+          alert('Meja ' + selectedTable + ' sedang dipesan oleh tamu lain. Silakan pilih meja lain yang tersedia.');
+          return;
+        }
+        const area = tableData[selectedTable] || '';
+        window.location.href = 'menu.html?table=' + encodeURIComponent(selectedTable) + '&area=' + encodeURIComponent(area);
+      }
+
+      // Expose globally
+      window.handleTableSelect = handleTableSelect;
+
+      // Initial update
+      updateTableAvailability();
+      
+      // Refresh every 5 seconds
+      setInterval(updateTableAvailability, 5000);
+      
+      // Also refresh when modal opens/closes or focus returns
+      window.addEventListener('focus', updateTableAvailability);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) updateTableAvailability();
+      });
+    })();
+  </script>
+<script>
     /* Status toko: Buka 08:00 - 24:00 WIB */
     (function () {
       var el = document.getElementById('storeStatus');
@@ -898,553 +1014,4 @@
     })();
   </script>
 </body></html>
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
-ubahan
+le
