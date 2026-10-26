@@ -899,6 +899,16 @@ Verifikasi otomatis
       function getOccupiedTables() {
         const occupied = new Set();
         try {
+          // Check meja config from dashboard
+          const mejaConfig = JSON.parse(localStorage.getItem('yungcaff_meja_config') || '[]');
+          mejaConfig.forEach(m => {
+            if (m.status === 'terisi' || m.status === 'dipesan') {
+              const tableName = m.num.startsWith('Meja ') || m.num.startsWith('VIP') ? m.num : ('Meja ' + m.num);
+              occupied.add(tableName);
+            }
+          });
+        } catch (e) {}
+        try {
           // Check elite_lounge_active_order (from payment)
           const activeOrder = localStorage.getItem('elite_lounge_active_order');
           if (activeOrder) {

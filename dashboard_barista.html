@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Master Barista KDS - YungCaff</title>
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f2ca50",
+            "primary-container": "#d4af37",
+            "surface": "#131314",
+            "surface-container": "#201f20",
+            "surface-container-low": "#1c1b1c",
+            "surface-container-high": "#2a2a2b",
+            "surface-container-lowest": "#0e0e0f",
+            "on-surface": "#e5e2e3",
+            "on-surface-variant": "#d0c5af",
+            "text-primary": "#F9FAFB",
+            "text-secondary": "#9CA3AF",
+            "status-success": "#34D399",
+            "status-warning": "#FBBF24",
+            "status-danger": "#F87171",
+            "glass-border-subtle": "rgba(255, 255, 255, 0.08)",
+            "glass-border-highlight": "rgba(212, 175, 55, 0.35)",
+          },
+          fontFamily: {
+            "headline": ["Playfair Display"],
+            "body": ["Plus Jakarta Sans"],
+            "label": ["Plus Jakarta Sans"],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .order-card { transition: all 0.3s ease; }
+    .order-card:hover { transform: scale(1.02); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen">
+  <!-- Header -->
+  <header class="bg-surface-container-lowest/80 backdrop-blur-md border-b border-glass-border-subtle sticky top-0 z-40">
+    <div class="px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span>
+          <h1 class="font-headline text-2xl font-bold text-primary">YungCaff</h1>
+        </div>
+        <span class="h-4 w-[1px] bg-glass-border-subtle"></span>
+        <span class="font-label text-sm text-text-secondary uppercase tracking-widest">Master Barista - KDS</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-status-success/10 border border-status-success/30">
+          <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+          <span class="text-xs text-status-success">ONLINE</span>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-surface-glass-subtle border border-glass-border-subtle text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-sm align-middle mr-1">coffee</span>
+          Master Barista
+        </span>
+        <a href="login_admin.html" class="px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface transition">
+          <span class="material-symbols-outlined text-sm align-middle mr-1">logout</span>
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="p-6">
+    <!-- Status Filter -->
+    <div class="mb-6 flex items-center gap-3">
+      <button onclick="filterOrders('all')" class="px-4 py-2 rounded-lg bg-primary text-surface-container-lowest font-semibold transition">
+        Semua Pesanan
+      </button>
+      <button onclick="filterOrders('preparing')" class="px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface transition">
+        Sedang Diproses
+      </button>
+      <button onclick="filterOrders('ready')" class="px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface transition">
+        Siap Diantar
+      </button>
+      <button onclick="filterOrders('served')" class="px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface transition">
+        Sudah Disajikan
+      </button>
+    </div>
+
+    <!-- KDS Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="kdsGrid">
+      <!-- Orders will be loaded here -->
+    </div>
+  </main>
+
+  <script>
+    const channel = new BroadcastChannel('elite_lounge_pos_channel');
+    
+    function loadOrders(filter = 'all') {
+      const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+      const grid = document.getElementById('kdsGrid');
+      grid.innerHTML = '';
+      
+      let filtered = orders.filter(o => {
+        const status = o.status || o.orderStatus || 'preparing';
+        if (filter === 'all') return status !== 'completed' && status !== 'cancelled';
+        return status === filter;
+      });
+      
+      // Sort by time
+      filtered.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <span class="material-symbols-outlined text-6xl text-text-tertiary">coffee</span>
+            <p class="text-text-secondary mt-2">Tidak ada pesanan</p>
+          </div>
+        `;
+        return;
+      }
+      
+      filtered.forEach(order => {
+        const status = order.status || order.orderStatus || 'preparing';
+        let statusColor = 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400';
+        let statusText = 'Sedang Diproses';
+        let nextStatus = 'ready';
+        let nextLabel = 'Tandai Siap';
+        
+        if (status === 'ready') {
+          statusColor = 'bg-green-500/20 border-green-500/50 text-green-400';
+          statusText = 'Siap Diantar';
+          nextStatus = 'served';
+          nextLabel = 'Tandai Selesai';
+        } else if (status === 'served') {
+          statusColor = 'bg-blue-500/20 border-blue-500/50 text-blue-400';
+          statusText = 'Sudah Disajikan';
+          nextStatus = null;
+        }
+        
+        const time = order.createdAt ? new Date(order.createdAt).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) : '--:--';
+        
+        const card = document.createElement('div');
+        card.className = `order-card p-4 rounded-xl bg-surface-container border ${statusColor} shadow-lg`;
+        card.innerHTML = `
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <div class="font-bold text-lg text-text-primary">${order.orderId || order.id}</div>
+              <div class="text-sm text-text-secondary">${order.table || 'Take Away'} • ${time}</div>
+            </div>
+            <div class="px-2 py-1 rounded-full ${statusColor} text-xs font-semibold">
+              ${statusText}
+            </div>
+          </div>
+          
+          <div class="space-y-2 mb-4 max-h-40 overflow-y-auto">
+            ${(order.items || []).map(item => `
+              <div class="flex justify-between text-sm">
+                <div class="flex-1">
+                  <span class="font-medium text-text-primary">${item.quantity}x</span>
+                  <span class="text-text-primary ml-1">${item.name}</span>
+                  ${item.note ? `<div class="text-xs text-text-tertiary ml-4">Note: ${item.note}</div>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          
+          ${nextStatus ? `
+            <button onclick="updateStatus('${order.orderId || order.id}', '${nextStatus}')" class="w-full py-2 rounded-lg bg-primary hover:bg-primary-container text-surface-container-lowest font-semibold transition flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              ${nextLabel}
+            </button>
+          ` : `
+            <div class="w-full py-2 text-center text-sm text-text-secondary">
+              <span class="material-symbols-outlined text-sm align-middle mr-1">done_all</span>
+              Pesanan Selesai
+            </div>
+          `}
+        `;
+        grid.appendChild(card);
+      });
+    }
+    
+    function updateStatus(orderId, newStatus) {
+      const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+      const idx = orders.findIndex(o => (o.orderId || o.id) === orderId);
+      
+      if (idx >= 0) {
+        orders[idx].status = newStatus;
+        orders[idx].orderStatus = newStatus;
+        orders[idx].updatedAt = new Date().toISOString();
+        
+        if (newStatus === 'ready') {
+          orders[idx].statusLabel = 'Siap Diantar';
+        } else if (newStatus === 'served') {
+          orders[idx].statusLabel = 'Sudah Disajikan';
+        }
+        
+        localStorage.setItem('yungcaff_orders', JSON.stringify(orders));
+        
+        // Update active order
+        const active = JSON.parse(localStorage.getItem('elite_lounge_active_order') || 'null');
+        if (active && (active.orderId === orderId || active.id === orderId)) {
+          active.status = newStatus;
+          active.orderStatus = newStatus;
+          localStorage.setItem('elite_lounge_active_order', JSON.stringify(active));
+        }
+        
+        // Broadcast
+        channel.postMessage({
+          type: 'ORDER_STATUS_UPDATE',
+          orderId: orderId,
+          status: newStatus,
+          orderData: orders[idx]
+        });
+        
+        loadOrders(currentFilter);
+      }
+    }
+    
+    let currentFilter = 'all';
+    function filterOrders(filter) {
+      currentFilter = filter;
+      // Update button styles
+      document.querySelectorAll('button').forEach(btn => {
+        if (btn.textContent.includes('Semua') || btn.textContent.includes('Diproses') || btn.textContent.includes('Siap') || btn.textContent.includes('Selesai')) {
+          btn.className = 'px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface transition';
+        }
+      });
+      event.target.className = 'px-4 py-2 rounded-lg bg-primary text-surface-container-lowest font-semibold transition';
+      loadOrders(filter);
+    }
+    
+    // Listen for updates
+    channel.onmessage = (e) => {
+      if (e.data.type === 'ORDER_STATUS_UPDATE' || e.data.type === 'NEW_ORDER') {
+        loadOrders(currentFilter);
+      }
+    };
+    
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'yungcaff_orders' || e.key === 'elite_lounge_active_order') {
+        loadOrders(currentFilter);
+      }
+    });
+    
+    loadOrders('all');
+    setInterval(() => loadOrders(currentFilter), 5000);
+  </script>
+</body>
+</html>

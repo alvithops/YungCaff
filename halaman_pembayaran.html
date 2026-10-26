@@ -896,7 +896,7 @@
       // Save to localStorage for status.html and dashboard
       localStorage.setItem('elite_lounge_active_order', JSON.stringify(orderPayload));
       
-      // Also save to yungcaff_orders for dashboard_admin.html
+      // Also save to yungcaff_orders for dashboard_kasir.html
       try {
         const existingOrders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
         existingOrders.unshift({

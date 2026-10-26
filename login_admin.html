@@ -455,15 +455,30 @@
         const username = document.getElementById('usernameInput').value.trim();
         const remember = document.getElementById('rememberSession').checked;
 
+        // Determine role from username
+        let role = 'kasir';
+        let dashboardUrl = 'dashboard_kasir.html';
+        let roleName = 'Head Cashier';
+        
+        if (username.includes('manager')) {
+          role = 'manager';
+          dashboardUrl = 'dashboard_manager.html';
+          roleName = 'Store Manager';
+        } else if (username.includes('barista')) {
+          role = 'barista';
+          dashboardUrl = 'dashboard_barista.html';
+          roleName = 'Master Barista';
+        }
+
         // Mock store session state
         if (remember) {
           localStorage.setItem('elite_admin_authenticated', 'true');
           localStorage.setItem('elite_admin_user', username);
-          localStorage.setItem('elite_admin_role', 'Administrator POS');
+          localStorage.setItem('elite_admin_role', role);
         }
 
         toast.classList.remove('hidden');
-        toastText.textContent = `Akses Diberikan: Selamat datang kembali, ${username}. Mengarahkan ke Live POS & KDS...`;
+        toastText.textContent = `Akses Diberikan: Selamat datang kembali, ${roleName}. Mengarahkan ke Dashboard...`;
         
         submitBtn.innerHTML = `
           <span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
@@ -473,12 +488,11 @@
         submitBtn.classList.replace('to-tertiary-container', 'to-status-success');
 
         setTimeout(() => {
-          // Fallback feedback for single-page preview
-          toastText.textContent = `Sesi aktif terkonfirmasi. Menghubungkan ke Terminal Kasir Meja #01...`;
+          toastText.textContent = `Sesi aktif terkonfirmasi. Menghubungkan ke ${dashboardUrl.replace('.html', '').replace('_', ' ')}...`;
         }, 1200);
 
         setTimeout(() => {
-          window.location.href = 'dashboard_admin.html';
+          window.location.href = dashboardUrl;
         }, 2200);
 
       }, 1000);

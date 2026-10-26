@@ -878,7 +878,7 @@
 <span class="text-label-sm font-label-sm text-text-tertiary block">Subtotal Pesanan:</span>
 <span id="cartSubtotal" class="text-headline-sm font-headline-sm font-bold text-primary">Rp 310.000</span>
 </div>
-<a id="btnCheckout" class="gold-gradient-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl text-surface-container-lowest font-label-lg text-label-lg font-bold transition-all duration-200 active:scale-95 shadow-[0_0_20px_rgba(212,175,55,0.35)] whitespace-nowrap" href="order.html?table=05">
+<a id="btnCheckout" class="gold-gradient-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl text-surface-container-lowest font-label-lg text-label-lg font-bold transition-all duration-200 active:scale-95 shadow-[0_0_20px_rgba(212,175,55,0.35)] whitespace-nowrap" href="order.html">
 <span>Lanjut ke Form Checkout &amp; Identitas</span>
 <span class="material-symbols-outlined text-lg">arrow_forward</span>
 </a>
@@ -1016,18 +1016,25 @@
 </div>
 <script>
     /* ===== Modal Pindah Meja (menu.html) ===== */
-    var MEJA_TABLES = [
-      { num: '01', area: 'Bar Counter Espresso', status: 'terisi' },
-      { num: '02', area: 'Bar Counter Espresso', status: 'kosong' },
-      { num: '03', area: 'Central Chandelier', status: 'dipesan', until: '19:30' },
-      { num: '04', area: 'Velvet Lounge Garden', status: 'terisi' },
-      { num: '05', area: 'Velvet Lounge Garden', status: 'kosong' },
-      { num: '06', area: 'Window Side Jazz', status: 'kosong' },
-      { num: '07', area: 'Window Side Jazz', status: 'dipesan', until: '21:00' },
-      { num: '08', area: 'Central Chandelier', status: 'kosong' },
-      { num: 'VIP 1', area: 'Private Cellar Room', status: 'terisi' },
-      { num: 'VIP 2', area: 'Private Cellar Room', status: 'kosong' }
-    ];
+    function loadMejaTables() {
+      const saved = localStorage.getItem('yungcaff_meja_config');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+      return [
+        { num: '01', area: 'Bar Counter Espresso', status: 'kosong' },
+        { num: '02', area: 'Bar Counter Espresso', status: 'kosong' },
+        { num: '03', area: 'Central Chandelier', status: 'kosong' },
+        { num: '04', area: 'Velvet Lounge Garden', status: 'kosong' },
+        { num: '05', area: 'Velvet Lounge Garden', status: 'kosong' },
+        { num: '06', area: 'Window Side Jazz', status: 'kosong' },
+        { num: '07', area: 'Window Side Jazz', status: 'kosong' },
+        { num: '08', area: 'Central Chandelier', status: 'kosong' },
+        { num: 'VIP 1', area: 'Private Cellar Room', status: 'kosong' },
+        { num: 'VIP 2', area: 'Private Cellar Room', status: 'kosong' }
+      ];
+    }
+    var MEJA_TABLES = loadMejaTables();
     var mejaCurrent = { num: '05', area: 'Velvet Lounge Garden' };
     try {
       var mc = JSON.parse(localStorage.getItem('yungcaff_table') || 'null');

@@ -828,4 +828,18 @@
     })();
   </script>
 
+
+<script>
+    // Load table from localStorage
+    window.addEventListener('DOMContentLoaded', function() {
+      try {
+        const t = JSON.parse(localStorage.getItem('yungcaff_table') || '{}');
+        if (t.num) {
+          const el = document.getElementById('backToMenuText');
+          if (el) el.textContent = 'Kembali ke Menu (Meja ' + t.num + ')';
+        }
+      } catch(e) {}
+    });
+</script>
+
 </body></html>
