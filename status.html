@@ -449,14 +449,14 @@ Uji interaksi alur kerja tanpa backend: Tekan tombol berikut untuk memicu peruba
 </div>
 <!-- Butler Quick Service Actions -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-<button class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container border border-glass-border-subtle hover:border-glass-border-highlight text-left flex flex-col justify-between transition-all group" onclick="alert('Butler untuk Meja 05 telah dipanggil. Staf kami akan tiba dalam 60 detik.')">
+<button class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container border border-glass-border-subtle hover:border-glass-border-highlight text-left flex flex-col justify-between transition-all group" onclick="showAppToast('Butler untuk Meja 05 telah dipanggil. Staf kami akan tiba dalam 60 detik.')">
 <span class="material-symbols-outlined text-primary text-[28px] mb-2 group-hover:scale-110 transition-transform">room_service</span>
 <div>
 <p class="text-label-lg font-label-lg text-text-primary font-bold">Panggil Butler</p>
 <p class="text-body-sm font-body-sm text-text-tertiary">Ke Meja 05 Garden</p>
 </div>
 </button>
-<button class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container border border-glass-border-subtle hover:border-glass-border-highlight text-left flex flex-col justify-between transition-all group" onclick="alert('Permintaan air mineral dingin &amp; cutlery steril telah diteruskan ke stasiun service.')">
+<button class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container border border-glass-border-subtle hover:border-glass-border-highlight text-left flex flex-col justify-between transition-all group" onclick="showAppToast('Permintaan air mineral dingin &amp; cutlery steril telah diteruskan ke stasiun service.')">
 <span class="material-symbols-outlined text-secondary text-[28px] mb-2 group-hover:scale-110 transition-transform">water_full</span>
 <div>
 <p class="text-label-lg font-label-lg text-text-primary font-bold">Refill Mineral</p>
@@ -901,7 +901,7 @@ Uji interaksi alur kerja tanpa backend: Tekan tombol berikut untuk memicu peruba
       
       if (countdownEl) countdownEl.innerText = config.countdown;
       if (progressEl) progressEl.style.width = config.progress;
-      alert(config.msg);
+      showAppToast(config.msg);
       
       // Update order status in localStorage (synced with dashboard)
       try {
@@ -938,12 +938,22 @@ Uji interaksi alur kerja tanpa backend: Tekan tombol berikut untuk memicu peruba
       btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Membuat PDF...</span>`;
       setTimeout(() => {
         btn.innerHTML = originalText;
-        alert("Struk resmi PDF telah diunduh dengan sertifikat tanda tangan digital.");
+        showAppToast("Struk resmi PDF telah diunduh dengan sertifikat tanda tangan digital.");
       }, 1200);
     }
 
     function sendWhatsappReceipt() {
-      alert("Salinan struk dan tautan live status telah berhasil dikirimkan via WhatsApp.");
+      showAppToast("Salinan struk dan tautan live status telah berhasil dikirimkan via WhatsApp.");
     }
   </script>
+<div id="appToast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden transform -translate-y-4 opacity-0 transition-all duration-300"><div class="bg-surface-container-low border border-glass-border-highlight rounded-xl px-6 py-3 shadow-2xl"><span class="text-text-primary font-medium" id="appToastMsg"></span></div></div>
+<script>function showAppToast(m){const t=document.getElementById('appToast'),msg=document.getElementById('appToastMsg');if(!t)return;msg.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.remove('-translate-y-4','opacity-0'),10);setTimeout(()=>{t.classList.add('-translate-y-4','opacity-0');setTimeout(()=>t.classList.add('hidden'),300);},2500);}</script>
+
+<script>
+try{
+  const chm = new BroadcastChannel('yungcaff_meja_sync');
+  chm.onmessage = function(e){ if(e.data && e.data.type==='MEJA_UPDATE'){ location.reload(); } };
+}catch(e){}
+</script>
+
 </body></html>

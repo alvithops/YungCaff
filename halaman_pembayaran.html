@@ -539,7 +539,7 @@
 <span>⚡ Simulasi Sukses Bayar Sekarang</span>
 </button>
 <!-- Secondary CTA -->
-<button class="w-full sm:w-auto py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-card border border-glass-border-subtle hover:border-primary/30 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] whitespace-nowrap" onclick="alert('Kasir Meja 05 telah dipanggil ke meja Anda untuk penerimaan tunai/EDC.')">
+<button class="w-full sm:w-auto py-3 px-4 rounded-lg bg-surface-glass-subtle hover:bg-surface-glass-card border border-glass-border-subtle hover:border-primary/30 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] whitespace-nowrap" onclick="showAppToast('Kasir Meja 05 telah dipanggil ke meja Anda untuk penerimaan tunai/EDC.')">
               Ganti Metode: Bayar Tunai di Kasir Meja 05
             </button>
 </div>
@@ -859,13 +859,13 @@
           btnText.innerText = orig;
         }, 2200);
       }).catch(err => {
-        alert("ID Invoice: " + text);
+        showAppToast("ID Invoice: " + text);
       });
     }
 
     // 3. Unduh Kode QR Mock
     function downloadQRSim() {
-      alert("Gambar kode QR YungCaff (NMID: ID1020349812902) berhasil disimpan ke galeri perangkat Anda.");
+      showAppToast("Gambar kode QR YungCaff (NMID: ID1020349812902) berhasil disimpan ke galeri perangkat Anda.");
     }
 
     // 4. Simulasi Sukses Bayar (Trigger LocalStorage & BroadcastChannel)
@@ -874,7 +874,7 @@
       const grandTotal = window.__grandTotal || 0;
       
       if (!orderData || !orderData.items || !orderData.items.length) {
-        alert('Tidak ada data pesanan untuk diproses.');
+        showAppToast('Tidak ada data pesanan untuk diproses.');
         return;
       }
 
@@ -941,4 +941,23 @@
       }, 3000);
     }
   </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  try {
+    const t = JSON.parse(localStorage.getItem('yungcaff_table') || '{}');
+    if(t.num){
+      const config = JSON.parse(localStorage.getItem('yungcaff_meja_config') || '[]');
+      const num = t.num.replace('Meja ','').replace('VIP ','VIP ');
+      const meja = config.find(m => m.num === num || m.num === t.num.replace('Meja ',''));
+      if(!meja || meja.status !== 'kosong'){
+        if(typeof showAppToast === 'function') showAppToast('Meja tidak tersedia. Pembayaran dibatalkan.');
+        else alert('Meja tidak tersedia. Pembayaran dibatalkan.');
+        setTimeout(()=>window.location.href='menu.html',1500);
+      }
+    }
+  }catch(e){}
+});
+</script>
+
 </body></html>

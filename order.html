@@ -580,7 +580,7 @@
 <span class="material-symbols-outlined text-primary text-[1.125rem]">live_help</span>
 <span>Butuh bantuan terkait alergi makanan?</span>
 </div>
-<button class="text-primary hover:underline font-label-md text-label-md font-semibold" onclick="alert('Sommelier kami akan menghampiri meja Anda dalam beberapa saat. Silakan tunggu.')">
+<button class="text-primary hover:underline font-label-md text-label-md font-semibold" onclick="showAppToast('Sommelier kami akan menghampiri meja Anda dalam beberapa saat. Silakan tunggu.')">
             Panggil Sommelier
           </button>
 </div>
@@ -798,7 +798,7 @@
           else { el.style.borderColor = ''; }
         });
         if (!ok) {
-          alert('Mohon lengkapi identitas pemesan (Nama Lengkap & Nomor WhatsApp) sebelum melanjutkan ke pembayaran.');
+          showAppToast('Mohon lengkapi identitas pemesan (Nama Lengkap & Nomor WhatsApp) sebelum melanjutkan ke pembayaran.');
           (!fName.value.trim() ? fName : fPhone).focus();
         }
         return ok;
@@ -842,4 +842,39 @@
     });
 </script>
 
+
+<script>
+    function getMejaInfoFromConfig(tableNum) {
+      try {
+        const config = JSON.parse(localStorage.getItem('yungcaff_meja_config') || '[]');
+        const num = tableNum.replace('Meja ', '').replace('VIP ', 'VIP ');
+        const meja = config.find(m => m.num === num || m.num === tableNum);
+        if (meja) {
+          return { num: meja.num, area: meja.area, status: meja.status };
+        }
+      } catch(e) {}
+      return null;
+    }
+</script>
+
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    const t = JSON.parse(localStorage.getItem('yungcaff_table') || '{}');
+    if(t.num) {
+      const config = JSON.parse(localStorage.getItem('yungcaff_meja_config') || '[]');
+      const num = t.num.replace('Meja ','').replace('VIP ','VIP ');
+      const meja = config.find(m => m.num === num || m.num === t.num.replace('Meja ',''));
+      if(!meja || meja.status !== 'kosong') {
+        showAppToast('Meja ' + t.num + ' tidak tersedia. Silakan pilih meja lain.');
+        setTimeout(()=>window.location.href = 'menu.html', 1500);
+      }
+    }
+  } catch(e) {}
+});
+</script>
+
+<div id="appToast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden transform -translate-y-4 opacity-0 transition-all duration-300"><div class="bg-surface-container-low border border-glass-border-highlight rounded-xl px-6 py-3 shadow-2xl"><span class="text-text-primary font-medium" id="appToastMsg"></span></div></div>
+<script>function showAppToast(m){const t=document.getElementById('appToast'),msg=document.getElementById('appToastMsg');if(!t)return;msg.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.remove('-translate-y-4','opacity-0'),10);setTimeout(()=>{t.classList.add('-translate-y-4','opacity-0');setTimeout(()=>t.classList.add('hidden'),300);},2500);}</script>
 </body></html>

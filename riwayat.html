@@ -665,7 +665,7 @@
 <span class="material-symbols-outlined text-sm">download</span>
                     Unduh Struk PDF
                   </button>
-<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="alert('Katalog takeaways siap sedia untuk diantar ke lobi valet.')">
+<button class="py-2 rounded-lg bg-surface-glass-subtle hover:bg-white/10 text-text-secondary hover:text-text-primary border border-glass-border-subtle text-label-sm font-label-sm transition-colors flex items-center justify-center gap-1.5" onclick="showAppToast('Katalog takeaways siap sedia untuk diantar ke lobi valet.')">
 <span class="material-symbols-outlined text-sm">share</span>
                     Kirim ke WA
                   </button>
@@ -692,7 +692,7 @@
           </p>
 </div>
 <div class="flex items-center gap-3 whitespace-nowrap">
-<button class="px-5 py-3 rounded-xl bg-surface-glass-raised hover:bg-white/10 text-text-primary border border-glass-border-highlight text-label-md font-label-md font-bold transition-all" onclick="alert('Kurasi menu rekomendasi ditambahkan ke daftar keinginan profil Anda.')">
+<button class="px-5 py-3 rounded-xl bg-surface-glass-raised hover:bg-white/10 text-text-primary border border-glass-border-highlight text-label-md font-label-md font-bold transition-all" onclick="showAppToast('Kurasi menu rekomendasi ditambahkan ke daftar keinginan profil Anda.')">
             Simpan ke Wishlist
           </button>
 <button class="gold-gradient-btn text-on-primary-container px-6 py-3 rounded-xl text-label-md font-label-md font-bold transition-all" onclick="triggerNewOrder()">
@@ -725,7 +725,7 @@
 <p class="text-body-sm font-body-sm text-text-primary font-bold">Meja 05 — Velvet Lounge Garden</p>
 </div>
 </div>
-<button class="text-label-sm font-label-sm text-secondary hover:underline" onclick="alert('Untuk mengganti nomor meja, silakan pindai barcode fisik di atas meja Anda.')">Ganti Meja</button>
+<button class="text-label-sm font-label-sm text-secondary hover:underline" onclick="showAppToast('Untuk mengganti nomor meja, silakan pindai barcode fisik di atas meja Anda.')">Ganti Meja</button>
 </div>
 <!-- Item Checklist & Freshness Status -->
 <div class="space-y-3">
@@ -866,7 +866,7 @@
 
       // Notification feedback
       setTimeout(() => {
-        alert(`Pesanan ${currentSelectedOrder.orderId} BERHASIL di-Reorder!\n\nItem telah dikirimkan ke Barista & Kasir untuk disajikan di MEJA 05.\nEstimasi penyajian: ±12 menit.`);
+        showAppToast(`Pesanan ${currentSelectedOrder.orderId} BERHASIL di-Reorder!\n\nItem telah dikirimkan ke Barista & Kasir untuk disajikan di MEJA 05.\nEstimasi penyajian: ±12 menit.`);
         const activeSection = document.getElementById("section-active-order");
         if (activeSection) {
           activeSection.scrollIntoView({ behavior: 'smooth' });
@@ -876,7 +876,7 @@
 
     function customizeInMenu() {
       closeReOrderModal();
-      alert("Mengarahkan Anda ke menu YungCaff dengan racikan tersimpan untuk penyesuaian topping / gula.");
+      showAppToast("Mengarahkan Anda ke menu YungCaff dengan racikan tersimpan untuk penyesuaian topping / gula.");
     }
 
     // Filter Logic for Orders Tabs
@@ -944,44 +944,46 @@
       localStorage.setItem("elite_guest_profile", JSON.stringify(updated));
       document.getElementById("guest-name").textContent = newName;
       document.getElementById("guest-phone").textContent = newPhone;
-      alert("Profil Tamu Lokal berhasil diperbarui di memori browser.");
+      showAppToast("Profil Tamu Lokal berhasil diperbarui di memori browser.");
     }
 
     function clearLocalHistory() {
       if (confirm("Apakah Anda yakin ingin menghapus data riwayat pemesanan dari memori browser perangkat ini?")) {
         localStorage.removeItem("elite_guest_profile");
         localStorage.removeItem("elite_active_order");
-        alert("Riwayat lokal browser berhasil dibersihkan.");
+        showAppToast("Riwayat lokal browser berhasil dibersihkan.");
         location.reload();
       }
     }
 
     function triggerNewOrder() {
-      alert("Membuka kamera pemindai QR Meja YungCaff... Silakan arahkan kamera ke barcode meja Anda.");
+      showAppToast("Membuka kamera pemindai QR Meja YungCaff... Silakan arahkan kamera ke barcode meja Anda.");
     }
 
     function openLiveTrackingModal() {
-      alert("Menghubungkan ke Kitchen Display System (KDS)... Barista: Chef Andrean sedang melakukan extraction pour-over Geisha V60.");
+      showAppToast("Menghubungkan ke Kitchen Display System (KDS)... Barista: Chef Andrean sedang melakukan extraction pour-over Geisha V60.");
     }
 
     function viewDigitalReceipt(orderId) {
-      alert(`Membuka Struk Digital ${orderId} Resmi YungCaff & Specialty Brew.\nStatus: LUNAS via QRIS Dinamis.`);
+      showAppToast(`Membuka Struk Digital ${orderId} Resmi YungCaff & Specialty Brew.\nStatus: LUNAS via QRIS Dinamis.`);
     }
 
     function callButlerPrompt() {
-      alert("Layanan Butler Meja 05 telah dipanggil. Butler kami akan mendatangi meja Anda dalam ±1 menit.");
+      showAppToast("Layanan Butler Meja 05 telah dipanggil. Butler kami akan mendatangi meja Anda dalam ±1 menit.");
     }
 
     function downloadPdfReceipt(orderId) {
-      alert(`Mengunduh Struk Resmi #${orderId} (Format PDF Digital Bersegel YungCaff)...`);
+      showAppToast(`Mengunduh Struk Resmi #${orderId} (Format PDF Digital Bersegel YungCaff)...`);
     }
 
     function showReviewModal(orderId) {
-      alert(`Terima kasih. Masukan Anda untuk pesanan ${orderId} membantu Barista & Sommelier kami menjaga standar tertinggi.`);
+      showAppToast(`Terima kasih. Masukan Anda untuk pesanan ${orderId} membantu Barista & Sommelier kami menjaga standar tertinggi.`);
     }
 
     function viewInvoiceDetail(orderId) {
-      alert(`Faktur Pajak Restoran & Detail Layanan untuk ${orderId} telah terarsip secara elektronik.`);
+      showAppToast(`Faktur Pajak Restoran & Detail Layanan untuk ${orderId} telah terarsip secara elektronik.`);
     }
   </script>
+<div id="appToast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden transform -translate-y-4 opacity-0 transition-all duration-300"><div class="bg-surface-container-low border border-glass-border-highlight rounded-xl px-6 py-3 shadow-2xl"><span class="text-text-primary font-medium" id="appToastMsg"></span></div></div>
+<script>function showAppToast(m){const t=document.getElementById('appToast'),msg=document.getElementById('appToastMsg');if(!t)return;msg.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.remove('-translate-y-4','opacity-0'),10);setTimeout(()=>{t.classList.add('-translate-y-4','opacity-0');setTimeout(()=>t.classList.add('hidden'),300);},2500);}</script>
 </body></html>

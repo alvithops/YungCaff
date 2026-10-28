@@ -82,8 +82,16 @@
   </header>
 
   <main class="p-6">
+    <!-- Info -->
+    <div class="mb-4 p-4 rounded-lg bg-surface-container border border-glass-border-highlight">
+      <div class="flex items-center gap-2 text-primary">
+        <span class="material-symbols-outlined">info</span>
+        <span class="font-semibold">Hanya Master Barista yang dapat mengubah status pesanan (Siap/Selesai)</span>
+      </div>
+    </div>
+    
     <!-- Status Filter -->
-    <div class="mb-6 flex items-center gap-3">
+<div class="mb-6 flex items-center gap-3">
       <button onclick="filterOrders('all')" class="px-4 py-2 rounded-lg bg-primary text-surface-container-lowest font-semibold transition">
         Semua Pesanan
       </button>
@@ -97,7 +105,27 @@
         Sudah Disajikan
       </button>
     </div>
-
+    
+    <!-- 4 Functional Quick-Action Menus -->
+    <div class="mb-6 grid grid-cols-2 gap-2">
+      <button onclick="quickAction('', 'priority')" class="px-4 py-2 rounded-lg bg-primary/20 border border-primary/40 text-primary font-semibold transition hover:bg-primary/10">
+        <span class="material-symbols-outlined">star</span>
+        Prioritas
+      </button>
+      <button onclick="quickAction('', 'note')" class="px-4 py-2 rounded-lg bg-surface-container-high border border-glass-border-subtle text-on-surface font-semibold transition hover:bg-surface-container">
+        <span class="material-symbols-outlined">edit</span>
+        Catatan
+      </button>
+      <button onclick="quickAction('', 'cancel')" class="px-4 py-2 rounded-lg bg-surface-container-high border border-status-danger/30 text-status-danger font-semibold transition hover:bg-red-100">
+        <span class="material-symbols-outlined">cancel</span>
+        Batal
+      </button>
+      <button onclick="quickAction('', 'ready')" class="px-4 py-2 rounded-lg bg-primary/20 border border-primary/40 text-primary font-semibold transition hover:bg-primary/10">
+        <span class="material-symbols-outlined">check_circle</span>
+        Siap
+      </button>
+    </div>
+    
     <!-- KDS Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="kdsGrid">
       <!-- Orders will be loaded here -->
@@ -118,8 +146,8 @@
         return status === filter;
       });
       
-      // Sort by time
-      filtered.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
+      // Sort by time - newest first
+      filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
       
       if (filtered.length === 0) {
         grid.innerHTML = `
@@ -151,6 +179,22 @@
         
         const time = order.createdAt ? new Date(order.createdAt).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) : '--:--';
         
+        // Build items list with prices
+        let itemsHtml = '';
+        if (order.items && order.items.length > 0) {
+          itemsHtml = order.items.map(item => {
+            const qty = item.quantity || item.qty || 1;
+            const price = item.price ? parseInt(item.price.replace(/[^\d]/g, '')) || 0 : 0;
+            const total = item.total ? parseInt(item.total.replace(/[^\d]/g, '')) || 0 : (price * qty);
+            return `<div class="flex justify-between text-sm">
+                        <span class="font-medium text-text-primary">${qty}x ${item.name}</span>
+                        <span class="text-primary font-bold">Rp ${price.toLocaleString('id-ID')}</span>
+                      </div>`;
+          }).join('');
+        } else {
+          itemsHtml = '<p class="text-text-secondary text-sm">Tidak ada detail item</p>';
+        }
+        
         const card = document.createElement('div');
         card.className = `order-card p-4 rounded-xl bg-surface-container border ${statusColor} shadow-lg`;
         card.innerHTML = `
@@ -165,15 +209,7 @@
           </div>
           
           <div class="space-y-2 mb-4 max-h-40 overflow-y-auto">
-            ${(order.items || []).map(item => `
-              <div class="flex justify-between text-sm">
-                <div class="flex-1">
-                  <span class="font-medium text-text-primary">${item.quantity}x</span>
-                  <span class="text-text-primary ml-1">${item.name}</span>
-                  ${item.note ? `<div class="text-xs text-text-tertiary ml-4">Note: ${item.note}</div>` : ''}
-                </div>
-              </div>
-            `).join('')}
+            ${itemsHtml}
           </div>
           
           ${nextStatus ? `
@@ -242,6 +278,64 @@
       loadOrders(filter);
     }
     
+    // 4 Functional Quick-Action Menus for Barista
+    function quickAction(orderId, action) {
+      const orders = JSON.parse(localStorage.getItem('yungcaff_orders') || '[]');
+      const idx = orders.findIndex(o => (o.orderId || o.id) === orderId);
+      
+      if (idx >= 0) {
+        switch(action) {
+          case 'priority':
+            orders[idx].isPriority = true;
+            showKasirToast('Pesanan ' + orderId + ' telah ditandai prioritas');
+            break;
+          case 'note':
+            const note = prompt('Masukkan catatan untuk pesanan ini:', '');
+            if (note !== null) {
+              if (!orders[idx].note) orders[idx].note = '';
+              orders[idx].note += (orders[idx].note ? ', ' : '') + note;
+              showKasirToast('Catatan ditambahkan ke pesanan ' + orderId);
+            }
+            break;
+          case 'cancel':
+            if (confirm('Yakin ingin membatalkan pesanan ' + orderId + '?')) {
+              orders[idx].status = 'cancelled';
+              orders[idx].orderStatus = 'cancelled';
+              orders[idx].statusLabel = 'Dibatalkan';
+              orders[idx].statusColor = 'status-danger';
+              showKasirToast('Pesanan ' + orderId + ' telah dibatalkan');
+            }
+            break;
+          case 'ready':
+            orders[idx].status = 'ready';
+            orders[idx].orderStatus = 'ready';
+            orders[idx].statusLabel = 'Siap Diantar';
+            orders[idx].statusColor = 'status-success';
+            showKasirToast('Pesanan ' + orderId + ' ditandai siap diantar');
+            break;
+        }
+        localStorage.setItem('yungcaff_orders', JSON.stringify(orders));
+        loadOrders(currentFilter);
+      }
+    }
+    
+    function showKasirToast(message, icon = 'check_circle') {
+      const toast = document.getElementById('kasirToast');
+      const msg = document.getElementById('toastMessage');
+      const ico = document.getElementById('toastIcon');
+      if (!toast) return;
+      msg.textContent = message;
+      ico.textContent = icon;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 10);
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3000);
+    }
+    
     // Listen for updates
     channel.onmessage = (e) => {
       if (e.data.type === 'ORDER_STATUS_UPDATE' || e.data.type === 'NEW_ORDER') {
@@ -260,3 +354,4 @@
   </script>
 </body>
 </html>
+gass

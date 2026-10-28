@@ -173,11 +173,6 @@
 </nav>
 <!-- Trailing Action Buttons -->
 <div class="flex items-center gap-3">
-<!-- Admin / Kasir Glass Outline Button -->
-<a class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-glass-subtle border border-white/15 text-text-primary text-label-md font-label-md hover:border-primary hover:bg-primary/10 transition-all active:scale-[0.98]" href="login_admin.html">
-<span class="material-symbols-outlined text-sm text-secondary">admin_panel_settings</span>
-<span>Akses Kasir / Admin</span>
-</a>
 <!-- Scan Meja & Pesan (Primary Gold Glow Button) -->
 <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg gold-gradient-btn text-surface-container-lowest font-label-lg text-label-lg font-bold tracking-wide transition-all active:scale-[0.98] cursor-pointer" href="#" id="btnScanMeja" onclick="event.preventDefault(); openScanModal();">
 <span class="material-symbols-outlined text-base">qr_code_scanner</span>
@@ -259,10 +254,6 @@
 <span class="material-symbols-outlined text-lg">table_restaurant</span>
 </span>
 <select class="w-full pl-10 pr-4 py-3 rounded-xl bg-surface-container-lowest border border-white/10 text-text-primary font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="tableSelect">
-<option selected="" value="Meja 05" data-area="Velvet Lounge Garden">Meja 05 — Velvet Lounge Garden</option>
-<option value="Meja 02" data-area="Bar Counter Espresso">Meja 02 — Bar Counter Espresso</option>
-<option value="Meja 08" data-area="Central Chandelier">Meja 08 — Central Chandelier</option>
-<option value="VIP Suite 1" data-area="Private Cellar Room">VIP Suite 1 — Private Cellar Room</option>
 </select>
 </div>
 <p class="text-body-sm font-body-sm text-text-tertiary mt-2" id="tableStatusHint"></p>
@@ -743,7 +734,7 @@ Verifikasi otomatis
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#vip">Private VIP Booking</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#contact">Operational Hours &amp; Location</a>
 <a class="text-text-tertiary hover:text-primary hover:underline transition-all duration-200" href="#">Terms &amp; Conditions</a>
-<a class="text-primary font-medium hover:underline transition-all duration-200" href="login_admin.html">Admin POS Access</a>
+
 </nav>
 </div>
 </footer>
@@ -887,13 +878,59 @@ Verifikasi otomatis
       const form = document.getElementById('tableForm');
       if (!tableSelect || !tableStatusHint) return;
 
-      // Table definitions with area mapping
-      const tableData = {
-        'Meja 05': 'Velvet Lounge Garden',
-        'Meja 02': 'Bar Counter Espresso',
-        'Meja 08': 'Central Chandelier',
-        'VIP Suite 1': 'Private Cellar Room'
-      };
+      // Load table data from config
+      function loadTableDataFromConfig() {
+        const mejaConfig = JSON.parse(localStorage.getItem('yungcaff_meja_config') || 'null');
+        if (!mejaConfig) {
+          mejaConfig = [
+            { num: '01', area: 'Bar Counter Espresso', status: 'kosong' },
+            { num: '02', area: 'Bar Counter Espresso', status: 'kosong' },
+            { num: '03', area: 'Central Chandelier', status: 'kosong' },
+            { num: '04', area: 'Velvet Lounge Garden', status: 'kosong' },
+            { num: '05', area: 'Velvet Lounge Garden', status: 'kosong' },
+            { num: '06', area: 'Window Side Jazz', status: 'kosong' },
+            { num: '07', area: 'Window Side Jazz', status: 'kosong' },
+            { num: '08', area: 'Central Chandelier', status: 'kosong' },
+            { num: 'VIP 1', area: 'Private Cellar Room', status: 'kosong' },
+            { num: 'VIP 2', area: 'Private Cellar Room', status: 'kosong' }
+          ];
+        }
+        const data = {};
+        mejaConfig.forEach(m => {
+          const name = m.num.startsWith('Meja ') || m.num.startsWith('VIP') ? m.num : ('Meja ' + m.num);
+          data[name] = m.area;
+        });
+        return { data, config: mejaConfig };
+      }
+
+      const tableInfo = loadTableDataFromConfig();
+      const tableData = tableInfo.data;
+
+      // Populate table select
+      function populateTableSelect() {
+        tableSelect.innerHTML = '';
+        tableInfo.config.forEach(m => {
+          const name = m.num.startsWith('Meja ') || m.num.startsWith('VIP') ? m.num : ('Meja ' + m.num);
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.setAttribute('data-area', m.area);
+          if (m.status === 'kosong') {
+            opt.textContent = name + ' — ' + m.area;
+          } else {
+            opt.textContent = name + ' — ' + m.area + ' (' + (m.status === 'terisi' ? 'Terisi' : 'Dipesan') + ')';
+            opt.disabled = true;
+          }
+          tableSelect.appendChild(opt);
+        });
+        // Select first available
+        for (const opt of tableSelect.options) {
+          if (!opt.disabled) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
+      populateTableSelect();
 
       // Check localStorage for active orders
       function getOccupiedTables() {
@@ -936,22 +973,49 @@ Verifikasi otomatis
       }
 
       function updateTableAvailability() {
+        // Reload from config
+        const mejaConfig = JSON.parse(localStorage.getItem('yungcaff_meja_config') || 'null');
+        if (mejaConfig) {
+          const currentVal = tableSelect.value;
+          tableSelect.innerHTML = '';
+          mejaConfig.forEach(m => {
+            const name = m.num.startsWith('Meja ') || m.num.startsWith('VIP') ? m.num : ('Meja ' + m.num);
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.setAttribute('data-area', m.area);
+            if (m.status === 'kosong') {
+              opt.textContent = name + ' — ' + m.area;
+            } else {
+              opt.textContent = name + ' — ' + m.area + ' (' + (m.status === 'terisi' ? 'Terisi' : 'Dipesan') + ')';
+              opt.disabled = true;
+            }
+            tableSelect.appendChild(opt);
+          });
+          // Try to keep selection if still available
+          for (const opt of tableSelect.options) {
+            if (opt.value === currentVal && !opt.disabled) {
+              opt.selected = true;
+              break;
+            }
+          }
+          // If current disabled, select first available
+          if (tableSelect.selectedOptions[0] && tableSelect.selectedOptions[0].disabled) {
+            for (const opt of tableSelect.options) {
+              if (!opt.disabled) {
+                opt.selected = true;
+                break;
+              }
+            }
+          }
+        }
+        
         const occupied = getOccupiedTables();
         const options = tableSelect.querySelectorAll('option');
         let hasAvailable = false;
         
         options.forEach(opt => {
-          const tableName = opt.value;
-          const isOccupied = occupied.has(tableName);
-          opt.disabled = isOccupied;
-          if (isOccupied) {
-            opt.textContent = tableName + ' — ' + tableData[tableName] + ' (Dipesan)';
-            opt.style.color = '#9CA3AF';
-          } else {
-            opt.textContent = tableName + ' — ' + tableData[tableName];
-            opt.style.color = '';
-            hasAvailable = true;
-          }
+          if (opt.disabled) return;
+          hasAvailable = true;
         });
 
         // Update hint text
@@ -981,7 +1045,7 @@ Verifikasi otomatis
         const selectedTable = tableSelect.value;
         const occupied = getOccupiedTables();
         if (occupied.has(selectedTable)) {
-          alert('Meja ' + selectedTable + ' sedang dipesan oleh tamu lain. Silakan pilih meja lain yang tersedia.');
+          console.warn('Meja ' + selectedTable + ' sedang dipesan oleh tamu lain. Silakan pilih meja lain yang tersedia.');
           return;
         }
         const area = tableData[selectedTable] || '';
@@ -1023,4 +1087,36 @@ Verifikasi otomatis
       setInterval(updateStoreStatus, 60000);
     })();
   </script>
+
+<div id="indexToast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] hidden transform -translate-y-4 opacity-0 transition-all duration-300">
+  <div class="bg-surface-container-low border border-glass-border-highlight rounded-xl px-6 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
+    <span class="text-text-primary font-medium" id="indexToastMsg"></span>
+  </div>
+</div>
+
+
+<script>
+function showIndexToast(msg) {
+  const t = document.getElementById('indexToast');
+  const m = document.getElementById('indexToastMsg');
+  if(!t)return;
+  m.textContent = msg;
+  t.classList.remove('hidden');
+  setTimeout(()=>t.classList.remove('-translate-y-4','opacity-0'),10);
+  setTimeout(()=>{t.classList.add('-translate-y-4','opacity-0'); setTimeout(()=>t.classList.add('hidden'),300);},2500);
+}
+</script>
+
+
+<script>
+  try {
+    const ch = new BroadcastChannel('yungcaff_meja_sync');
+    ch.onmessage = function(e) {
+      if(e.data && e.data.type === 'MEJA_UPDATE') {
+        updateTableAvailability();
+      }
+    };
+  } catch(e) {}
+</script>
+
 </body></html>

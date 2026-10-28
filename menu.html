@@ -1385,4 +1385,12 @@
       updateBar();
     })();
   </script>
+
+<script>
+try{
+  const chm = new BroadcastChannel('yungcaff_meja_sync');
+  chm.onmessage = function(e){ if(e.data && e.data.type==='MEJA_UPDATE'){ location.reload(); } };
+}catch(e){}
+</script>
+
 </body></html>
